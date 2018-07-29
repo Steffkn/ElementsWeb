@@ -12,6 +12,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Elements.Data;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Elements.Web.Areas.Identity.Services;
+using Elements.Models;
 
 namespace Elements.Web
 {
@@ -35,10 +38,31 @@ namespace Elements.Web
             });
 
             services.AddDbContext<ElementsContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<ElementsContext>();
+                        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+                        );
+            //services.AddDefaultIdentity<User>()
+            //    .AddEntityFrameworkStores<ElementsContext>();
+
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<ElementsContext>()
+                .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password = new PasswordOptions()
+                {
+                    RequireDigit = false,
+                    RequiredLength = 4,
+                    RequiredUniqueChars = 1,
+                    RequireLowercase = false,
+                    RequireUppercase = false,
+                    RequireNonAlphanumeric = false
+                };
+
+                options.SignIn.RequireConfirmedEmail = false;
+            });
+
+            services.AddSingleton<IEmailSender, SendGridEmailSender>();
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

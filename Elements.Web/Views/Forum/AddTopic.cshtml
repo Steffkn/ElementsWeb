@@ -1,0 +1,20 @@
+﻿@model Elements.Web.Models.Forum.ViewModels.TopicViewModel
+@{
+    ViewData["Title"] = "AddTopic";
+}
+
+<div>
+    <form asp-controller="Forum" asp-action="AddTopic">
+        <div>
+            <label asp-for="Title"></label>
+            <input asp-for="Title" />
+        </div>
+        <div>
+            <label asp-for="Content"></label>
+            <input asp-for="Content" />
+        </div>
+        <div>
+            <button type="submit">Add</button>
+        </div>
+    </form>
+</div>

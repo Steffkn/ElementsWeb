@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Elements.Web.Models.Forum.ViewModels.TopicOverviewViewModel>
+@{
+    ViewData["Title"] = "News";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@foreach (var item in Model)
+{
+    <div>@item.AuthorName</div>
+    <div>@item.Title</div>
+    <div>@item.Content</div>
+    <div>@item.CreateDate</div>
+}
+
