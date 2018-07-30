@@ -35,7 +35,7 @@ namespace Elements.Web.Areas.Identity.Pages.Account
 
         [TempData]
         public string ErrorMessage { get; set; }
-
+        
         public async Task OnGetAsync(string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
@@ -62,9 +62,9 @@ namespace Elements.Web.Areas.Identity.Pages.Account
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await signInManager.PasswordSignInAsync(LoginUserModel.Username, 
-                    LoginUserModel.Password, 
-                    LoginUserModel.RememberMe, 
+                var result = await signInManager.PasswordSignInAsync(LoginUserModel.Username,
+                    LoginUserModel.Password,
+                    LoginUserModel.RememberMe,
                     lockoutOnFailure: true);
                 if (result.Succeeded)
                 {

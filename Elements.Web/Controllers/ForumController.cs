@@ -8,6 +8,7 @@ using Elements.Web.Models.Forum.BindingModels;
 using Elements.Web.Models.Forum.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Elements.Web.Controllers
@@ -70,7 +71,13 @@ namespace Elements.Web.Controllers
         [Authorize]
         public IActionResult AddTopic()
         {
-            return View();
+            var categories = this.Context.ForumCategories.Select(c => new SelectListItem() { Text = c.Name, Value = c.Id.ToString() }).ToList();
+            var viewModel = new TopicViewModel()
+            {
+                Categories = categories
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -79,25 +86,36 @@ namespace Elements.Web.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View(newTopic);
+                var categories = this.Context.ForumCategories.Select(c => new SelectListItem() { Text = c.Name, Value = c.Id.ToString() }).ToList();
+                var viewModel = new TopicViewModel()
+                {
+                    Categories = categories
+                };
+
+                return this.View(viewModel);
             }
 
             var user = this.Context.Users.FirstOrDefault(u => u.UserName == this.User.Identity.Name);
 
-            var topic = new Topic()
+            if (user != null)
             {
-                AuthorId = user.Id,
-                CategoryId = 1,
-                Content = newTopic.Content,
-                Title = newTopic.Title,
-                CreateDate = DateTime.Now,
-                TopicType = TopicType.Common
-            };
+                var topic = new Topic()
+                {
+                    AuthorId = user.Id,
+                    CategoryId = newTopic.CategoryId,
+                    Content = newTopic.Content,
+                    Title = newTopic.Title,
+                    CreateDate = DateTime.Now,
+                    TopicType = TopicType.Common
+                };
 
-            this.Context.Topics.Add(topic);
-            this.Context.SaveChanges();
+                this.Context.Topics.Add(topic);
+                this.Context.SaveChanges();
 
-            return View();
+                return this.RedirectToAction("Index");
+            }
+
+            return this.View(newTopic);
         }
     }
 }

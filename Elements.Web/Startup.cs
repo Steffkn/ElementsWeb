@@ -15,6 +15,8 @@ using Elements.Data;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Elements.Web.Areas.Identity.Services;
 using Elements.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace Elements.Web
 {
@@ -36,6 +38,7 @@ namespace Elements.Web
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
 
             services.AddDbContext<ElementsContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
@@ -65,7 +68,20 @@ namespace Elements.Web
             services.AddSingleton<IEmailSender, SendGridEmailSender>();
 
             services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                .AddRazorPagesOptions(options =>
+                {
+                    options.AllowAreas = true;
+                    options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
+                    options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
+                });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            }); ;
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

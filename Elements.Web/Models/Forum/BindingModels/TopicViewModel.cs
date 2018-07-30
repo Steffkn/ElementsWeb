@@ -13,5 +13,8 @@ namespace Elements.Web.Models.Forum.BindingModels
 
         [Required]
         public string Content { get; set; }
+
+        [Required]
+        public int CategoryId { get; set; }
     }
 }
