@@ -1,8 +1,21 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
 for details on configuring this project to bundle and minify static web assets. */
 body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    background-image: url('../images/backgrounds/box-planet-316688.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-color: black;
+    padding: 0;
+    margin: 0;
+}
+
+.bg-outsider {
+    background-image: url('../images/backgrounds/atmosphere-transit-space-darkness-circle-globe-962921-pxhere.com.jpg') !important;
 }
 
 /* Wrapping element */
@@ -35,3 +48,51 @@ body {
         display: none;
     }
 }
+
+article a {
+    text-decoration: none;
+    color: black;
+}
+
+article:hover a {
+    text-decoration: none;
+    color: #0f0f0f;
+}
+
+article card .card-img {
+    filter: saturate(80%);
+    -webkit-filter: saturate(80%);
+    -moz-filter: saturate(80%);
+    -ms-filter: saturate(80%);
+    -o-filter: saturate(80%);
+    transition: all 300ms ease;
+}
+
+article:hover .card-img {
+    filter: saturate(200%);
+    -webkit-filter: saturate(200%);
+    -moz-filter: saturate(200%);
+    -ms-filter: saturate(200%);
+    -o-filter: saturate(200%);
+}
+
+.forum .forumHeader {
+    margin: 0;
+    padding: 0;
+    height: 400px;
+    background-image: url('https://picsum.photos/1200/802') !important;
+    background-size: cover;
+}
+
+.center-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.validation-summary ul {
+    list-style: none;
+}
+
