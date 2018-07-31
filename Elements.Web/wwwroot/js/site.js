@@ -5,6 +5,6 @@
 
 function outsideView() {
     $("footer").hide();
-    $("#navigation").addClass("fixed-top");
+    $("#navigation").addClass("fixed-top-override");
     $("body").addClass("bg-outsider");
 }

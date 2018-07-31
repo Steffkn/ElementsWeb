@@ -5,38 +5,39 @@
 }
 
 <div class="row center-flex">
-    <div class="col-4">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4 class="text-center">Create a new account.</h4>
-            <div class="form-group row text-right">
-                <div asp-validation-summary="ModelOnly" class="text-danger validation-summary"></div>
+    <div class="col-sm-6 col-md-5 col-lg-4">
+        <h4 class="text-center">Create a new account.</h4>
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="">
+            <div class="form-group">
+                <div asp-validation-summary="ModelOnly"></div>
             </div>
-            <div class="form-group row text-right">
-                <label asp-for="RegisterNewUserModel.Username" class="col-form-label col-5"></label>
-                <input asp-for="RegisterNewUserModel.Username" class="form-control col-7" />
-                <span asp-validation-for="RegisterNewUserModel.Username" class="text-danger offset-5"></span>
+            <div class="form-group">
+                <label asp-for="RegisterNewUserModel.Username"></label>
+                <input asp-for="RegisterNewUserModel.Username" class="form-control" placeholder="Username" />
+                <span asp-validation-for="RegisterNewUserModel.Username" class=""></span>
+                <div class="valid-tooltip">
+                    Looks good!
+                </div>
             </div>
-            <div class="form-group row text-right">
-                <label asp-for="RegisterNewUserModel.Email" class="col-form-label col-5"></label>
-                <input asp-for="RegisterNewUserModel.Email" class="form-control col-7" />
-                <span asp-validation-for="RegisterNewUserModel.Email" class="text-danger offset-5"></span>
+            <div class="form-group">
+                <label asp-for="RegisterNewUserModel.Email"></label>
+                <input asp-for="RegisterNewUserModel.Email" class="form-control" placeholder="example@fun.com" />
+                <span asp-validation-for="RegisterNewUserModel.Email"></span>
             </div>
-            <div class="form-group row text-right">
-                <label asp-for="RegisterNewUserModel.Password" class="col-form-label col-5"></label>
-                <input asp-for="RegisterNewUserModel.Password" class="form-control col-7" />
-                <span asp-validation-for="RegisterNewUserModel.Password" class="text-danger offset-5"></span>
+            <div class="form-group">
+                <label asp-for="RegisterNewUserModel.Password"></label>
+                <input asp-for="RegisterNewUserModel.Password" class="form-control" placeholder="Password" />
+                <span asp-validation-for="RegisterNewUserModel.Password"></span>
             </div>
-            <div class="form-group row text-right">
-                <label asp-for="RegisterNewUserModel.ConfirmPassword" class="col-form-label col-5"></label>
-                <input asp-for="RegisterNewUserModel.ConfirmPassword" class="form-control col-7" />
-                <span asp-validation-for="RegisterNewUserModel.ConfirmPassword" class="text-danger offset-5"></span>
+            <div class="form-group">
+                <label asp-for="RegisterNewUserModel.ConfirmPassword"></label>
+                <input asp-for="RegisterNewUserModel.ConfirmPassword" class="form-control" placeholder="Confirm password" />
+                <span asp-validation-for="RegisterNewUserModel.ConfirmPassword"></span>
             </div>
 
-            <div class="form-group row">
-                <div class="offset-5">
-                    <button type="submit" class="btn btn-light btn-lg">Register</button>
-                    <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-outline-light btn-lg">Log in</a>
-                </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-light">Register</button>
+                <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-outline-light">Log in</a>
             </div>
         </form>
     </div>

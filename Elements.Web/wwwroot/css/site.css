@@ -14,6 +14,17 @@ body {
     margin: 0;
 }
 
+label {
+    margin-bottom: 0.1rem;
+}
+
+
+/* Bootstrap overrides*/
+
+.form-control {
+    padding: 0.2rem;
+}
+
 .bg-outsider {
     background-image: url('../images/backgrounds/atmosphere-transit-space-darkness-circle-globe-962921-pxhere.com.jpg') !important;
 }
@@ -41,13 +52,6 @@ body {
     margin: 15px;
 }
 
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
-    }
-}
 
 article a {
     text-decoration: none;
@@ -76,14 +80,6 @@ article:hover .card-img {
     -o-filter: saturate(200%);
 }
 
-.forum .forumHeader {
-    margin: 0;
-    padding: 0;
-    height: 400px;
-    background-image: url('https://picsum.photos/1200/802') !important;
-    background-size: cover;
-}
-
 .center-flex {
     display: flex;
     flex-direction: column;
@@ -92,6 +88,168 @@ article:hover .card-img {
     min-height: 100vh;
 }
 
-.validation-summary ul {
+.fixed-top-override {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.validation-summary-errors ul {
     list-style: none;
+}
+
+.field-validation-error,
+.validation-summary-errors {
+    color: #dc3545;
+    font-size: 0.8em;
+    line-height: 0.8;
+}
+
+/** Forum Section */
+
+.forum {
+}
+
+.forum-header {
+    margin: 0;
+    padding: 0;
+    height: 400px;
+    background-image: url('https://picsum.photos/1200/802') !important;
+    background-size: cover;
+    background-position: center center;
+}
+
+.forum-category {
+    display: block;
+    margin-top: 1.2rem;
+    margin-bottom: 0.6rem;
+    padding-bottom: 1rem;
+}
+
+.forum-category-header {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
+}
+
+.forum-category-heading {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.forum-cards {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.forum-card {
+    -ms-flex-direction: row;
+    flex-direction: row;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    margin: 0.6rem .3rem 0;
+    padding: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.75);
+    background-color: black;
+}
+
+    .forum-card:hover {
+        border-color: rgba(0, 0, 0, 1);
+        background-color: rgba(0, 0, 0, 1);
+        text-decoration: none;
+    }
+
+.forum-card-icon {
+    background-repeat: no-repeat;
+    background-size: contain;
+    -ms-flex: none;
+    flex: none;
+    height: 50px;
+    width: 50px;
+}
+
+.forum-card-body {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex: auto;
+    flex: auto;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-left: 1rem;
+    overflow: hidden;
+}
+
+.forum-card-header {
+}
+
+.forum-card-heading {
+    font-size: 1.25rem;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-height: 3.125rem;
+    overflow: hidden;
+    width: 100%;
+}
+
+.forum-card-content {
+    color: rgba(255,255,255,.7);
+    font-size: .9375rem;
+    line-height: 1.25;
+    margin: .25em 0 0;
+    max-height: 3.515625rem;
+    overflow: hidden;
+    padding: 0;
+}
+
+/* Large devices (desktops, less than 1200px) lg */
+@media screen and (min-width: 991.98px) {
+    .forum-card {
+        width: calc((100% / 3) - 0.599rem);
+    }
+}
+
+/* Medium devices (tablets, less than 992px) md */
+@media screen and (max-width: 991.98px) {
+    .forum-card {
+        width: calc((100% / 2) - 0.6rem);
+    }
+}
+
+/* Small devices (landscape phones, less than 768px) sm */
+@media screen and (max-width: 767.98px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+
+    .center-flex {
+    }
+
+    .fixed-top-override {
+        position: relative;
+    }
+
+    .forum-card {
+        width: 100%;
+        margin: 0.1rem;
+    }
+}
+
+/* Extra small devices (portrait phones, less than 576px) xs*/
+@media screen and (max-width: 575.98px) {
+    .forum-card {
+        width: 100%;
+        margin: 0.1rem;
+    }
 }

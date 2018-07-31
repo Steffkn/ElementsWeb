@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elements.Data", "Elements.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elements.Web", "Elements.Web\Elements.Web.csproj", "{2D1756F9-3B66-49D0-BC50-0E1819C75F01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elements.Services", "Elements.Services\Elements.Services.csproj", "{BE43000F-C70C-4C14-B963-EF1A3CA9CCCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elements.Services", "Elements.Services\Elements.Services.csproj", "{BE43000F-C70C-4C14-B963-EF1A3CA9CCCF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
