@@ -17,6 +17,7 @@ using Elements.Web.Areas.Identity.Services;
 using Elements.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Elements.Web.Common;
 
 namespace Elements.Web
 {
@@ -39,16 +40,15 @@ namespace Elements.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            // set db context
             services.AddDbContext<ElementsContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
                         );
-            //services.AddDefaultIdentity<User>()
-            //    .AddEntityFrameworkStores<ElementsContext>();
 
+            // set up app to use User and IdentityRole
             services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<ElementsContext>()
-                .AddDefaultTokenProviders();
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<ElementsContext>();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -68,24 +68,27 @@ namespace Elements.Web
             services.AddSingleton<IEmailSender, SendGridEmailSender>();
 
             services.AddMvc()
-                .AddRazorPagesOptions(options =>
-                {
-                    options.AllowAreas = true;
-                    options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
-                    options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
-                });
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+            .AddRazorPagesOptions(options =>
+            {
+                options.AllowAreas = true;
+                options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
+                options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
+            });
 
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = $"/Identity/Account/Login";
                 options.LogoutPath = $"/Identity/Account/Logout";
                 options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
-            }); ;
+            });
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(
+            IApplicationBuilder app,
+            IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -101,11 +104,18 @@ namespace Elements.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
             app.UseAuthentication();
+
+            app.SeedDatabase();
 
             app.UseMvc(routes =>
             {
+                // Areas support
+                routes.MapRoute(
+                    name: "areaRoute",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                // Default routing
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

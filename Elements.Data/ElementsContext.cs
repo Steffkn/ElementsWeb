@@ -1,5 +1,6 @@
 ﻿using Elements.Models;
 using Elements.Models.Forum;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -42,6 +43,8 @@ namespace Elements.Data
                 .HasOne(t => t.Category)
                 .WithMany(c => c.Topics)
                 .HasForeignKey(t => t.CategoryId);
+
+            builder.Entity<IdentityRole>().HasData();
 
             base.OnModelCreating(builder);
             // Customize the ASP.NET Identity model and override the defaults if needed.
