@@ -12,12 +12,12 @@
                 <div asp-validation-summary="ModelOnly"></div>
             </div>
             <div class="form-group">
+                <form-entry asp-for="RegisterNewUserModel.Username" />
+            </div>
+            <div class="form-group">
                 <label asp-for="RegisterNewUserModel.Username"></label>
                 <input asp-for="RegisterNewUserModel.Username" class="form-control" placeholder="Username" />
-                <span asp-validation-for="RegisterNewUserModel.Username" class=""></span>
-                <div class="valid-tooltip">
-                    Looks good!
-                </div>
+                <span asp-validation-for="RegisterNewUserModel.Username" class="text-dange"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RegisterNewUserModel.Email"></label>

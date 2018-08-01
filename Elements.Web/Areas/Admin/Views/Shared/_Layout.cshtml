@@ -20,8 +20,77 @@
     <link href="~/css/dashboard.css" rel="stylesheet" />
 </head>
 <body>
+    <div class="row no-gutters h-100">
+        <nav id="sidebar" class="bg-primary">
+            <div class="sidebar-header">
+                <h3>Administration</h3>
+                <strong>
+                    <i class="fab fa-wolf-pack-battalion"></i>
+                </strong>
+            </div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a asp-action="ManageUsers" asp-controller="Users" class="nav-link">
+                        <i class="fas fa-user"></i>
+                        Users
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="ManageCategories" asp-controller="Forum" class="nav-link">
+                        <i class="fas fa-wrench"></i>
+                        Categories
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-home"></i>
+                        Home
+                    </a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li class="nav-item">
+                            <a href="#">Forum</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Forum</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">News</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
 
-    @RenderBody()
+        <div class="col">
+            <!-- Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <button type="button" id="sidebarCollapse" class="btn-lg btn-info">
+                    <i class="fas fa-align-left"></i>
+                </button>
+                <form class="form-inline mx-lg-2">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-light" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link">
+                            Back to site
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -52,6 +121,9 @@
     </environment>
 
     @*<partial name="_CookieConsentPartial" />*@
+    <partial name="_ValidationScriptsPartial" />
+
+    <script src="~/js/dashboard.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

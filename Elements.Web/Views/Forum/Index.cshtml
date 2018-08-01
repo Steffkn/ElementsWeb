@@ -23,9 +23,12 @@
             <div class="forum-cards">
                 @foreach (var item in Model)
                 {
-                    <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
-                        <img src="@(item.IconURL)" alt="@(item.Name)" width="80" height="80" />
-                        @*<i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>*@
+                    <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="@item.Id" class="forum-card">
+                        <div class="fa-3x text-center text-light">
+                            <i class="fas fa-headset" style="line-height: 0"></i>
+                        </div>
+                        @* <img src="@(item.IconURL)" alt="@(item.Name)" width="80" height="80" />*@
+
                         <div class="forum-card-body">
                             <header class="forum-card-header">
                                 <h2 class="forum-card-heading">@(item.Name)</h2>
@@ -41,240 +44,242 @@
             </div>
         </div>
 
-        <h1>Yep yep</h1>
-        <div class="forum-category">
-            <header class="forum-category-header">
-                <h1 class="forum-category-heading">News</h1>
-            </header>
-            <div class="forum-cards">
-                <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
-                    <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
-                    <div class="forum-card-body">
-                        <header class="forum-card-header">
-                            <h2 class="forum-card-heading">Get this tittle!</h2>
-                        </header>
-                        <div class="forum-card-content">
-                            <p>
-                                Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
-                                so themselves.
-                            </p>
-                        </div>
+        <div>
+            @*<h1>Yep yep</h1>
+                <div class="forum-category">
+                    <header class="forum-category-header">
+                        <h1 class="forum-category-heading">News</h1>
+                    </header>
+                    <div class="forum-cards">
+                        <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
+                            <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
+                            <div class="forum-card-body">
+                                <header class="forum-card-header">
+                                    <h2 class="forum-card-heading">Get this tittle!</h2>
+                                </header>
+                                <div class="forum-card-content">
+                                    <p>
+                                        Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
+                                        so themselves.
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
+                            <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
+                            <div class="forum-card-body">
+                                <header class="forum-card-header">
+                                    <h2 class="forum-card-heading">Get this tittle!</h2>
+                                </header>
+                                <div class="forum-card-content">
+                                    <p>
+                                        Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
+                                        so themselves.
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
+
+                        <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
+                            <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
+                            <div class="forum-card-body">
+                                <header class="forum-card-header">
+                                    <h2 class="forum-card-heading">Get this tittle!</h2>
+                                </header>
+                                <div class="forum-card-content">
+                                    <p>
+                                        Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
+                                        so themselves.
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
+                            <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
+                            <div class="forum-card-body">
+                                <header class="forum-card-header">
+                                    <h2 class="forum-card-heading">Get this tittle!</h2>
+                                </header>
+                                <div class="forum-card-content">
+                                    <p>
+                                        Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
+                                        so themselves.
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
                     </div>
-                </a>
+                </div>
 
-                <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
-                    <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
-                    <div class="forum-card-body">
-                        <header class="forum-card-header">
-                            <h2 class="forum-card-heading">Get this tittle!</h2>
-                        </header>
-                        <div class="forum-card-content">
-                            <p>
-                                Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
-                                so themselves.
-                            </p>
-                        </div>
+                <div class="forum-category">
+                    <header class="forum-category-header">
+                        <h1 class="forum-category-heading">Community</h1>
+                    </header>
+                    <div class="forum-cards">
+                        <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
+                            <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
+                            <div class="forum-card-body">
+                                <header class="forum-card-header">
+                                    <h2 class="forum-card-heading">Get this tittle!</h2>
+                                </header>
+                                <div class="forum-card-content">
+                                    <p>
+                                        Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
+                                        so themselves.
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
+                            <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
+                            <div class="forum-card-body">
+                                <header class="forum-card-header">
+                                    <h2 class="forum-card-heading">Get this tittle!</h2>
+                                </header>
+                                <div class="forum-card-content">
+                                    <p>
+                                        Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
+                                        so themselves.
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
                     </div>
-                </a>
+                </div>
 
+                <div class="forum-category">
+                    <header class="forum-category-header">
+                        <h1 class="forum-category-heading">Went no just</h1>
+                    </header>
+                    <div class="forum-cards">
+                        <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
+                            <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
+                            <div class="forum-card-body">
+                                <header class="forum-card-header">
+                                    <h2 class="forum-card-heading">Get this tittle!</h2>
+                                </header>
+                                <div class="forum-card-content">
+                                    <p>
+                                        Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
+                                        so themselves.
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
 
-                <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
-                    <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
-                    <div class="forum-card-body">
-                        <header class="forum-card-header">
-                            <h2 class="forum-card-heading">Get this tittle!</h2>
-                        </header>
-                        <div class="forum-card-content">
-                            <p>
-                                Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
-                                so themselves.
-                            </p>
-                        </div>
+                        <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
+                            <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
+                            <div class="forum-card-body">
+                                <header class="forum-card-header">
+                                    <h2 class="forum-card-heading">Get this tittle!</h2>
+                                </header>
+                                <div class="forum-card-content">
+                                    <p>
+                                        Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
+                                        so themselves.
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
+                            <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
+                            <div class="forum-card-body">
+                                <header class="forum-card-header">
+                                    <h2 class="forum-card-heading">Get this tittle!</h2>
+                                </header>
+                                <div class="forum-card-content">
+                                    <p>
+                                        Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
+                                        so themselves.
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
+                            <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
+                            <div class="forum-card-body">
+                                <header class="forum-card-header">
+                                    <h2 class="forum-card-heading">Get this tittle!</h2>
+                                </header>
+                                <div class="forum-card-content">
+                                    <p>
+                                        Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
+                                        so themselves.
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
+                            <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
+                            <div class="forum-card-body">
+                                <header class="forum-card-header">
+                                    <h2 class="forum-card-heading">Get this tittle!</h2>
+                                </header>
+                                <div class="forum-card-content">
+                                    <p>
+                                        Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
+                                        so themselves.
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
+                            <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
+                            <div class="forum-card-body">
+                                <header class="forum-card-header">
+                                    <h2 class="forum-card-heading">Get this tittle!</h2>
+                                </header>
+                                <div class="forum-card-content">
+                                    <p>
+                                        Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
+                                        so themselves.
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
+                            <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
+                            <div class="forum-card-body">
+                                <header class="forum-card-header">
+                                    <h2 class="forum-card-heading">Get this tittle!</h2>
+                                </header>
+                                <div class="forum-card-content">
+                                    <p>
+                                        Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
+                                        so themselves.
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
+                            <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
+                            <div class="forum-card-body">
+                                <header class="forum-card-header">
+                                    <h2 class="forum-card-heading">Get this tittle!</h2>
+                                </header>
+                                <div class="forum-card-content">
+                                    <p>
+                                        Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
+                                        so themselves.
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
                     </div>
-                </a>
-
-                <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
-                    <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
-                    <div class="forum-card-body">
-                        <header class="forum-card-header">
-                            <h2 class="forum-card-heading">Get this tittle!</h2>
-                        </header>
-                        <div class="forum-card-content">
-                            <p>
-                                Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
-                                so themselves.
-                            </p>
-                        </div>
-                    </div>
-                </a>
-
-            </div>
-        </div>
-
-        <div class="forum-category">
-            <header class="forum-category-header">
-                <h1 class="forum-category-heading">Community</h1>
-            </header>
-            <div class="forum-cards">
-                <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
-                    <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
-                    <div class="forum-card-body">
-                        <header class="forum-card-header">
-                            <h2 class="forum-card-heading">Get this tittle!</h2>
-                        </header>
-                        <div class="forum-card-content">
-                            <p>
-                                Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
-                                so themselves.
-                            </p>
-                        </div>
-                    </div>
-                </a>
-
-                <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
-                    <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
-                    <div class="forum-card-body">
-                        <header class="forum-card-header">
-                            <h2 class="forum-card-heading">Get this tittle!</h2>
-                        </header>
-                        <div class="forum-card-content">
-                            <p>
-                                Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
-                                so themselves.
-                            </p>
-                        </div>
-                    </div>
-                </a>
-
-            </div>
-        </div>
-
-        <div class="forum-category">
-            <header class="forum-category-header">
-                <h1 class="forum-category-heading">Went no just</h1>
-            </header>
-            <div class="forum-cards">
-                <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
-                    <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
-                    <div class="forum-card-body">
-                        <header class="forum-card-header">
-                            <h2 class="forum-card-heading">Get this tittle!</h2>
-                        </header>
-                        <div class="forum-card-content">
-                            <p>
-                                Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
-                                so themselves.
-                            </p>
-                        </div>
-                    </div>
-                </a>
-
-                <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
-                    <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
-                    <div class="forum-card-body">
-                        <header class="forum-card-header">
-                            <h2 class="forum-card-heading">Get this tittle!</h2>
-                        </header>
-                        <div class="forum-card-content">
-                            <p>
-                                Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
-                                so themselves.
-                            </p>
-                        </div>
-                    </div>
-                </a>
-
-                <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
-                    <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
-                    <div class="forum-card-body">
-                        <header class="forum-card-header">
-                            <h2 class="forum-card-heading">Get this tittle!</h2>
-                        </header>
-                        <div class="forum-card-content">
-                            <p>
-                                Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
-                                so themselves.
-                            </p>
-                        </div>
-                    </div>
-                </a>
-
-                <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
-                    <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
-                    <div class="forum-card-body">
-                        <header class="forum-card-header">
-                            <h2 class="forum-card-heading">Get this tittle!</h2>
-                        </header>
-                        <div class="forum-card-content">
-                            <p>
-                                Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
-                                so themselves.
-                            </p>
-                        </div>
-                    </div>
-                </a>
-
-                <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
-                    <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
-                    <div class="forum-card-body">
-                        <header class="forum-card-header">
-                            <h2 class="forum-card-heading">Get this tittle!</h2>
-                        </header>
-                        <div class="forum-card-content">
-                            <p>
-                                Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
-                                so themselves.
-                            </p>
-                        </div>
-                    </div>
-                </a>
-
-                <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
-                    <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
-                    <div class="forum-card-body">
-                        <header class="forum-card-header">
-                            <h2 class="forum-card-heading">Get this tittle!</h2>
-                        </header>
-                        <div class="forum-card-content">
-                            <p>
-                                Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
-                                so themselves.
-                            </p>
-                        </div>
-                    </div>
-                </a>
-
-                <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
-                    <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
-                    <div class="forum-card-body">
-                        <header class="forum-card-header">
-                            <h2 class="forum-card-heading">Get this tittle!</h2>
-                        </header>
-                        <div class="forum-card-content">
-                            <p>
-                                Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
-                                so themselves.
-                            </p>
-                        </div>
-                    </div>
-                </a>
-
-                <a asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="1" class="forum-card">
-                    <i class="fas fa-headset forum-card-icon" style="font-size: 2em"></i>
-                    <div class="forum-card-body">
-                        <header class="forum-card-header">
-                            <h2 class="forum-card-heading">Get this tittle!</h2>
-                        </header>
-                        <div class="forum-card-content">
-                            <p>
-                                Made last it seen went no just when of by. Occasional entreaties comparison me difficulty
-                                so themselves.
-                            </p>
-                        </div>
-                    </div>
-                </a>
-
-            </div>
+                </div>*@
         </div>
     </section>
 </main>

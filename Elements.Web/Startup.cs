@@ -18,6 +18,7 @@ using Elements.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Elements.Web.Common;
+using AutoMapper;
 
 namespace Elements.Web
 {
@@ -66,6 +67,8 @@ namespace Elements.Web
             });
 
             services.AddSingleton<IEmailSender, SendGridEmailSender>();
+
+            services.AddAutoMapper();
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
