@@ -21,23 +21,22 @@
 </head>
 <body>
     <div class="row no-gutters h-100">
-        <nav id="sidebar" class="bg-secondary">
+        <nav id="sidebar" class="bg-primary">
             <div class="sidebar-header">
-                <h3>Admin panel</h3>
+                <h3>Administration</h3>
                 <strong>
-                    <i class="fas fa-align-justify"></i>
+                    <i class="fab fa-wolf-pack-battalion"></i>
                 </strong>
             </div>
-
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a asp-action="ManageUsers" class="nav-link">
+                    <a asp-action="ManageUsers" asp-controller="Users" class="nav-link">
                         <i class="fas fa-user"></i>
                         Users
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-action="ManageCategories" class="nav-link">
+                    <a asp-action="ManageCategories" asp-controller="Forum" class="nav-link">
                         <i class="fas fa-wrench"></i>
                         Categories
                     </a>
@@ -62,148 +61,36 @@
             </ul>
         </nav>
 
-        <div>
-            <button type="button" id="sidebarCollapse" class="btn btn-info">
-                <i class="fas fa-align-left"></i>
-                asdasd
-            </button>
-            <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-align-justify"></i>
-                asd
-            </button>
-            <div class="collapse navbar-expand" id="navbarSupportedContent">
+        <div class="col">
+            <!-- Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <button type="button" id="sidebarCollapse" class="btn-lg btn-info">
+                    <i class="fas fa-align-left"></i>
+                </button>
+                <form class="form-inline mx-lg-2">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-light" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link">Back to site</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link">
+                            Back to site
+                        </a>
                     </li>
                 </ul>
-            </div>
+            </nav>
+
             <div class="container-fluid">
                 @RenderBody()
             </div>
         </div>
     </div>
-
-
-
-    @*<div class="wrapper">
-            <!-- Sidebar  -->
-            <nav id="sidebar">
-                <div class="sidebar-header">
-                    <h3>Admin panel</h3>
-                    <strong>AP</strong>
-                </div>
-
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a asp-action="ManageUsers" class="nav-link">
-                            <i class="fas fa-user"></i>
-                            Users
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-action="ManageCategories" class="nav-link">
-                            <i class="fas fa-wrench"></i>
-                            Categories
-                        </a>
-                    </li>
-                </ul>
-
-                <ul class="list-unstyled components">
-                    <li>
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                            <i class="fas fa-home"></i>
-                            Home
-                        </a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li>
-                                <a href="#">Forum</a>
-                            </li>
-                            <li>
-                                <a href="#">Forum</a>
-                            </li>
-                            <li>
-                                <a href="#">News</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-briefcase"></i>
-                            About
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                            <i class="fas fa-copy"></i>
-                            Pages
-                        </a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu">
-                            <li>
-                                <a href="#">Page 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-image"></i>
-                            Portfolio
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-question"></i>
-                            FAQ
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-paper-plane"></i>
-                            Contact
-                        </a>
-                    </li>
-                </ul>
-                <ul class="list-unstyled CTAs">
-                    <li>
-                        <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
-                    </li>
-                    <li>
-                        <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
-                    </li>
-                </ul>
-            </nav>
-            <!-- Page Content  -->
-            <div id="content">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
-                        <button type="button" id="sidebarCollapse" class="btn btn-info">
-                            <i class="fas fa-align-left"></i>
-                        </button>
-                        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <i class="fas fa-align-justify"></i>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="nav navbar-nav ml-auto">
-                                <li class="nav-item active">
-                                    <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link">Back to site</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-
-                @RenderBody()
-            </div>
-        </div>*@
-
-
-
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

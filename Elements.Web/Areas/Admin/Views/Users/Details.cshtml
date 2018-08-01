@@ -1,0 +1,17 @@
+﻿@model Elements.Models.User
+@{
+    ViewData["Title"] = "User details";
+}
+
+<h2>@(Model.UserName)'s details</h2>
+
+<div class="row">
+    <div class="col-2">
+        <img src="@(Model.Avatar)" alt="@Model.UserName's avatar" />
+    </div>
+    <div class="col-10">
+        <h3>@Model.Email</h3>
+        <h3>@Model.EmailConfirmed</h3>
+        <h3>@Model.Topics.Count()</h3>
+    </div>
+</div>

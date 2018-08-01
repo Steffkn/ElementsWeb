@@ -9,16 +9,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Elements.Web.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    [Authorize(Roles = "Administrator")]
-    public class ForumController : Controller
+    public class ForumController : AdminController
     {
-        public ForumController(ElementsContext context)
-        {
-            this.Context = context;
-        }
-
-        public ElementsContext Context { get; private set; }
+        public ForumController(ElementsContext context) : base(context)
+        { }
 
         public IActionResult AdminPanel()
         {
@@ -28,13 +22,6 @@ namespace Elements.Web.Areas.Admin.Controllers
         public IActionResult ManageCategories()
         {
             return View();
-        }
-
-        public IActionResult ManageUsers()
-        {
-            var users = this.Context.Users.Include(u => u.Topics);
-
-            return View(model: users.ToList());
         }
     }
 }
