@@ -21,6 +21,7 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="wwwroot\images\avatars\" />
     <Folder Include="wwwroot\images\backgrounds\" />
+    <Folder Include="wwwroot\images\icons\" />
   </ItemGroup>
 
   <ItemGroup>

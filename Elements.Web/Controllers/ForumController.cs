@@ -25,7 +25,15 @@ namespace Elements.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var categories = this.Context.ForumCategories.Select(c => new ForumCategoryViewModel()
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Description = c.Description,
+                IconURL = "images/icons/under-construction-hat.png"
+            });
+
+            return View(model: categories);
         }
 
         [HttpGet]

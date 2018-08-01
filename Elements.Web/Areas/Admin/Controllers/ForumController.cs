@@ -11,7 +11,17 @@ namespace Elements.Web.Areas.Admin.Controllers
     [Authorize(Roles = "Administrator")]
     public class ForumController : Controller
     {
-        public IActionResult Index()
+        public IActionResult AdminPanel()
+        {
+            return View();
+        }
+
+        public IActionResult ManageCategories()
+        {
+            return View();
+        }
+
+        public IActionResult ManageUsers()
         {
             return View();
         }
