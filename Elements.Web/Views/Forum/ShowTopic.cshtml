@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Elements.Web.Models.Forum.ViewModels.TopicOfCategoryViewModel>
+@{
+    ViewData["Title"] = "ShowTopic";
+}
+
+<h2>ShowTopic</h2>
+
+<a asp-controller="Forum" asp-action="AddTopic" class="btn btn-primary">Add new topic</a>
+
+@foreach (var item in Model)
+{
+    <a class="" asp-controller="Forum" asp-action="Topic" asp-route-topicId="@item.TopicId">
+        <div class="row bg-info text-white">
+            <span class="col">@item.Title</span>
+            <span class="col-1">@item.NumberOfReply</span>
+            <span class="col-2">@item.AuthorName</span>
+            <span class="col-2">@item.CreateDate.ToString("MMM dd, yyyy")</span>
+        </div>
+    </a>
+
+}

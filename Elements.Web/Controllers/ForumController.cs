@@ -56,12 +56,6 @@ namespace Elements.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Topic(int topicId)
-        {
-            return View();
-        }
-
-        [HttpGet]
         [Authorize]
         public IActionResult AddReply()
         {
@@ -124,6 +118,44 @@ namespace Elements.Web.Controllers
             }
 
             return this.View(newTopic);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult ShowTopic(int topicId)
+        {
+            var topicsOfCategoryViewModel = this.Context.Topics
+                .Include(t => t.Author)
+                .Include(t => t.Replies)
+                .Where(t => t.CategoryId == topicId)
+                .Select(c => new TopicOfCategoryViewModel()
+                {
+                    Title = c.Title,
+                    TopicId = c.Id,
+                    AuthorName = c.Author.UserName,
+                    AuthorId = c.Author.Id,
+                    CreateDate = c.CreateDate,
+                    NumberOfReply = c.Replies.Count
+                });
+
+            return View(topicsOfCategoryViewModel.ToList());
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult Topic(int topicId)
+        {
+            var topic = this.Context.Topics
+                .Include(t => t.Replies)
+                .Include(t => t.Author)
+                .FirstOrDefault(t => t.Id == topicId);
+
+            if (topic == null)
+            {
+                return this.RedirectToAction("Index");
+            }
+
+            return View(topic);
         }
     }
 }

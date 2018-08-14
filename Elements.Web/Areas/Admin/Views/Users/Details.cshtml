@@ -9,9 +9,18 @@
     <div class="col-2">
         <img src="@(Model.Avatar)" alt="@Model.UserName's avatar" />
     </div>
-    <div class="col-10">
-        <h3>@Model.Email</h3>
-        <h3>@Model.EmailConfirmed</h3>
-        <h3>@Model.Topics.Count()</h3>
+    <div class="col-8">
+        <div class="row align-middle">
+            <label asp-for="Email" class="col-4 col-form-label"></label>
+            <input asp-for="Email" class="col form-control" disabled />
+        </div>
+        <div class="row">
+            <label asp-for="EmailConfirmed" class="col-4 col-form-label"></label>
+            <input asp-for="EmailConfirmed" class="form-check-inline" disabled />
+        </div>
+        <div class="row align-middle">
+            <label class="col-4 col-form-label">TopicsMade</label>
+            <label class="col">@Model.Topics.Count()</label>
+        </div>
     </div>
 </div>
