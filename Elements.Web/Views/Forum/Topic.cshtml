@@ -32,26 +32,38 @@
     </div>
 }
 
-<div class="row">
-    <div class="col offset-10 my-2">
-        <a asp-controller="Forum" asp-action="AddReply" class="btn btn-secondary">Add new reply</a>
+@if (this.User.Identity.IsAuthenticated)
+{
+    <div class="row">
+        <div class="col offset-10 my-2">
+            <a asp-controller="Forum" asp-action="AddReply" class="btn btn-secondary">Add new reply</a>
+        </div>
     </div>
-</div>
-<div class="row text-dark p-2">
-    <div class="col-2">
-    </div>
-    <div class="col-10">
-        <form method="post" asp-controller="Forum" asp-action="AddReply" asp-route-topicId="@Model.Id">
-            <div class="row">
-                <div class="col-12">
-                    <textarea rows="4" class="form-control mb-2"></textarea>
+    <div class="row text-dark p-2">
+        <div class="col-2">
+        </div>
+        <div class="col-10">
+            <form method="post" asp-controller="Forum" asp-action="AddReply" asp-route-topicId="@Model.Id">
+                <div class="row">
+                    <div class="col-12">
+                        <textarea rows="4" class="form-control mb-2"></textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <input type="submit" value="Add reply" class="btn btn-primary" />
+                <div class="row">
+                    <div class="col-12">
+                        <input type="submit" value="Add reply" class="btn btn-primary" />
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
+}
+else
+{
+    <div class="row m-4">
+        <div>
+            <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-light">Register</a>
+            <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-outline-light">Login</a>
+        </div>
+    </div>
+}

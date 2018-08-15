@@ -215,7 +215,7 @@ article:hover .card-img {
 /* Large devices (desktops, less than 1200px) lg */
 @media screen and (min-width: 991.98px) {
     .forum-card {
-        width: calc((100% / 3) - 0.599rem);
+        width: calc((100% / 3) - 0.601rem);
     }
 }
 

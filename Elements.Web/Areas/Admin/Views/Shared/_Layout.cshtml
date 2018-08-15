@@ -21,7 +21,7 @@
 </head>
 <body>
     <div class="row no-gutters h-100">
-        <nav id="sidebar" class="bg-primary">
+        <nav id="sidebar" class="bg-primary active">
             <div class="sidebar-header">
                 <h3>Administration</h3>
                 <strong>
@@ -64,7 +64,7 @@
         <div class="col">
             <!-- Navigation -->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <button type="button" id="sidebarCollapse" class="btn-lg btn-info">
+                <button type="button" id="sidebarCollapse" class="btn btn-lg btn-info">
                     <i class="fas fa-align-left"></i>
                 </button>
                 <form class="form-inline mx-lg-2">
@@ -124,7 +124,6 @@
     <partial name="_ValidationScriptsPartial" />
 
     <script src="~/js/dashboard.js" asp-append-version="true"></script>
-
     @RenderSection("Scripts", required: false)
 </body>
 </html>

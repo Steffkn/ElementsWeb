@@ -57,12 +57,11 @@ a:focus {
     max-width: 250px;
     background: #7386D5;
     color: #fff;
-    transition: all 0.3s;
 }
 
     #sidebar.active {
-        min-width: 80px;
-        max-width: 80px;
+        min-width: 100px;
+        max-width: 100px;
         text-align: center;
     }
 
@@ -105,8 +104,8 @@ a:focus {
     }
 
     #sidebar .sidebar-header {
-        padding: 20px;
-        background: #6d7fcc;
+        padding: 17px;
+        background: #000;
     }
 
         #sidebar .sidebar-header strong {
@@ -140,9 +139,9 @@ a:focus {
         background: #6d7fcc;
     }
 
-#sidebar a[data-toggle="collapse"] {
-    position: relative;
-}
+    #sidebar a[data-toggle="collapse"] {
+        position: relative;
+    }
 
 .dropdown-toggle::after {
     display: block;

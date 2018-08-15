@@ -121,7 +121,6 @@ namespace Elements.Web.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public IActionResult ShowTopic(int topicId)
         {
             var topicsOfCategoryViewModel = this.Context.Topics
@@ -142,7 +141,6 @@ namespace Elements.Web.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public IActionResult Topic(int topicId)
         {
             var topic = this.Context.Topics
