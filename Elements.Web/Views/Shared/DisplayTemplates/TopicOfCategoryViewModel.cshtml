@@ -1,0 +1,12 @@
+﻿@model Elements.Web.Models.Forum.ViewModels.TopicOfCategoryViewModel
+
+<div class="row forum-topic">
+    <a class="col p-2" asp-controller="Forum" asp-action="Topic" asp-route-topicId="@Model.TopicId">
+        <div class="row text-white">
+            <span class="col">@Model.Title</span>
+            <span class="col-1">@Model.NumberOfReply</span>
+            <span class="col-2">@Model.AuthorName</span>
+            <span class="col-2">@Model.CreateDate.ToString("MMM dd, yyyy")</span>
+        </div>
+    </a>
+</div>

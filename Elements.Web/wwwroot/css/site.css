@@ -163,19 +163,17 @@ article:hover .card-img {
     background-color: black;
 }
 
-    .forum-card:hover {
-        border-color: rgba(0, 0, 0, 1);
-        background-color: rgba(0, 0, 0, 1);
-        text-decoration: none;
-    }
+a.forum-card:hover {
+    border-color: rgb(0, 0, 0);
+    background-color: rgba(0, 80, 80, 0.7);
+    text-decoration: none;
+}
 
 .forum-card-icon {
-    background-repeat: no-repeat;
-    background-size: contain;
-    -ms-flex: none;
-    flex: none;
     height: 50px;
     width: 50px;
+    color: rgb(123, 87, 7);
+    line-height: 0;
 }
 
 .forum-card-body {
@@ -190,6 +188,7 @@ article:hover .card-img {
 }
 
 .forum-card-header {
+    color: rgba(0, 150, 200,1);
 }
 
 .forum-card-heading {
@@ -212,20 +211,29 @@ article:hover .card-img {
     padding: 0;
 }
 
+.forum-topic a {
+    background: rgba(0,0,0,.8);
+    border-bottom: 1px solid lightblue;
+    text-decoration: none;
+}
+
+    .forum-topic a:hover {
+        text-decoration: none;
+        background: rgba(0,80,80,.4);
+    }
+
 /* Large devices (desktops, less than 1200px) lg */
 @media screen and (min-width: 991.98px) {
     .forum-card {
         width: calc((100% / 3) - 0.601rem);
     }
 }
-
 /* Medium devices (tablets, less than 992px) md */
 @media screen and (max-width: 991.98px) {
     .forum-card {
         width: calc((100% / 2) - 0.6rem);
     }
 }
-
 /* Small devices (landscape phones, less than 768px) sm */
 @media screen and (max-width: 767.98px) {
     /* Hide captions */
@@ -245,7 +253,6 @@ article:hover .card-img {
         margin: 0.1rem;
     }
 }
-
 /* Extra small devices (portrait phones, less than 576px) xs*/
 @media screen and (max-width: 575.98px) {
     .forum-card {

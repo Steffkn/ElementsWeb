@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Elements.Models.User>
+﻿@model IEnumerable<Elements.Web.Areas.Admin.Models.User.AdministrateUserViewModel>
 @{
     ViewData["Title"] = "Manage users";
 }
@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col">
-        <table class="table table-dark table-hover">
+        <table class="table table-light table-hover">
             <thead>
                 <tr>
                     <th>Username</th>
@@ -17,16 +17,18 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td><a asp-controller="Users" asp-action="Details" asp-route-userId="@item.Id">@(item.UserName)</a></td>
-                        <td>@(item.NormalizedEmail)</td>
-                        <td class="d-none d-md-table-cell">@(item.EmailConfirmed)</td>
-                        <td class="d-none d-md-table-cell">@(item.RegisterDate)</td>
-                    </tr>
-                }
+                @Html.DisplayForModel()
             </tbody>
         </table>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function ($) {
+            $(".clickable-row").click(function () {
+                window.location = $(this).data("href");
+            });
+        });
+    </script>
+}

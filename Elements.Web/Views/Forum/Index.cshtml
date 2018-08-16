@@ -19,8 +19,8 @@
                 @foreach (var item in Model)
                 {
                     <a asp-area="" asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="@item.Id" class="forum-card">
-                        <div class="fa-3x text-center text-light">
-                            <i class="fas fa-headset" style="line-height: 0"></i>
+                        <div class="fa-3x forum-card-icon">
+                            <i class="fas fa-headset"></i>
                         </div>
                         <div class="forum-card-body">
                             <header class="forum-card-header">

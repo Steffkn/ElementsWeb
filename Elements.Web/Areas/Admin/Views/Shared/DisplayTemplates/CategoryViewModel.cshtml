@@ -1,0 +1,17 @@
+﻿@model Models.Category.CategoryViewModel
+
+<tr>
+    <td>@(Model.Name)</td>
+    <td>@(Model.Description)</td>
+    <td>@(Model.NumberOfTopics)</td>
+    <td>
+        <div>
+            <a asp-area="Admin" asp-action="EditCategory" asp-route-categoryId="@(Model.Id)" class="btn btn-info">
+                <i class="fas fa-edit"></i>
+            </a>
+            <a asp-area="Admin" asp-action="DeleteCategory" asp-route-categoryId="@(Model.Id)" class="btn btn-danger">
+                <i class="fas fa-trash-alt"></i>
+            </a>
+        </div>
+    </td>
+</tr>

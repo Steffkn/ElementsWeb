@@ -27,14 +27,14 @@ namespace Elements.Web.Areas.Admin.Controllers
 
         public IActionResult ManageCategories()
         {
-            var forumCategories = this.mapper.Map<IEnumerable<CategoryViewModel>>(this.Context.ForumCategories);
+            var forumCategories = this.mapper.Map<IEnumerable<CategoryViewModel>>(this.Context.ForumCategories.Include(c => c.Topics));
             return this.View(model: forumCategories);
         }
 
         [HttpGet]
         public IActionResult EditCategory(int categoryId)
         {
-            var categoryFromDb = this.Context.ForumCategories.Find(categoryId);
+            var categoryFromDb = this.Context.ForumCategories.Include(c => c.Topics).FirstOrDefault(c => c.Id == categoryId);
             var category = this.mapper.Map<CategoryViewModel>(categoryFromDb);
 
             return this.View(model: category);
@@ -43,18 +43,47 @@ namespace Elements.Web.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult EditCategory(CategoryBindingModel model)
         {
-            var category = this.Context.ForumCategories.Find(model.Id);
-
             if (!this.ModelState.IsValid)
             {
-                return this.View(model: category);
+                var categoryViewModel = new CategoryViewModel() { Id = model.Id, Name = model.Name, Description = model.Description };
+                return this.View(model: categoryViewModel);
             }
 
-            category.Name = model.Name;
-            category.Description = model.Description;
-            this.Context.SaveChanges();
+            using (this.Context)
+            {
+                var category = this.Context.ForumCategories.Find(model.Id);
+                if (category != null)
+                {
 
-            return this.ManageCategories();
+                    category.Name = model.Name;
+                    category.Description = model.Description;
+                    this.Context.SaveChanges();
+                }
+            }
+
+            return this.RedirectToAction("ManageCategories");
+        }
+
+        [HttpPost]
+        public IActionResult DeleteCategory(CategoryBindingModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                var categoryViewModel = new CategoryViewModel() { Id = model.Id, Name = model.Name, Description = model.Description };
+                return this.View(model: categoryViewModel);
+            }
+
+            using (this.Context)
+            {
+                var category = this.Context.ForumCategories.Find(model.Id);
+                if (category != null)
+                {
+                    this.Context.ForumCategories.Remove(category);
+                    this.Context.SaveChanges();
+                }
+            }
+
+            return this.RedirectToAction("ManageCategories");
         }
     }
 }

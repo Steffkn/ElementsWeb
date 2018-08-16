@@ -3,7 +3,7 @@
     ViewData["Title"] = "ManageCategories";
 }
 
-<h2>ManageCategories</h2>
+<h2>Manage categories</h2>
 
 <div class="row">
     <div class="col">
@@ -11,22 +11,13 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th class="w-50%">Description</th>
-                    <th></th>
+                    <th class="w-50">Description</th>
+                    <th>Number of topics</th>
+                    <th class="w-25">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@(item.Name)</td>
-                        <td>@(item.Description)</td>
-                        <td>
-                            <a asp-area="Admin" asp-action="EditCategory">Edit</a>
-                            <a asp-area="Admin" asp-action="DeleteCategory">Delete</a>
-                        </td>
-                    </tr>
-                }
+                @Html.DisplayForModel()
             </tbody>
         </table>
     </div>

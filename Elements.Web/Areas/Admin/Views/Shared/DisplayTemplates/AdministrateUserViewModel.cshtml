@@ -1,0 +1,17 @@
+﻿@model Elements.Web.Areas.Admin.Models.User.AdministrateUserViewModel
+
+<tr class="clickable-row" data-href="@Url.Action("Details","Users", new { userId = Model.Id })">
+    <td>@(Model.UserName)</td>
+    <td>@(Model.NormalizedEmail)</td>
+    <td class="d-none d-md-table-cell">
+        @if (Model.EmailConfirmed)
+        {
+            <span class="text-success">confirmed</span>
+        }
+        else
+        {
+            <span class="text-danger">not confirmed</span>
+        }
+    </td>
+    <td class="d-none d-md-table-cell">@(Model.RegisterDate.ToString("dd MMM yyyy"))</td>
+</tr>

@@ -8,7 +8,8 @@ namespace Elements.Web.Mapping
     {
         public AutoMapperProfile()
         {
-            this.CreateMap<ForumCategory, CategoryViewModel>();
+            this.CreateMap<ForumCategory, CategoryViewModel>()
+                .ForMember(dest => dest.NumberOfTopics, opt => opt.MapFrom(src => src.Topics.Count));
         }
     }
 }

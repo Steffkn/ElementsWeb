@@ -52,7 +52,8 @@ namespace Elements.Web.Areas.Identity.Pages.Account
                 var user = new User
                 {
                     UserName = RegisterNewUserModel.Username,
-                    Email = RegisterNewUserModel.Email
+                    Email = RegisterNewUserModel.Email,
+                    RegisterDate = DateTime.Now // TODO: avoid using Datetime / change it with a date provider
                 };
 
                 var result = await this.userManager.CreateAsync(user, RegisterNewUserModel.Password);
