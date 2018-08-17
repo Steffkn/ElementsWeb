@@ -1,4 +1,4 @@
-﻿@model Elements.Models.User
+﻿@model AdministrateUserViewModel
 @{
     ViewData["Title"] = "User details";
 }
@@ -6,7 +6,7 @@
 <h2>@(Model.UserName)'s details</h2>
 
 <div class="row">
-    <div class="col-2">
+    @*<div class="col-2">
         <img src="@(Model.Avatar)" alt="@Model.UserName's avatar" />
     </div>
     <div class="col-8">
@@ -22,5 +22,5 @@
             <label class="col-4 col-form-label">TopicsMade</label>
             <label class="col">@Model.Topics.Count()</label>
         </div>
-    </div>
+    </div>*@
 </div>

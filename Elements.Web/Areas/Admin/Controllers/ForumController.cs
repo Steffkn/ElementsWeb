@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Elements.Data;
-using Elements.Web.Areas.Admin.Models.Category;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-
-namespace Elements.Web.Areas.Admin.Controllers
+﻿namespace Elements.Web.Areas.Admin.Controllers
 {
+    using Elements.Services.Admin.Interfaces;
+    using Elements.Services.Models.Areas.Admin.BindingModels;
+    using Elements.Services.Models.Areas.Admin.ViewModels;
+    using Microsoft.AspNetCore.Mvc;
+
     public class ForumController : AdminController
     {
-        private readonly IMapper mapper;
+        private readonly IAdminForumService forumService;
 
-        public ForumController(ElementsContext context, IMapper mapper) : base(context)
+        public ForumController(IAdminForumService forumService)
+            : base()
         {
-            this.mapper = mapper;
+            this.forumService = forumService;
         }
 
         public IActionResult AdminPanel()
@@ -27,16 +22,14 @@ namespace Elements.Web.Areas.Admin.Controllers
 
         public IActionResult ManageCategories()
         {
-            var forumCategories = this.mapper.Map<IEnumerable<CategoryViewModel>>(this.Context.ForumCategories.Include(c => c.Topics));
+            var forumCategories = forumService.GetCategories();
             return this.View(model: forumCategories);
         }
 
         [HttpGet]
         public IActionResult EditCategory(int categoryId)
         {
-            var categoryFromDb = this.Context.ForumCategories.Include(c => c.Topics).FirstOrDefault(c => c.Id == categoryId);
-            var category = this.mapper.Map<CategoryViewModel>(categoryFromDb);
-
+            CategoryViewModel category = forumService.GetCategoryById(categoryId);
             return this.View(model: category);
         }
 
@@ -45,21 +38,13 @@ namespace Elements.Web.Areas.Admin.Controllers
         {
             if (!this.ModelState.IsValid)
             {
+                // TODO: this is not quite right (Topics Count? )
                 var categoryViewModel = new CategoryViewModel() { Id = model.Id, Name = model.Name, Description = model.Description };
                 return this.View(model: categoryViewModel);
             }
 
-            using (this.Context)
-            {
-                var category = this.Context.ForumCategories.Find(model.Id);
-                if (category != null)
-                {
-
-                    category.Name = model.Name;
-                    category.Description = model.Description;
-                    this.Context.SaveChanges();
-                }
-            }
+            // TODO: handle the return value
+            this.forumService.EditCategory(model);
 
             return this.RedirectToAction("ManageCategories");
         }
@@ -69,19 +54,13 @@ namespace Elements.Web.Areas.Admin.Controllers
         {
             if (!this.ModelState.IsValid)
             {
+                // TODO: this is not quite right (Topics Count? )
                 var categoryViewModel = new CategoryViewModel() { Id = model.Id, Name = model.Name, Description = model.Description };
                 return this.View(model: categoryViewModel);
             }
 
-            using (this.Context)
-            {
-                var category = this.Context.ForumCategories.Find(model.Id);
-                if (category != null)
-                {
-                    this.Context.ForumCategories.Remove(category);
-                    this.Context.SaveChanges();
-                }
-            }
+            // TODO: handle the return value
+            this.forumService.DeleteCategory(model);
 
             return this.RedirectToAction("ManageCategories");
         }

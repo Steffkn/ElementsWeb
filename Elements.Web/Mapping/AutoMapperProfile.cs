@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
+using Elements.Models;
 using Elements.Models.Forum;
-using Elements.Web.Areas.Admin.Models.Category;
+using Elements.Services.Models.Areas.Admin.ViewModels;
 
 namespace Elements.Web.Mapping
 {
@@ -10,6 +11,7 @@ namespace Elements.Web.Mapping
         {
             this.CreateMap<ForumCategory, CategoryViewModel>()
                 .ForMember(dest => dest.NumberOfTopics, opt => opt.MapFrom(src => src.Topics.Count));
+            this.CreateMap<User, AdministrateUserViewModel>();
         }
     }
 }

@@ -7,9 +7,17 @@
 
   <ItemGroup>
     <Compile Remove="Areas\Admin\Data\**" />
+    <Compile Remove="Areas\Admin\Models\Category\**" />
+    <Compile Remove="Areas\Admin\Models\User\**" />
     <Content Remove="Areas\Admin\Data\**" />
+    <Content Remove="Areas\Admin\Models\Category\**" />
+    <Content Remove="Areas\Admin\Models\User\**" />
     <EmbeddedResource Remove="Areas\Admin\Data\**" />
+    <EmbeddedResource Remove="Areas\Admin\Models\Category\**" />
+    <EmbeddedResource Remove="Areas\Admin\Models\User\**" />
     <None Remove="Areas\Admin\Data\**" />
+    <None Remove="Areas\Admin\Models\Category\**" />
+    <None Remove="Areas\Admin\Models\User\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,9 +30,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Elements.Data\Elements.Data.csproj" />
     <ProjectReference Include="..\Elements.Models\Elements.Models.csproj" />
+    <ProjectReference Include="..\Elements.Services\Elements.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Views\Shared\EditorTemplates\" />
     <Folder Include="wwwroot\images\avatars\" />
     <Folder Include="wwwroot\images\backgrounds\" />

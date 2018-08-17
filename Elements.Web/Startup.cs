@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,10 +10,11 @@ using Elements.Data;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Elements.Web.Areas.Identity.Services;
 using Elements.Models;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Mvc.Razor;
 using Elements.Web.Common;
 using AutoMapper;
+using Elements.Services.Admin.Interfaces;
+using Elements.Services.Admin;
+using Microsoft.AspNetCore.Routing;
 
 namespace Elements.Web
 {
@@ -70,14 +66,18 @@ namespace Elements.Web
 
             services.AddAutoMapper();
 
+            RegisterServiceLayer(services);
+
+            services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
+
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-            .AddRazorPagesOptions(options =>
-            {
-                options.AllowAreas = true;
-                options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
-                options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
-            });
+                .AddRazorPagesOptions(options =>
+                {
+                    options.AllowAreas = true;
+                    options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
+                    options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
+                });
 
             services.ConfigureApplicationCookie(options =>
             {
@@ -123,6 +123,12 @@ namespace Elements.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        private void RegisterServiceLayer(IServiceCollection services)
+        {
+            services.AddScoped<IAdminForumService, AdminForumService>();
+            services.AddScoped<IAdminUsersService, AdminUsersService>();
         }
     }
 }

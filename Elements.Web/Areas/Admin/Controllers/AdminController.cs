@@ -1,6 +1,5 @@
 ﻿namespace Elements.Web.Areas.Admin.Controllers
 {
-    using Elements.Data;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
@@ -8,11 +7,8 @@
     [Authorize(Roles = "Administrator")]
     public abstract class AdminController : Controller
     {
-        public AdminController(ElementsContext context)
+        public AdminController()
         {
-            this.Context = context;
         }
-
-        public ElementsContext Context { get; private set; }
     }
 }

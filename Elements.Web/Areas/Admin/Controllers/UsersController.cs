@@ -1,38 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Elements.Data;
-using Elements.Web.Areas.Admin.Models.User;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-
-namespace Elements.Web.Areas.Admin.Controllers
+﻿namespace Elements.Web.Areas.Admin.Controllers
 {
+    using System.Collections.Generic;
+    using Elements.Services.Admin.Interfaces;
+    using Elements.Services.Models.Areas.Admin.ViewModels;
+    using Microsoft.AspNetCore.Mvc;
+
     public class UsersController : AdminController
     {
-        private readonly IMapper mapper;
+        private readonly IAdminUsersService usersService;
 
-        public UsersController(ElementsContext context, IMapper mapper) : base(context)
+        public UsersController(IAdminUsersService usersService)
+            : base()
         {
-            this.mapper = mapper;
+            this.usersService = usersService;
         }
 
         [HttpGet]
         public IActionResult ManageUsers()
         {
-            var users = this.mapper.Map<IEnumerable<AdministrateUserViewModel>>(this.Context.Users.Include(u => u.Topics));
-
-            return View(model: users.ToList());
+            IEnumerable<AdministrateUserViewModel> usersWithTopics = this.usersService.GetAllUsersWithTopics();
+            return View(model: usersWithTopics);
         }
 
         [HttpGet]
         public IActionResult Details(string userId)
         {
-            var user = this.Context.Users.Include(u => u.Topics).FirstOrDefault(u => u.Id == userId);
-
-            return View(model: user);
+            AdministrateUserViewModel userWithTopics = this.usersService.GetUserWithTopics(userId);
+            return View(model: userWithTopics);
         }
     }
 }

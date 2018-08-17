@@ -8,6 +8,7 @@ namespace Elements.Web.Areas.Identity.Services
 {
     public class SendGridEmailSender : IEmailSender
     {
+        // TODO: move to service layer?
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
             var apiKey = "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"; // Environment.GetEnvironmentVariable("NAME_OF_THE_ENVIRONMENT_VARIABLE_FOR_YOUR_SENDGRID_KEY");
