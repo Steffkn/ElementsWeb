@@ -5,18 +5,40 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public static class ApplicationBuilderRolesExtension
     {
-        private static string DefaultAdminUsername = "admin";
-        private static string DefaultAdminEmail = "admin@admins.com";
-        private static string DefaultAdminPassword = "admin123";
-
-        private static readonly IdentityRole[] roles =
+        private static IReadOnlyDictionary<string, HashSet<Tuple<string, string, string>>> defaultUsers =
+            new Dictionary<string, HashSet<Tuple<string, string, string>>>()
         {
-            new IdentityRole(Constants.AdminRoleName),
-            new IdentityRole(Constants.ModeratorRoleName),
-            new IdentityRole(Constants.UserRoleName)
+           {
+                    Constants.AdminRoleName,
+                    new HashSet<Tuple<string, string, string>>(){
+                        new Tuple<string, string, string>("admin", "admin@admins.com", "admin123")
+                    }
+                },
+           {
+                    Constants.ModeratorRoleName,
+                    new HashSet<Tuple<string, string, string>>(){
+                        new Tuple<string, string, string>("mod", "mod@admins.com", "mod123")
+                    }
+                },
+           {
+                    Constants.UserRoleName,
+                    new HashSet<Tuple<string, string, string>>(){
+                        new Tuple<string, string, string>("user", "user@example.jm", "123qwe")
+                    }
+                },
+        };
+
+        private static readonly IReadOnlyDictionary<string, HashSet<User>> roles = new Dictionary<string, HashSet<User>>()
+        {
+            { Constants.AdminRoleName, new HashSet<User>() },
+            { Constants.ModeratorRoleName, new HashSet<User>() },
+            { Constants.UserRoleName, new HashSet<User>() },
         };
 
         public static async void SeedDatabase(this IApplicationBuilder app)
@@ -26,28 +48,52 @@
             using (scope)
             {
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+                // add the roles if they dont exist
+                await SeedRolesAsync(roleManager);
+
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
 
-                foreach (var role in roles)
+                // add default administrator if it doesnt exist
+                await SeedAdministratorAsync(userManager);
+            }
+        }
+
+        private static async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)
+        {
+            foreach (var role in roles.Keys)
+            {
+                if (!await roleManager.RoleExistsAsync(role))
                 {
-                    if (!await roleManager.RoleExistsAsync(role.Name))
-                    {
-                        var reuslt = await roleManager.CreateAsync(role);
-                    }
+                    var reuslt = await roleManager.CreateAsync(new IdentityRole(role));
                 }
+            }
+        }
 
-                var user = await userManager.FindByNameAsync(DefaultAdminUsername);
-
-                if (user == null)
+        private static async Task SeedAdministratorAsync(UserManager<User> userManager)
+        {
+            foreach (var role in defaultUsers.Keys)
+            {
+                foreach (var currentUser in defaultUsers[role])
                 {
-                    user = new User()
-                    {
-                        UserName = DefaultAdminUsername,
-                        Email = DefaultAdminEmail
-                    };
+                    string username = currentUser.Item1;
+                    string email = currentUser.Item2;
+                    string password = currentUser.Item3;
 
-                    var result = await userManager.CreateAsync(user, DefaultAdminPassword);
-                    result = await userManager.AddToRoleAsync(user, roles[0].Name);
+                    var user = await userManager.FindByNameAsync(username);
+
+                    if (user == null)
+                    {
+                        user = new User()
+                        {
+                            UserName = username,
+                            Email = email,
+                            RegisterDate = DateTime.Now
+                        };
+
+                        var result = await userManager.CreateAsync(user, password);
+                        result = await userManager.AddToRoleAsync(user, Constants.AdminRoleName);
+                    }
                 }
             }
         }

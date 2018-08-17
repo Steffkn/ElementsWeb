@@ -10,26 +10,22 @@
     <Compile Remove="Areas\Admin\Models\Category\**" />
     <Compile Remove="Areas\Admin\Models\User\**" />
     <Compile Remove="Models\Account\**" />
-    <Compile Remove="Models\Forum\BindingModels\**" />
-    <Compile Remove="Models\Forum\ViewModels\**" />
+    <Compile Remove="Models\Forum\**" />
     <Content Remove="Areas\Admin\Data\**" />
     <Content Remove="Areas\Admin\Models\Category\**" />
     <Content Remove="Areas\Admin\Models\User\**" />
     <Content Remove="Models\Account\**" />
-    <Content Remove="Models\Forum\BindingModels\**" />
-    <Content Remove="Models\Forum\ViewModels\**" />
+    <Content Remove="Models\Forum\**" />
     <EmbeddedResource Remove="Areas\Admin\Data\**" />
     <EmbeddedResource Remove="Areas\Admin\Models\Category\**" />
     <EmbeddedResource Remove="Areas\Admin\Models\User\**" />
     <EmbeddedResource Remove="Models\Account\**" />
-    <EmbeddedResource Remove="Models\Forum\BindingModels\**" />
-    <EmbeddedResource Remove="Models\Forum\ViewModels\**" />
+    <EmbeddedResource Remove="Models\Forum\**" />
     <None Remove="Areas\Admin\Data\**" />
     <None Remove="Areas\Admin\Models\Category\**" />
     <None Remove="Areas\Admin\Models\User\**" />
     <None Remove="Models\Account\**" />
-    <None Remove="Models\Forum\BindingModels\**" />
-    <None Remove="Models\Forum\ViewModels\**" />
+    <None Remove="Models\Forum\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,7 +44,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Models\Forum\" />
     <Folder Include="Views\Shared\EditorTemplates\" />
     <Folder Include="wwwroot\images\avatars\" />
     <Folder Include="wwwroot\images\backgrounds\" />

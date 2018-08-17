@@ -14,7 +14,8 @@
         </a>
     </div>
     <div class="col-10 mt-4">
-        @Model.Content
+        @Html.Raw("<span>Hello World</span>")
+        @Html.Raw(Model.Content)
     </div>
 </div>
 
@@ -27,7 +28,7 @@
             </a>
         </div>
         <div class="col-10 mt-4">
-            @replay.Content
+            @Html.Raw(replay.Content)
         </div>
     </div>
 }
