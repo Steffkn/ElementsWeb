@@ -1,24 +1,22 @@
-﻿using Elements.Models;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Elements.Web.Common
+﻿namespace Elements.Web.Common
 {
+    using Elemenets.Common;
+    using Elements.Models;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.DependencyInjection;
+
     public static class ApplicationBuilderRolesExtension
     {
         private static string DefaultAdminUsername = "admin";
+        private static string DefaultAdminEmail = "admin@admins.com";
         private static string DefaultAdminPassword = "admin123";
 
         private static readonly IdentityRole[] roles =
         {
-            new IdentityRole("Administrator"),
-            new IdentityRole("Moderator"),
-            new IdentityRole("User")
+            new IdentityRole(Constants.AdminRoleName),
+            new IdentityRole(Constants.ModeratorRoleName),
+            new IdentityRole(Constants.UserRoleName)
         };
 
         public static async void SeedDatabase(this IApplicationBuilder app)
@@ -45,7 +43,7 @@ namespace Elements.Web.Common
                     user = new User()
                     {
                         UserName = DefaultAdminUsername,
-                        Email = DefaultAdminUsername + "@admins.com"
+                        Email = DefaultAdminEmail
                     };
 
                     var result = await userManager.CreateAsync(user, DefaultAdminPassword);

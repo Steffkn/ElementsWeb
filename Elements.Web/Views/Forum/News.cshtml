@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Elements.Web.Models.Forum.ViewModels.TopicOverviewViewModel>
+﻿@model IEnumerable<TopicOverviewViewModel>
 @{
     ViewData["Title"] = "News";
 }
@@ -8,40 +8,16 @@
 
 <!-- Main container -->
 <div class="container">
-    <nav aria-label="breadcrumb" class="">
-        <ol class="breadcrumb bg-transparent m-0">
-            <li class="breadcrumb-item">
-                <a href="./index.html">News</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">All</li>
-        </ol>
-    </nav>
+    @*<nav aria-label="breadcrumb" class="">
+            <ol class="breadcrumb bg-transparent m-0">
+                <li class="breadcrumb-item">
+                    <a href="./index.html">News</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">All</li>
+            </ol>
+        </nav>*@
     <main>
-
-        @foreach (var item in Model.OrderBy(m => m.CreateDate))
-        {
-            <div class="row">
-                <article class="card mb-2 col-sm-12 p-0">
-                    <a class="card-body" asp-controller="Forum" asp-action="Topic" asp-route-topicId="@item.Id">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <img src="https://picsum.photos/800/600" class="card-img" />
-                            </div>
-                            <div class="col-sm-8">
-                                <h5 class="card-title">@item.Title</h5>
-                                <p class="card-text">
-                                    @item.Content
-                                </p>
-                                <footer class="card-text">
-                                    <span>by <em class="text-info">@item.AuthorName</em></span>
-                                    <small class="text-muted">Last updated @((DateTime.Now - item.CreateDate).Minutes) min ago</small>
-                                </footer>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-            </div>
-        }
+        @Html.DisplayForModel()
 
     </main>
     <footer class="text-light">

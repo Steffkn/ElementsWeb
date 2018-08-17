@@ -1,0 +1,24 @@
+﻿@model TopicOverviewViewModel
+
+
+<div class="row">
+    <article class="card mb-2 col-sm-12 p-0">
+        <a class="card-body" asp-controller="Forum" asp-action="Topic" asp-route-topicId="@Model.Id">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="https://picsum.photos/800/600" class="card-img" />
+                </div>
+                <div class="col-sm-8">
+                    <h5 class="card-title">@Model.Title</h5>
+                    <p class="card-text">
+                        @Model.Content
+                    </p>
+                    <footer class="card-text">
+                        <span>by <em class="text-info">@Model.AuthorName</em></span>
+                        <small class="text-muted">Last updated @((DateTime.Now - Model.CreateDate).Days) days @((DateTime.Now - Model.CreateDate).Days) h @((DateTime.Now - Model.CreateDate).Minutes) min ago</small>
+                    </footer>
+                </div>
+            </div>
+        </a>
+    </article>
+</div>

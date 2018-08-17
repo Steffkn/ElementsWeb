@@ -1,30 +1,31 @@
-﻿@model Elements.Web.Models.Forum.ViewModels.TopicViewModel
+﻿@model AddTopicViewModel
 @{
-    ViewData["Title"] = "AddTopic";
+    ViewData["Title"] = "Add new topic";
 }
 
-<div class="row">
-    <div class="col-8 offset-2">
+<div class="row mt-2">
+    <div class="col-lg-8 offset-lg-2">
+        <div asp-validation-summary="All"></div>
         <form method="post" asp-controller="Forum" asp-action="AddTopic">
-            <div asp-validation-summary="All" class="text-danger validation-summary"></div>
             <div class="form-group">
                 <label asp-for="Title" class="col-form-label"></label>
                 <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+                <span asp-validation-for="Title" class=""></span>
             </div>
             <div class="form-group">
                 <label asp-for="Categories" class="col-form-label"></label>
-                <select asp-for="CategoryId" asp-items="Model.Categories" class="form-control"></select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                <select asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories,"Id","Name"))" class="form-control">
+                    <option value="">Select category</option>
+                </select>
+                <span asp-validation-for="CategoryId" class=""></span>
             </div>
             <div class="form-group">
-
                 <label asp-for="Content" class="col-form-label"></label>
                 <textarea asp-for="Content" class="form-control" rows="10"></textarea>
-                <span asp-validation-for="Content" class="text-danger"></span>
+                <span asp-validation-for="Content" class=""></span>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-light">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
     </div>

@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Elements.Data;
 using Elements.Models.Forum;
-using Elements.Web.Models.Forum.BindingModels;
-using Elements.Web.Models.Forum.ViewModels;
+using Elements.Services.Models.Forum.BindingModels;
+using Elements.Services.Models.Forum.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Elements.Web.Controllers
@@ -51,6 +48,7 @@ namespace Elements.Web.Controllers
                                 CreateDate = t.CreateDate,
                                 Title = t.Title
                             })
+                            .OrderBy(m => m.CreateDate)
                             .ToList();
             return View(topics);
         }
@@ -73,8 +71,8 @@ namespace Elements.Web.Controllers
         [Authorize]
         public IActionResult AddTopic()
         {
-            var categories = this.Context.ForumCategories.Select(c => new SelectListItem() { Text = c.Name, Value = c.Id.ToString() }).ToList();
-            var viewModel = new TopicViewModel()
+            var categories = this.Context.ForumCategories.Select(c => new SelectCategoryViewModel() { Name = c.Name, Id = c.Id.ToString() }).ToList();
+            var viewModel = new AddTopicViewModel()
             {
                 Categories = categories
             };
@@ -84,12 +82,12 @@ namespace Elements.Web.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult AddTopic(TopicBindingModels newTopic)
+        public IActionResult AddTopic(AddTopicBindingModel newTopic)
         {
             if (!this.ModelState.IsValid)
             {
-                var categories = this.Context.ForumCategories.Select(c => new SelectListItem() { Text = c.Name, Value = c.Id.ToString() }).ToList();
-                var viewModel = new TopicViewModel()
+                var categories = this.Context.ForumCategories.Select(c => new SelectCategoryViewModel() { Name = c.Name, Id = c.Id.ToString() }).ToList();
+                var viewModel = new AddTopicViewModel()
                 {
                     Categories = categories
                 };

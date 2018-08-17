@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -10,7 +8,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using Elements.Web.Models.Account;
+using Elements.Services.Models.Account;
+using Elemenets.Common;
 
 namespace Elements.Web.Areas.Identity.Pages.Account
 {
@@ -19,16 +18,19 @@ namespace Elements.Web.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<User> signInManager;
         private readonly UserManager<User> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
         private readonly ILogger<RegisterModel> logger;
         private readonly IEmailSender emailSender;
 
         public RegisterModel(
             UserManager<User> userManager,
+            RoleManager<IdentityRole> roleManager,
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
             this.userManager = userManager;
+            this.roleManager = roleManager;
             this.signInManager = signInManager;
             this.logger = logger;
             this.emailSender = emailSender;
@@ -72,6 +74,8 @@ namespace Elements.Web.Areas.Identity.Pages.Account
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     await signInManager.SignInAsync(user, isPersistent: false);
+                    await userManager.AddToRoleAsync(user, Constants.UserRoleName);
+
                     return this.LocalRedirect(returnUrl);
                 }
 

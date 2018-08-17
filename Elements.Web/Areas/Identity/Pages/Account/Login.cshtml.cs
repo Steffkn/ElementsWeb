@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using Elements.Web.Models.Account;
+using Elements.Services.Models.Account;
 
 namespace Elements.Web.Areas.Identity.Pages.Account
 {
@@ -35,7 +35,7 @@ namespace Elements.Web.Areas.Identity.Pages.Account
 
         [TempData]
         public string ErrorMessage { get; set; }
-        
+
         public async Task OnGetAsync(string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))

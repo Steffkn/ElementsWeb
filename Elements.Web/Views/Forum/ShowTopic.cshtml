@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Elements.Web.Models.Forum.ViewModels.TopicOfCategoryViewModel>
+﻿@model IEnumerable<TopicOfCategoryViewModel>
 @{
     ViewData["Title"] = "ShowTopic";
 }
 
 <h2>ShowTopic</h2>
 
-<a asp-controller="Forum" asp-action="AddTopic" class="btn btn-primary m-2">Add new topic</a>
+<a asp-controller="Forum" asp-action="AddTopic" class="btn btn-primary m-2"><i class="fa fa-plus"></i> New topic</a>
 
 @Html.DisplayForModel()

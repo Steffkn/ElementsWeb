@@ -100,6 +100,10 @@ article:hover .card-img {
     list-style: none;
 }
 
+    .validation-summary-errors ul li {
+        margin-top: 10px;
+    }
+
 .field-validation-error,
 .validation-summary-errors {
     color: #dc3545;
