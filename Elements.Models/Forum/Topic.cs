@@ -42,6 +42,9 @@
 
         public ICollection<Reply> Replies { get; set; }
 
+        // TODO:  [Url]
+        public string ImageUrl { get; set; }
+
         public override int GetHashCode()
         {
             return this.Id.GetHashCode();

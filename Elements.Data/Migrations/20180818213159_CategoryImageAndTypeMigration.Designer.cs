@@ -4,14 +4,16 @@ using Elements.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Elements.Data.Migrations
 {
     [DbContext(typeof(ElementsContext))]
-    partial class ElementsContextModelSnapshot : ModelSnapshot
+    [Migration("20180818213159_CategoryImageAndTypeMigration")]
+    partial class CategoryImageAndTypeMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

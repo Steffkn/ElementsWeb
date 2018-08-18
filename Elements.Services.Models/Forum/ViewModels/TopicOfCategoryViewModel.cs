@@ -1,5 +1,6 @@
 ﻿namespace Elements.Services.Models.Forum.ViewModels
 {
+    using Elements.Models.Forum;
     using System;
 
     public class TopicOfCategoryViewModel
@@ -15,5 +16,9 @@
         public DateTime CreateDate { get; set; }
 
         public int NumberOfReply { get; set; }
+
+        public TopicType TopicType { get; set; }
+
+        public string ImageUrl { get; set; }
     }
 }

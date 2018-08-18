@@ -4,6 +4,8 @@
     {
         Common = 1,
         Info = 2,
-        Important = 3
+        Important = 3,
+        News = 4,
+        Development = 5
     }
 }

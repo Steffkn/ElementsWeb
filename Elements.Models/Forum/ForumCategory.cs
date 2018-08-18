@@ -19,5 +19,10 @@
         public string Description { get; set; }
 
         public ICollection<Topic> Topics { get; set; }
+
+        [Required]
+        public ForumCategoryType CategoryType { get; set; }
+
+        public string IconUrl { get; set; }
     }
 }

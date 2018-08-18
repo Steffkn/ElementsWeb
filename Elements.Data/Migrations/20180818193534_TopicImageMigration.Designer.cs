@@ -4,14 +4,16 @@ using Elements.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Elements.Data.Migrations
 {
     [DbContext(typeof(ElementsContext))]
-    partial class ElementsContextModelSnapshot : ModelSnapshot
+    [Migration("20180818193534_TopicImageMigration")]
+    partial class TopicImageMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,11 +27,7 @@ namespace Elements.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CategoryType");
-
                     b.Property<string>("Description");
-
-                    b.Property<string>("IconUrl");
 
                     b.Property<string>("Name")
                         .IsRequired();

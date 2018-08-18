@@ -1,6 +1,6 @@
 ﻿namespace Elements.Web.Common
 {
-    using Elemenets.Common;
+    using Elements.Common;
     using Elements.Models;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Identity;
@@ -21,6 +21,12 @@
                     }
                 },
            {
+                    Constants.DevRoleName,
+                    new HashSet<Tuple<string, string, string>>(){
+                        new Tuple<string, string, string>("dev", "dev@dev.com", "dev123")
+                    }
+                },
+           {
                     Constants.ModeratorRoleName,
                     new HashSet<Tuple<string, string, string>>(){
                         new Tuple<string, string, string>("mod", "mod@admins.com", "mod123")
@@ -37,6 +43,7 @@
         private static readonly IReadOnlyDictionary<string, HashSet<User>> roles = new Dictionary<string, HashSet<User>>()
         {
             { Constants.AdminRoleName, new HashSet<User>() },
+            { Constants.DevRoleName, new HashSet<User>() },
             { Constants.ModeratorRoleName, new HashSet<User>() },
             { Constants.UserRoleName, new HashSet<User>() },
         };

@@ -1,5 +1,7 @@
 ﻿namespace Elements.Services.Models.Forum.ViewModels
 {
+    using Elements.Models.Forum;
+    using Microsoft.AspNetCore.Http;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -15,5 +17,10 @@
         public int CategoryId { get; set; }
 
         public IEnumerable<SelectCategoryViewModel> Categories { get; set; }
+
+        [EnumDataType(typeof(TopicType))]
+        public TopicType TopicType { get; set; }
+
+        public IFormFile ImageUrl { get; set; }
     }
 }

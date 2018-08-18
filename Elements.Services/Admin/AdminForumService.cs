@@ -23,14 +23,13 @@
             if (category != null)
             {
                 this.Context.ForumCategories.Remove(category);
-                this.Context.SaveChangesAsync();
+                this.Context.SaveChanges();
                 return true;
             }
 
             return false;
         }
 
-        // TODO: maybe add operation result here? with bool and string
         public bool EditCategory(CategoryBindingModel model)
         {
             var category = this.Context.ForumCategories.Find(model.Id);
@@ -39,7 +38,7 @@
 
                 category.Name = model.Name;
                 category.Description = model.Description;
-                this.Context.SaveChangesAsync();
+                this.Context.SaveChanges();
                 return true;
             }
 

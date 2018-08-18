@@ -6,7 +6,7 @@
         <a class="card-body" asp-controller="Forum" asp-action="Topic" asp-route-topicId="@Model.Id">
             <div class="row">
                 <div class="col-sm-4">
-                    <img src="https://picsum.photos/800/600" class="card-img" />
+                    <img src="@Model.ImageUrl" class="card-img" />
                 </div>
                 <div class="col-sm-8">
                     <h5 class="card-title">@Model.Title</h5>

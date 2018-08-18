@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elements.Web", "Elements.We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elements.Services", "Elements.Services\Elements.Services.csproj", "{BE43000F-C70C-4C14-B963-EF1A3CA9CCCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elements.Services.Models", "Elements.Services.Models\Elements.Services.Models.csproj", "{8B2F0B0A-E032-4B45-B46F-DE48DACE2837}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elements.Services.Models", "Elements.Services.Models\Elements.Services.Models.csproj", "{8B2F0B0A-E032-4B45-B46F-DE48DACE2837}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elemenets.Common", "Elemenets.Common\Elemenets.Common.csproj", "{BC3AE195-788E-4157-82BD-F61E28F472F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elements.Common", "Elemenets.Common\Elements.Common.csproj", "{BC3AE195-788E-4157-82BD-F61E28F472F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

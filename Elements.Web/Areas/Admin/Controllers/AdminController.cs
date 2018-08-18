@@ -1,6 +1,6 @@
 ﻿namespace Elements.Web.Areas.Admin.Controllers
 {
-    using Elemenets.Common;
+    using Elements.Common;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
