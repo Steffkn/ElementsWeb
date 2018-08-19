@@ -40,6 +40,7 @@ namespace Elements.Web.Controllers
         {
             var topics = this.Context.Topics
                             .Include(t => t.Author)
+                            .Where(t => t.TopicType == TopicType.News || t.TopicType == TopicType.Development)
                             .Select(t => new TopicOverviewViewModel()
                             {
                                 AuthorId = t.Author.Id,

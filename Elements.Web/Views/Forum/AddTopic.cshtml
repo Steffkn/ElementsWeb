@@ -10,43 +10,50 @@
         <div asp-validation-summary="All"></div>
         <form method="post" asp-controller="Forum" asp-action="AddTopic" enctype="multipart/form-data">
             <div class="form-group row">
-                <label asp-for="Title" class="col-form-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class=""></span>
+                <div class="col">
+                    <label asp-for="Title" class="col-form-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class=""></span>
+                </div>
             </div>
             <div class="form-group row">
                 <div class="col">
                     <label asp-for="Categories" class="col-form-label"></label>
-                    <select asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories,"Id","Name"))" class="form-control">
+                    <select asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories,"Id","Name"))" class="custom-select">
                         <option selected="selected" value="">Select category</option>
                     </select>
                     <span asp-validation-for="CategoryId" class=""></span>
                 </div>
             </div>
 
-            <div class="form-group row">
-                @if (this.User.IsInRole(Constants.AdminRoleName))
-                {
+            @if (this.User.IsInRole(Constants.AdminRoleName))
+            {
+                <div class="form-group row">
                     <div class="col">
                         <label asp-for="TopicType" class="col-form-label"></label>
-                        <select asp-for="TopicType" asp-items="Html.GetEnumSelectList<TopicType>()" class="form-control">
+                        <select asp-for="TopicType" asp-items="Html.GetEnumSelectList<TopicType>()" class="custom-select">
                             <option selected="selected" value="">Select topic type</option>
                         </select>
                         <span asp-validation-for="TopicType" />
                     </div>
-
+                </div>
+                <div class="form-group row">
                     <div class="col">
                         <label asp-for="ImageUrl" class="col-form-label"></label>
+                        <button id="selectImage" class="btn btn-info"></button>
                         <input asp-for="ImageUrl" type="file" />
                         <span asp-validation-for="ImageUrl" />
                     </div>
-                }
-            </div>
+                </div>
+            }
 
             <div class="form-group row">
-                <label asp-for="Content" class="col-form-label"></label>
-                <textarea asp-for="Content" class="form-control"></textarea>
-                <span asp-validation-for="Content" class=""></span>
+                <div class="col">
+                    <label asp-for="Content" class="col-form-label"></label>
+                    <textarea asp-for="Content" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="Content" class=""></span>
+                </div>
+
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -60,7 +67,7 @@
     <script src="~/lib/tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
         tinymce.init({
-            selector: '#Content',
+            selector: '#Content-notworking',
             height: 300,
             max_height: 500,
             min_height: 300,
