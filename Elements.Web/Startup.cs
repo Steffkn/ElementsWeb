@@ -133,7 +133,10 @@ namespace Elements.Web
             services.AddScoped<IManageUsersService, ManageUsersService>();
             services.AddScoped<IManageNewsService, ManageNewsService>();
 
+            // public services
             services.AddScoped<INewsService, NewsService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ITopicService, TopicService>();
         }
     }
 }

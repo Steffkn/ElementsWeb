@@ -2,6 +2,8 @@
 using Elements.Models;
 using Elements.Models.Forum;
 using Elements.Services.Models.Areas.Admin.ViewModels;
+using Elements.Services.Models.Forum.ViewModels;
+using System.Collections.Generic;
 
 namespace Elements.Web.Mapping
 {
@@ -11,6 +13,9 @@ namespace Elements.Web.Mapping
         {
             this.CreateMap<ForumCategory, CategoryViewModel>()
                 .ForMember(dest => dest.NumberOfTopics, opt => opt.MapFrom(src => src.Topics.Count));
+
+            this.CreateMap<ForumCategory, SelectCategoryViewModel>();
+
             this.CreateMap<User, AdministrateUserViewModel>();
 
             this.CreateMap<TopicType, TopicTypeViewModel>()

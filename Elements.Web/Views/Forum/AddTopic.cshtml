@@ -31,7 +31,7 @@
                 <div class="form-group row">
                     <div class="col">
                         <label asp-for="TopicType" class="col-form-label"></label>
-                        <select asp-for="TopicType" asp-items="@(new SelectList(Model.TopicTypes,"Id","Name"))" class="custom-select">
+                        <select asp-for="TopicType" asp-items="@(new SelectList(Model.TopicTypes,"Id","Value"))" class="custom-select">
                             <option selected="selected" value="">Select topic type</option>
                         </select>
                         <span asp-validation-for="TopicType" />

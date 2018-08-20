@@ -39,13 +39,13 @@ namespace Elements.Web.Common
             switch (topicType)
             {
                 case TopicType.Common:
-                    result = "fas fa-sticky-note fa-fw";
+                    result = "fas fa-sticky-note fa-fw text-primary";
                     break;
                 case TopicType.Info:
-                    result = "fas fa-info-circle fa-fw";
+                    result = "fas fa-info-circle fa-fw text-warning";
                     break;
                 case TopicType.Important:
-                    result = "fas fa-exclamation-triangle fa-fw";
+                    result = "fas fa-exclamation-triangle fa-fw text-danger";
                     break;
                 case TopicType.News:
                     result = "fas fa-sticky-note fa-fw";

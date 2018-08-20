@@ -5,7 +5,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Elements.Models.Forum;
 using Elements.Services.Admin.Interfaces;
-using Elements.Services.Models.Areas.Admin.ViewModels;
+using Elements.Services.Models.Forum.ViewModels;
 using Elements.Web.Common;
 using Elements.Web.Extensions;
 using Microsoft.AspNetCore.Http;

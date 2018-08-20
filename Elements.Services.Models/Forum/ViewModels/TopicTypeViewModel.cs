@@ -4,6 +4,11 @@
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string Value { get; set; }
+
+        public override int GetHashCode()
+        {
+            return this.Id.GetHashCode();
+        }
     }
 }
