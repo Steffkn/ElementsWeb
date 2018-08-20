@@ -21,6 +21,7 @@
         public ICollection<Topic> Topics { get; set; }
 
         [Required]
+        [EnumDataType(typeof(ForumCategoryType))]
         public ForumCategoryType CategoryType { get; set; }
 
         public string IconUrl { get; set; }

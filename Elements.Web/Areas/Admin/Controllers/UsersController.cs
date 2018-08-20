@@ -7,9 +7,9 @@
 
     public class UsersController : AdminController
     {
-        private readonly IAdminUsersService usersService;
+        private readonly IManageUsersService usersService;
 
-        public UsersController(IAdminUsersService usersService)
+        public UsersController(IManageUsersService usersService)
             : base()
         {
             this.usersService = usersService;

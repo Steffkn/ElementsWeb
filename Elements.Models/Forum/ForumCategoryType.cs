@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Elements.Models.Forum
+﻿namespace Elements.Models.Forum
 {
     public enum ForumCategoryType
     {
         Support = 1,
-        Development = 2,
-        Community = 3,
-        Gameplay = 4,
-        Guides = 5
+        News = 2,
+        Development = 3,
+        Community = 4,
+        Gameplay = 5,
+        Guides = 6
     }
 }

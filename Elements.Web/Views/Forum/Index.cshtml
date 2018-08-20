@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ForumCategoryViewModel>
+﻿@model Dictionary<ForumCategoryType, List<ForumCategoryViewModel>>
 @{
     ViewData["Title"] = "Index";
 }
@@ -11,39 +11,37 @@
             <h2>Welcome here, ya fool!</h2>
         </header>
 
-        <div class="forum-category">
-            <header class="forum-category-header">
-                <h1 class="forum-category-heading">News</h1>
-            </header>
-            <div class="forum-cards">
-                @foreach (var item in Model)
-                {
-                    <a asp-area="" asp-controller="Forum" asp-action="ShowTopic" asp-route-topicId="@item.Id" class="forum-card">
-                        <div class="fa-3x forum-card-icon">
-                            <i class="fas fa-headset"></i>
+        <div class="row my-3">
+            <div class="col">
+                <form class="form-inline">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-info" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
                         </div>
-                        <div class="forum-card-body">
-                            <header class="forum-card-header">
-                                <h2 class="forum-card-heading">@(item.Name)</h2>
-                            </header>
-                            <div class="forum-card-content">
-                                <p>
-                                    @(item.Description)
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                }
+                    </div>
+                </form>
+            </div>
+            <div class="col">
+                <a asp-controller="Forum" asp-action="AddTopic" class="btn btn-info m-0">
+                    <i class="fa fa-plus"></i> New topic
+                </a>
             </div>
         </div>
 
+        @foreach (var type in Model)
+        {
+            <div class="forum-category">
+                <header class="forum-category-header">
+                    <h1 class="forum-category-heading">@type.Key.ToString()</h1>
+                </header>
+                <div class="forum-cards">
+                    @Html.DisplayFor(m => type.Value)
+                </div>
+            </div>
+        }
+
     </section>
 </main>
-
-<footer class="text-light">
-    <p>Posted by: Stefan</p>
-    <p>
-        Contact information:
-        <a href="mailto:someone@example.com"> someone@example.com</a>.
-    </p>
-</footer>

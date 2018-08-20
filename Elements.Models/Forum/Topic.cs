@@ -33,6 +33,7 @@
         public User Author { get; set; }
 
         [Required]
+        [EnumDataType(typeof(TopicType))]
         public TopicType TopicType { get; set; }
 
         [Required]
@@ -42,7 +43,6 @@
 
         public ICollection<Reply> Replies { get; set; }
 
-        // TODO:  [Url]
         public string ImageUrl { get; set; }
 
         public override int GetHashCode()

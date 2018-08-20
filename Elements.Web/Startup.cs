@@ -15,6 +15,8 @@ using AutoMapper;
 using Elements.Services.Admin.Interfaces;
 using Elements.Services.Admin;
 using Microsoft.AspNetCore.Routing;
+using Elements.Services.Public.Interfaces;
+using Elements.Services.Public;
 
 namespace Elements.Web
 {
@@ -127,8 +129,11 @@ namespace Elements.Web
 
         private void RegisterServiceLayer(IServiceCollection services)
         {
-            services.AddScoped<IAdminForumService, AdminForumService>();
-            services.AddScoped<IAdminUsersService, AdminUsersService>();
+            services.AddScoped<IManageCategoriesService, ManageCategoriesService>();
+            services.AddScoped<IManageUsersService, ManageUsersService>();
+            services.AddScoped<IManageNewsService, ManageNewsService>();
+
+            services.AddScoped<INewsService, NewsService>();
         }
     }
 }

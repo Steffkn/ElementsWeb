@@ -21,6 +21,8 @@
         [EnumDataType(typeof(TopicType))]
         public TopicType TopicType { get; set; }
 
+        public IEnumerable<TopicTypeViewModel> TopicTypes { get; set; }
+
         public IFormFile ImageUrl { get; set; }
     }
 }

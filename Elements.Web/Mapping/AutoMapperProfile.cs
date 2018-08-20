@@ -12,6 +12,10 @@ namespace Elements.Web.Mapping
             this.CreateMap<ForumCategory, CategoryViewModel>()
                 .ForMember(dest => dest.NumberOfTopics, opt => opt.MapFrom(src => src.Topics.Count));
             this.CreateMap<User, AdministrateUserViewModel>();
+
+            this.CreateMap<TopicType, TopicTypeViewModel>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => (int)src))
+                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.ToString()));
         }
     }
 }

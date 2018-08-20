@@ -7,9 +7,9 @@
 
     public class ForumController : AdminController
     {
-        private readonly IAdminForumService forumService;
+        private readonly IManageCategoriesService forumService;
 
-        public ForumController(IAdminForumService forumService)
+        public ForumController(IManageCategoriesService forumService)
             : base()
         {
             this.forumService = forumService;

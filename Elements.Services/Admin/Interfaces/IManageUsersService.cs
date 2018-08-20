@@ -3,9 +3,11 @@
     using Elements.Services.Models.Areas.Admin.ViewModels;
     using System.Collections.Generic;
 
-    public interface IAdminUsersService
+    public interface IManageUsersService
     {
         IEnumerable<AdministrateUserViewModel> GetAllUsersWithTopics();
+
+        IEnumerable<AdministrateUserViewModel> GetUsers();
 
         AdministrateUserViewModel GetUserWithTopics(string userId);
     }

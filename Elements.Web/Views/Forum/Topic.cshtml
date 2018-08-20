@@ -1,52 +1,33 @@
-﻿@model Elements.Models.Forum.Topic
+﻿@model TopicWithRepliesViewModel
 @{
     ViewData["Title"] = "Topic";
 }
 
 <div class="row">
-    <h1 class="col my-4">@Model.Title</h1>
+    <h1 class="col my-4">@Model.TopicTitle</h1>
 </div>
-<div class="row bg-white text-dark p-2">
+<div class="row bg-white text-dark p-2 my-2">
     <div class="col-2">
-        <a asp-controller="Users" asp-action="Details" asp-route-userId="@Model.Author.Id">
-            @Model.Author.UserName
-            <img src="~/images/avatars/default.png" class="img-fluid" />
-        </a>
+        @Html.DisplayFor(m => m.TopicAuthorViewModel)
     </div>
     <div class="col-10 mt-4">
-        @Html.Raw(Model.Content)
+        <div>
+            @Model.CreateDate.ToString("dd-MMM, yyyy hh:mm:ss")
+        </div>
+        @Model.TopicContent
     </div>
 </div>
 
-@foreach (var replay in Model.Replies)
-{
-    <div class="row bg-white text-dark p-2">
-        <div class="col-2">
-            <a asp-controller="Users" asp-action="Details" asp-route-userId="@replay.Author.Id">
-                @replay.Author.UserName
-            </a>
-        </div>
-        <div class="col-10 mt-4">
-            @Html.Raw(replay.Content)
-        </div>
-    </div>
-}
+@Html.DisplayFor(m => m.Replies)
 
 @if (this.User.Identity.IsAuthenticated)
 {
-    <div class="row">
-        <div class="col offset-10 my-2">
-            <a asp-controller="Forum" asp-action="AddReply" class="btn btn-secondary">Add new reply</a>
-        </div>
-    </div>
     <div class="row text-dark p-2">
-        <div class="col-2">
-        </div>
-        <div class="col-10">
+        <div class="col-10 offset-2">
             <form method="post" asp-controller="Forum" asp-action="AddReply" asp-route-topicId="@Model.Id">
                 <div class="row">
                     <div class="col-12">
-                        <textarea rows="4" class="form-control mb-2"></textarea>
+                        <textarea name="replyContent" rows="4" class="form-control mb-2"></textarea>
                     </div>
                 </div>
                 <div class="row">

@@ -4,7 +4,7 @@
     using Elements.Services.Models.Areas.Admin.ViewModels;
     using System.Collections.Generic;
 
-    public interface IAdminForumService
+    public interface IManageCategoriesService
     {
         IEnumerable<CategoryViewModel> GetCategories();
 

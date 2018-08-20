@@ -10,16 +10,16 @@
     using System.Linq;
     using Elements.Services.Models.Areas.Admin.BindingModels;
 
-    public class AdminForumService : BaseEFService, IAdminForumService
+    public class ManageCategoriesService : BaseEFService, IManageCategoriesService
     {
-        public AdminForumService(ElementsContext context, IMapper mapper)
+        public ManageCategoriesService(ElementsContext context, IMapper mapper)
             : base(context, mapper)
         {
         }
 
         public bool DeleteCategory(CategoryBindingModel model)
         {
-            var category = this.Context.ForumCategories.Find(model.Id);
+            var category = this.Context.ForumCategories.FirstOrDefault(c => c.Id == model.Id);
             if (category != null)
             {
                 this.Context.ForumCategories.Remove(category);
@@ -32,7 +32,7 @@
 
         public bool EditCategory(CategoryBindingModel model)
         {
-            var category = this.Context.ForumCategories.Find(model.Id);
+            var category = this.Context.ForumCategories.FirstOrDefault(c => c.Id == model.Id);
             if (category != null)
             {
 

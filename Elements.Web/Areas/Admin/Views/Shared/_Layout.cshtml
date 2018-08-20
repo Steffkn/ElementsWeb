@@ -42,13 +42,19 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a asp-area="Admin" asp-page="/AddNews" class="nav-link">
+                        <i class="fas fa-plus"></i>
+                        Add News
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-home"></i>
                         Home
                     </a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li class="nav-item">
-                            <a asp-area="" asp-action="News" asp-controller="Forum" class="nav-link">
+                            <a asp-area="" asp-page="/News" class="nav-link">
                                 <i class="fas fa-book-open"></i>
                                 News
                             </a>

@@ -8,9 +8,9 @@
     using Elements.Services.Models.Areas.Admin.ViewModels;
     using Microsoft.EntityFrameworkCore;
 
-    public class AdminUsersService : BaseEFService, IAdminUsersService
+    public class ManageUsersService : BaseEFService, IManageUsersService
     {
-        public AdminUsersService(ElementsContext context, IMapper mapper)
+        public ManageUsersService(ElementsContext context, IMapper mapper)
             : base(context, mapper)
         {
         }
@@ -23,16 +23,23 @@
             return result;
         }
 
+        public IEnumerable<AdministrateUserViewModel> GetUsers()
+        {
+            var usersWithTopics = this.Context.Users.ToList();
+            var result = this.Mapper.Map<IEnumerable<AdministrateUserViewModel>>(usersWithTopics);
+            return result;
+        }
+
         public AdministrateUserViewModel GetUserWithTopics(string userId)
         {
             var userWithTopics = this.Context.Users.Include(u => u.Topics).FirstOrDefault(u => u.Id == userId);
+            AdministrateUserViewModel result = null;
 
-            if (userWithTopics == null)
+            if (userWithTopics != null)
             {
-                // TODO: do stuff?
+                result = this.Mapper.Map<AdministrateUserViewModel>(userWithTopics);
             }
 
-            var result = this.Mapper.Map<AdministrateUserViewModel>(userWithTopics);
             return result;
         }
     }

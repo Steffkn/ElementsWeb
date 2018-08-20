@@ -1,7 +1,7 @@
 ﻿@model TopicOfCategoryViewModel
 
 <div class="row forum-topic">
-    <a class="col p-2" asp-controller="Forum" asp-action="Topic" asp-route-topicId="@Model.TopicId">
+    <a class="col p-2" asp-controller="Forum" asp-action="Topic" asp-route-id="@Model.TopicId">
         <div class="row text-white my-1">
             <span class="col"><i class="@Model.ImageUrl m-1"></i> @Model.Title</span>
             <span class="col-auto">@Model.NumberOfReply</span>

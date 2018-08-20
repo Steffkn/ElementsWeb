@@ -1,4 +1,6 @@
-﻿namespace Elements.Services.Models.Forum.ViewModels
+﻿using Elements.Models.Forum;
+
+namespace Elements.Services.Models.Forum.ViewModels
 {
     public class ForumCategoryViewModel
     {
@@ -9,5 +11,7 @@
         public string Description { get; set; }
 
         public string IconURL { get; set; }
+
+        public ForumCategoryType CategoryType { get; set; }
     }
 }

@@ -1,24 +1,31 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Elements.Data;
-using Elements.Models.Forum;
-using Elements.Services.Models.Forum.BindingModels;
-using Elements.Services.Models.Forum.ViewModels;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-
-namespace Elements.Web.Controllers
+﻿namespace Elements.Web.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using AutoMapper;
+    using Elements.Data;
+    using Elements.Models.Forum;
+    using Elements.Services.Models.Forum.BindingModels;
+    using Elements.Services.Models.Forum.ViewModels;
+    using Elements.Web.Common;
+    using Elements.Web.Extensions;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+
     public class ForumController : Controller
     {
+        private readonly IMapper mapper;
+
         public ElementsContext Context { get; }
 
-        public ForumController(ElementsContext context)
+        public ForumController(ElementsContext context, IMapper mapper)
         {
             this.Context = context;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -29,10 +36,23 @@ namespace Elements.Web.Controllers
                 Id = c.Id,
                 Name = c.Name,
                 Description = c.Description,
-                IconURL = "images/icons/under-construction-hat.png"
+                IconURL = "/images/icons/under-construction-hat.png",
+                CategoryType = c.CategoryType
             });
 
-            return View(model: categories);
+            Dictionary<ForumCategoryType, List<ForumCategoryViewModel>> categoriesss = new Dictionary<ForumCategoryType, List<ForumCategoryViewModel>>();
+
+            foreach (var item in categories)
+            {
+                if (!categoriesss.ContainsKey(item.CategoryType))
+                {
+                    categoriesss.Add(item.CategoryType, new List<ForumCategoryViewModel>());
+                }
+
+                categoriesss[item.CategoryType].Add(item);
+            }
+
+            return View(model: categoriesss);
         }
 
         [HttpGet]
@@ -56,18 +76,20 @@ namespace Elements.Web.Controllers
             return View(topics);
         }
 
-        [HttpGet]
-        [Authorize]
-        public IActionResult AddReply()
-        {
-            return View();
-        }
-
         [HttpPost]
         [Authorize]
-        public IActionResult AddReply(int topicId)
+        public IActionResult AddReply(int topicId, string replyContent)
         {
-            return View();
+            var topic = this.Context.Topics.FirstOrDefault(t => t.Id == topicId);
+
+            if (topic != null)
+            {
+                topic.Replies.Add(new Reply() { AuthorId = this.User.GetUserId(), Content = replyContent, CreateDate = DateTime.Now, IsActive = true });
+
+                this.Context.SaveChanges();
+            }
+
+            return this.RedirectToAction("ShowTopic", new { topicId = topicId });
         }
 
         [HttpGet]
@@ -75,9 +97,11 @@ namespace Elements.Web.Controllers
         public IActionResult AddTopic()
         {
             var categories = this.Context.ForumCategories.Select(c => new SelectCategoryViewModel() { Name = c.Name, Id = c.Id.ToString() }).ToList();
+            var availableTopicTypes = TopicTypesManager.GetAllExcept(TopicType.News, TopicType.Development);
             var viewModel = new AddTopicViewModel()
             {
-                Categories = categories
+                Categories = categories,
+                TopicTypes = availableTopicTypes.Select(x => new TopicTypeViewModel() { Id = (int)x, Name = x.ToString() })
             };
 
             return View(viewModel);
@@ -150,12 +174,12 @@ namespace Elements.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult ShowTopic(int topicId)
+        public IActionResult Category(int id)
         {
             var topicsOfCategoryViewModel = this.Context.Topics
                 .Include(t => t.Author)
                 .Include(t => t.Replies)
-                .Where(t => t.CategoryId == topicId)
+                .Where(t => t.CategoryId == id)
                 .Select(c => new TopicOfCategoryViewModel()
                 {
                     Title = c.Title,
@@ -165,55 +189,58 @@ namespace Elements.Web.Controllers
                     CreateDate = c.CreateDate,
                     NumberOfReply = c.Replies.Count,
                     TopicType = c.TopicType,
-                    ImageUrl = GetImage(c.TopicType)
-                });
+                    ImageUrl = TopicTypesManager.GetImage(c.TopicType)
+                })
+                .OrderByDescending(t => t.TopicType)
+                .ThenByDescending(t => t.CreateDate);
 
             return View(topicsOfCategoryViewModel.ToList());
         }
 
-        private string GetImage(TopicType topicType)
-        {
-            string result = string.Empty;
-
-            switch (topicType)
-            {
-                case TopicType.Common:
-                    result = "fas fa-sticky-note fa-fw";
-                    break;
-                case TopicType.Info:
-                    result = "fas fa-info-circle fa-fw";
-                    break;
-                case TopicType.Important:
-                    result = "fas fa-exclamation-triangle fa-fw";
-                    break;
-                case TopicType.News:
-                    result = "fas fa-sticky-note fa-fw";
-                    break;
-                case TopicType.Development:
-                    result = "fas fa-code fa-fw";
-                    break;
-                default:
-                    result = "fas fa-sticky-note fa-fw";
-                    break;
-            }
-
-            return result;
-        }
-
         [HttpGet]
-        public IActionResult Topic(int topicId)
+        public IActionResult Topic(int id)
         {
-            var topic = this.Context.Topics
-                .Include(t => t.Replies)
+            var topicWithReplies = this.Context.Topics
                 .Include(t => t.Author)
-                .FirstOrDefault(t => t.Id == topicId);
+                .Include(t => t.Replies)
+                .ThenInclude((Reply r) => r.Author)
+                .Where(t => t.IsActive)
+                .FirstOrDefault(t => t.Id == id);
 
-            if (topic == null)
+            var topicsWithRepliesViewModel = new TopicWithRepliesViewModel();
+            if (topicWithReplies != null)
             {
-                return this.RedirectToAction("Index");
+                topicsWithRepliesViewModel = new TopicWithRepliesViewModel()
+                {
+                    Id = topicWithReplies.Id,
+                    TopicTitle = topicWithReplies.Title,
+                    TopicContent = topicWithReplies.Content,
+                    CreateDate = topicWithReplies.CreateDate,
+                    TopicAuthorViewModel = new AuthorViewModel()
+                    {
+                        Id = topicWithReplies.Author.Id,
+                        Username = topicWithReplies.Author.UserName,
+                        Avatar = topicWithReplies.Author.Avatar
+                    },
+                    Replies = topicWithReplies.Replies
+                                                .Where(r => r.IsActive)
+                                                .Select(r =>
+                                                new ReplyViewModel()
+                                                {
+                                                    Id = r.Id,
+                                                    Content = r.Content,
+                                                    AuthorViewModel = new AuthorViewModel()
+                                                    {
+                                                        Id = r.AuthorId,
+                                                        Username = r.Author.UserName,
+                                                        Avatar = r.Author.Avatar
+                                                    },
+                                                    CreateDate = r.CreateDate
+                                                }),
+                };
             }
 
-            return View(topic);
+            return View(topicsWithRepliesViewModel);
         }
     }
 }

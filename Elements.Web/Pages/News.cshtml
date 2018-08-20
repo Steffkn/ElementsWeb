@@ -1,13 +1,14 @@
-﻿@model IEnumerable<TopicOverviewViewModel>
+﻿@page
+@model NewsModel
 @{
     ViewData["Title"] = "News";
 }
 
 <h2>@ViewData["Title"]</h2>
 
-<!-- Main container -->
 <div class="container">
-    @*<nav aria-label="breadcrumb" class="">
+    <main>
+        @*<nav aria-label="breadcrumb" class="">
             <ol class="breadcrumb bg-transparent m-0">
                 <li class="breadcrumb-item">
                     <a href="./index.html">News</a>
@@ -15,12 +16,6 @@
                 <li class="breadcrumb-item active" aria-current="page">All</li>
             </ol>
         </nav>*@
-    <main>
-        @Html.DisplayForModel()
+        @Html.DisplayFor(m => m.Topics)
     </main>
-    <footer class="text-light">
-        <p>Congrats!</p>
-    </footer>
 </div>
-
-
