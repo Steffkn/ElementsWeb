@@ -36,6 +36,11 @@
         [Authorize]
         public async Task<IActionResult> AddReply(int topicId, string replyContent)
         {
+            if (replyContent == null)
+            {
+                return this.View();
+            }
+
             var newReply = new Reply()
             {
                 AuthorId = this.User.GetUserId(),

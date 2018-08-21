@@ -19,6 +19,9 @@ namespace Elements.Web.Areas.Admin.Pages
     [Authorize(Policy = Constants.PolicyRequireAdminDevRole)]
     public class AddNewsModel : PageModel
     {
+        // ~500kb
+        private const int DefaultFileSize = 500000;
+
         private readonly IManageNewsService newsService;
 
         public AddNewsModel(IManageNewsService newsService)
@@ -52,14 +55,14 @@ namespace Elements.Web.Areas.Admin.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (CustomValidator.IsFormFileLenghtBiggerThan(this.ImageFile, 500000))
+            if (CustomValidator.IsFormFileLenghtBiggerThan(this.ImageFile, DefaultFileSize))
             {
-                this.ModelState.AddModelError("", "Please select smaller image (jpeg or png)");
+                this.ModelState.AddModelError("imageSize", "Please select smaller image (jpeg or png)");
             }
 
             if (!CustomValidator.IsFormFileInFormat(this.ImageFile, "image/png", "image/jpeg", "image/jpg"))
             {
-                this.ModelState.AddModelError("", "Please select a valid image file (jpeg or png)");
+                this.ModelState.AddModelError("imageFormat", "Please select a valid image file (jpeg or png)");
             }
 
             if (!this.ModelState.IsValid)

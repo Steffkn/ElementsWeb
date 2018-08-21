@@ -52,6 +52,7 @@
     <Folder Include="Pages\Shared\" />
     <Folder Include="wwwroot\images\backgrounds\" />
     <Folder Include="wwwroot\images\icons\" />
+    <Folder Include="wwwroot\images\categories\" />
     <Folder Include="wwwroot\images\news\" />
   </ItemGroup>
 

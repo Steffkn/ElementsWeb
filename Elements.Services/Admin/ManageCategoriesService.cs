@@ -9,6 +9,7 @@
     using AutoMapper;
     using System.Linq;
     using Elements.Services.Models.Areas.Admin.BindingModels;
+    using Elements.Models.Forum;
 
     public class ManageCategoriesService : BaseEFService, IManageCategoriesService
     {
@@ -17,9 +18,11 @@
         {
         }
 
-        public bool Add(CategoryBindingModel model)
+        public bool Add(ForumCategory model)
         {
-
+            this.Context.ForumCategories.Add(model);
+            this.Context.SaveChanges();
+            return true;
         }
 
         public bool DeleteCategory(CategoryBindingModel model)
