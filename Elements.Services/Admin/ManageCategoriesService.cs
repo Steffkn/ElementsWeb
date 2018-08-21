@@ -17,6 +17,11 @@
         {
         }
 
+        public bool Add(CategoryBindingModel model)
+        {
+
+        }
+
         public bool DeleteCategory(CategoryBindingModel model)
         {
             var category = this.Context.ForumCategories.FirstOrDefault(c => c.Id == model.Id);

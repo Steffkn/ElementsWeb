@@ -4,18 +4,25 @@
     ViewData["Title"] = "News";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2 class="m-4">@ViewData["Title"]</h2>
 
 <div class="container">
     <main>
         @*<nav aria-label="breadcrumb" class="">
-            <ol class="breadcrumb bg-transparent m-0">
-                <li class="breadcrumb-item">
-                    <a href="./index.html">News</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">All</li>
-            </ol>
-        </nav>*@
+                <ol class="breadcrumb bg-transparent m-0">
+                    <li class="breadcrumb-item">
+                        <a href="./index.html">News</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">All</li>
+                </ol>
+            </nav>*@
         @Html.DisplayFor(m => m.Topics)
     </main>
 </div>
+
+@section CSS{
+    <link rel="stylesheet" href="~/css/news.css" asp-append-version="true" />
+}
+@section Scripts{ 
+    <script src="~/js/news.js"></script>
+}

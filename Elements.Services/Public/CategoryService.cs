@@ -26,8 +26,6 @@ namespace Elements.Services.Public
         public IEnumerable<SelectCategoryViewModel> GetAllCategoriesForSelect()
         {
             var categories = this.Mapper.Map<IEnumerable<ForumCategory>, IEnumerable<SelectCategoryViewModel>>(this.Context.ForumCategories);
-            // this.Context.ForumCategories.Select(c => new SelectCategoryViewModel() { Name = c.Name, Id = c.Id.ToString() });
-
             return categories;
         }
 

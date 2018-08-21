@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Threading.Tasks;
+using Elements.Common;
 using Elements.Models.Forum;
 using Elements.Services.Admin.Interfaces;
 using Elements.Services.Models.Forum.ViewModels;
 using Elements.Web.Common;
 using Elements.Web.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Elements.Web.Areas.Admin.Pages
 {
+    [Authorize(Policy = Constants.PolicyRequireAdminDevRole)]
     public class AddNewsModel : PageModel
     {
         private readonly IManageNewsService newsService;
@@ -33,6 +36,7 @@ namespace Elements.Web.Areas.Admin.Pages
         public string TopicContent { get; set; }
 
         [BindProperty]
+        [Required]
         public int TopicTypeId { get; set; }
 
         public HashSet<TopicTypeViewModel> TopicTypes { get; set; }

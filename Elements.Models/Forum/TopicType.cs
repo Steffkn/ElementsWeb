@@ -6,6 +6,7 @@
         Info = 2,
         Important = 3,
         News = 4,
-        Development = 5
+        Development = 5,
+        Administration = 6
     }
 }

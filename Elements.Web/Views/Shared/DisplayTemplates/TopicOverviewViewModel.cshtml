@@ -1,24 +1,23 @@
 ﻿@model TopicOverviewViewModel
 
-
-<div class="row">
-    <article class="card mb-2 col-sm-12 p-0">
-        <a class="card-body" asp-controller="Forum" asp-action="Topic" asp-route-topicId="@Model.Id">
-            <div class="row">
-                <div class="col-sm-4">
-                    <img src="@Model.ImageUrl" class="card-img" />
-                </div>
-                <div class="col-sm-8">
-                    <h4 class="card-title">@Model.Title</h4>
-                    <p class="card-text">
-                        @Model.Content
-                    </p>
-                    <footer class="card-text">
-                        <span>by <em class="text-info">@Model.AuthorName</em></span>
-                        <small class="text-muted">Last updated @((DateTime.Now - Model.CreateDate).Days) days @((DateTime.Now - Model.CreateDate).Days) h @((DateTime.Now - Model.CreateDate).Minutes) min ago</small>
-                    </footer>
-                </div>
-            </div>
-        </a>
-    </article>
-</div>
+<article class="news-card">
+    <div class="row">
+        <div class="col-4">
+            <a class="" asp-controller="Forum" asp-action="Topic" asp-route-id="@Model.Id">
+                <img src="@Model.ImageUrl" class="news-card-img" />
+            </a>
+        </div>
+        <div class="col-8">
+            <a asp-controller="Forum" asp-action="Topic" asp-route-id="@Model.Id">
+                <h4 class="news-card-title">@Model.Title</h4>
+            </a>
+            <p class="news-card-text">
+                @Model.Content
+            </p>
+            <footer class="news-card-footer">
+                <span>by <em class="text-info">@Model.AuthorName</em></span>
+                <small class="text-white-50">Last updated @(Math.Floor((DateTime.Now - Model.CreateDate).TotalDays)) days @((DateTime.Now - Model.CreateDate).Hours) h @((DateTime.Now - Model.CreateDate).Minutes) min ago</small>
+            </footer>
+        </div>
+    </div>
+</article>

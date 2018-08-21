@@ -20,6 +20,10 @@
 
         public ICollection<Topic> Topics { get; set; }
 
+        public bool IsPrivate { get; set; }
+
+        public bool IsActive { get; set; }
+
         [Required]
         [EnumDataType(typeof(ForumCategoryType))]
         public ForumCategoryType CategoryType { get; set; }

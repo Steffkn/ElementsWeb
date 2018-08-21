@@ -1,9 +1,12 @@
 using System.Linq;
+using Elements.Common;
 using Elements.Services.Admin.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Elements.Web.Areas.Admin.Pages
 {
+    [Authorize(Policy = Constants.PolicyRequireAdminRole)]
     public class MainPanel : PageModel
     {
         private readonly IManageUsersService usersService;
@@ -19,7 +22,7 @@ namespace Elements.Web.Areas.Admin.Pages
         {
             var users = this.usersService.GetUsers();
 
-            TotalUsers = users.Count();
+            this.TotalUsers = users.Count();
         }
     }
 }

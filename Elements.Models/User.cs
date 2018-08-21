@@ -20,6 +20,10 @@
 
         public ICollection<Reply> Replies { get; set; }
 
+        public bool IsRestricted { get; set; }
+
+        public DateTime RestrictionEndDate { get; set; }
+
         [Required]
         public DateTime RegisterDate { get; set; }
     }
