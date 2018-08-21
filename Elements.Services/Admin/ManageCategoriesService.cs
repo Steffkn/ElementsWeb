@@ -10,6 +10,7 @@
     using System.Linq;
     using Elements.Services.Models.Areas.Admin.BindingModels;
     using Elements.Models.Forum;
+    using System.Threading.Tasks;
 
     public class ManageCategoriesService : BaseEFService, IManageCategoriesService
     {
@@ -38,19 +39,12 @@
             return false;
         }
 
-        public bool EditCategory(CategoryBindingModel model)
+        public async Task<bool> EditCategoryAsync(EditCategoryBindingModel model)
         {
-            var category = this.Context.ForumCategories.FirstOrDefault(c => c.Id == model.Id);
-            if (category != null)
-            {
-
-                category.Name = model.Name;
-                category.Description = model.Description;
-                this.Context.SaveChanges();
-                return true;
-            }
-
-            return false;
+            var dbModel = this.Mapper.Map<EditCategoryBindingModel, ForumCategory>(model);
+            this.Context.ForumCategories.Update(dbModel);
+            await this.Context.SaveChangesAsync();
+            return true;
         }
 
         public IEnumerable<CategoryViewModel> GetCategories()
@@ -65,12 +59,18 @@
             var categoryFromDb = this.Context.ForumCategories.Include(c => c.Topics)
                 .FirstOrDefault(c => c.Id == categoryId);
 
-            if (categoryFromDb == null)
-            {
-                // TODO: do stuff
-            }
-
             var category = this.Mapper.Map<CategoryViewModel>(categoryFromDb);
+
+            return category;
+        }
+
+        public T GetCategoryById<T>(int categoryId)
+            where T : class
+        {
+            var categoryFromDb = this.Context.ForumCategories.Include(c => c.Topics)
+                .FirstOrDefault(c => c.Id == categoryId);
+
+            var category = this.Mapper.Map<ForumCategory, T>(categoryFromDb);
 
             return category;
         }

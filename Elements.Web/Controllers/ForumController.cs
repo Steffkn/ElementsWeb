@@ -28,7 +28,7 @@
         [HttpGet]
         public IActionResult Index()
         {
-            Dictionary<ForumCategoryType, List<ForumCategoryViewModel>> categories = this.categoryService.GetAllCategoriesInGroups();
+            Dictionary<ForumCategoryType, List<ForumCategoryViewModel>> categories = this.categoryService.GetAllActiveCategoriesInGroups();
             return View(model: categories);
         }
 
@@ -63,7 +63,7 @@
         public IActionResult AddTopic()
         {
             var categories = this.categoryService.GetAllCategoriesForSelect();
-            var availableTopicTypes = TopicTypesManager.GetAllExcept(TopicType.News, TopicType.Development);
+            var availableTopicTypes = TopicTypesManager.GetAllExcept(TopicType.News, TopicType.Development, TopicType.Administration);
             var viewModel = new AddTopicViewModel()
             {
                 Categories = categories,

@@ -4,6 +4,7 @@
     using Elements.Services.Models.Areas.Admin.BindingModels;
     using Elements.Services.Models.Areas.Admin.ViewModels;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface IManageCategoriesService
     {
@@ -11,9 +12,11 @@
 
         CategoryViewModel GetCategoryById(int categoryId);
 
+        T GetCategoryById<T>(int categoryId) where T : class;
+
         bool Add(ForumCategory model);
 
-        bool EditCategory(CategoryBindingModel model);
+        Task<bool> EditCategoryAsync(EditCategoryBindingModel model);
 
         bool DeleteCategory(CategoryBindingModel model);
     }

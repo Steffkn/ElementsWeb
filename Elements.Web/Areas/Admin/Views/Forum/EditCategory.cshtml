@@ -1,4 +1,4 @@
-﻿@model CategoryViewModel
+﻿@model EditCategoryViewModel
 @{
     ViewData["Title"] = "Edit category";
 }
@@ -9,3 +9,32 @@
         @Html.EditorForModel()
     </div>
 </div>
+
+
+@section Scripts{
+<script type="text/javascript">
+
+    $('input[type="checkbox"]').bind('change', function changeStyle(v) {
+        changeColor(this)
+    });
+
+    $(function () {
+        var checkBoxes = $('input[type="checkbox"]');
+        for (var i = 0; i < checkBoxes.length; i++) {
+            changeColor(checkBoxes[i])
+        }
+    });
+
+    function changeColor(el) {
+        var checkBox = $(el);
+        if (checkBox.is(':checked')) {
+            debugger;
+            checkBox.parent().addClass('text-success');
+            checkBox.parent().removeClass('text-dark');
+        } else {
+            checkBox.parent().addClass('text-dark');
+            checkBox.parent().removeClass('text-success');
+        }
+    }
+</script>
+}

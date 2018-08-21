@@ -6,10 +6,10 @@
     <td>@(Model.NumberOfTopics)</td>
     <td>
         <div>
-            <a asp-area="Admin" asp-action="EditCategory" asp-route-categoryId="@(Model.Id)" class="btn btn-info">
+            <a asp-area="Admin" asp-action="EditCategory" asp-route-id="@(Model.Id)" class="btn btn-info">
                 <i class="fas fa-edit"></i>
             </a>
-            <a asp-area="Admin" asp-action="DeleteCategory" asp-route-categoryId="@(Model.Id)" class="btn btn-danger">
+            <a asp-area="Admin" asp-action="DeleteCategory" asp-route-id="@(Model.Id)" class="btn btn-danger">
                 <i class="fas fa-trash-alt"></i>
             </a>
         </div>

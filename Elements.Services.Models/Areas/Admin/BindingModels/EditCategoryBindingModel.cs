@@ -3,15 +3,19 @@
     using Microsoft.AspNetCore.Http;
     using System.ComponentModel.DataAnnotations;
 
-    public class AddCategoryBindingModel
+    public class EditCategoryBindingModel
     {
+        [Required]
+        public int Id { get; set; }
+
         [Required]
         public string Name { get; set; }
 
         [Required]
         public string Description { get; set; }
 
-        [Required]
+        public string IconUrl { get; set; }
+
         public IFormFile ImageFile { get; set; }
 
         [Required]
@@ -19,5 +23,8 @@
 
         [Required]
         public bool IsPrivate { get; set; }
+
+        [Required]
+        public bool IsActive { get; set; }
     }
 }

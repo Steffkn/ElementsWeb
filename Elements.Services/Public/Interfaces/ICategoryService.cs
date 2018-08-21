@@ -8,8 +8,8 @@ namespace Elements.Services.Public.Interfaces
 {
     public interface ICategoryService
     {
-        IEnumerable<ForumCategoryViewModel> GetAllCategories();
-        Dictionary<ForumCategoryType, List<ForumCategoryViewModel>> GetAllCategoriesInGroups();
+        IEnumerable<ForumCategoryViewModel> GetAllCategories(bool? active);
+        Dictionary<ForumCategoryType, List<ForumCategoryViewModel>> GetAllActiveCategoriesInGroups();
         IEnumerable<SelectCategoryViewModel> GetAllCategoriesForSelect();
 
     }

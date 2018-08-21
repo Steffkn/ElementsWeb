@@ -15,10 +15,12 @@ namespace Elements.Services.Public
         {
         }
 
-        public IEnumerable<ForumCategoryViewModel> GetAllCategories()
+        public IEnumerable<ForumCategoryViewModel> GetAllCategories(bool? active = null)
         {
+            var categoriesToGet = active.HasValue ? this.Context.ForumCategories.Where(c => c.IsActive) : this.Context.ForumCategories;
+
             IEnumerable<ForumCategoryViewModel> categories =
-                this.Mapper.Map<IEnumerable<ForumCategory>, IEnumerable<ForumCategoryViewModel>>(this.Context.ForumCategories);
+                this.Mapper.Map<IEnumerable<ForumCategory>, IEnumerable<ForumCategoryViewModel>>(categoriesToGet);
 
             return categories;
         }
@@ -29,9 +31,9 @@ namespace Elements.Services.Public
             return categories;
         }
 
-        public Dictionary<ForumCategoryType, List<ForumCategoryViewModel>> GetAllCategoriesInGroups()
+        public Dictionary<ForumCategoryType, List<ForumCategoryViewModel>> GetAllActiveCategoriesInGroups()
         {
-            var categories = GetAllCategories();
+            var categories = GetAllCategories(active: true);
             var groupedCategories = new Dictionary<ForumCategoryType, List<ForumCategoryViewModel>>();
             foreach (var item in categories)
             {
