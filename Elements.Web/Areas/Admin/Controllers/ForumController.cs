@@ -51,12 +51,12 @@
         {
             if (CustomValidator.IsFormFileLenghtBiggerThan(model.ImageFile, 500000))
             {
-                this.ModelState.AddModelError("imageSize", "Please select smaller image (png only)");
+                this.ModelState.AddModelError(string.Empty, "Please select smaller image (png only)");
             }
 
             if (!CustomValidator.IsFormFileInFormat(model.ImageFile, "image/png"))
             {
-                this.ModelState.AddModelError("imageFormat", "Please select a valid image file (png only)");
+                this.ModelState.AddModelError(string.Empty, "Please select a valid image file (png only)");
             }
 
             if (!this.ModelState.IsValid)
@@ -73,6 +73,7 @@
                     MainCategories = mainCategoriesSelectViewModel,
                     MainCategoryId = model.MainCategoryId
                 };
+
                 return this.View(model: addCategoryViewModel);
             }
 
@@ -81,8 +82,8 @@
 
             ForumCategory forumCategory = new ForumCategory()
             {
-                Name = model.Name,
-                Description = model.Description,
+                Name = System.Net.WebUtility.HtmlEncode(model.Name),
+                Description = System.Net.WebUtility.HtmlEncode(model.Description),
                 IconUrl = iconUrl,
                 CategoryType = (ForumCategoryType)model.MainCategoryId,
                 IsActive = true,
@@ -92,9 +93,11 @@
             var category = forumService.Add(forumCategory);
 
             var fullFilePathName = ImageManager.GetFullFilePath("icons", fileName);
-            var fileStream = new FileStream(fullFilePathName, FileMode.Create);
 
-            await model.ImageFile.CopyToAsync(fileStream);
+            using (var fileStream = new FileStream(fullFilePathName, FileMode.Create))
+            {
+                await model.ImageFile.CopyToAsync(fileStream);
+            }
 
             return this.RedirectToAction("ManageCategories");
         }
@@ -119,12 +122,12 @@
             {
                 if (CustomValidator.IsFormFileLenghtBiggerThan(model.ImageFile, 500000))
                 {
-                    this.ModelState.AddModelError("imageSize", "Please select smaller image (png only)");
+                    this.ModelState.AddModelError(string.Empty, "Please select smaller image (png only)");
                 }
 
                 if (!CustomValidator.IsFormFileInFormat(model.ImageFile, "image/png"))
                 {
-                    this.ModelState.AddModelError("imageFormat", "Please select a valid image file (png only)");
+                    this.ModelState.AddModelError(string.Empty, "Please select a valid image file (png only)");
                 }
             }
 
@@ -141,8 +144,10 @@
                     ImageFile = model.ImageFile,
                     MainCategories = mainCategoriesSelectViewModel,
                     MainCategoryId = model.MainCategoryId,
-                    IsPrivate = model.IsPrivate
+                    IsPrivate = model.IsPrivate,
+                    IsActive = model.IsActive,
                 };
+
                 return this.View(model: editCategoryViewModel);
             }
 
@@ -157,14 +162,20 @@
             }
 
             // TODO: handle the return value
+
+            model.Name = System.Net.WebUtility.HtmlEncode(model.Name);
+            model.Description = System.Net.WebUtility.HtmlEncode(model.Description);
+
             var result = await this.forumService.EditCategoryAsync(model);
 
             if (model.ImageFile != null)
             {
                 var fullFilePathName = ImageManager.GetFullFilePath("icons", fileName);
-                var fileStream = new FileStream(fullFilePathName, FileMode.Create);
 
-                await model.ImageFile.CopyToAsync(fileStream);
+                using (var fileStream = new FileStream(fullFilePathName, FileMode.Create))
+                {
+                    await model.ImageFile.CopyToAsync(fileStream);
+                }
             }
 
             if (!result)
@@ -183,7 +194,7 @@
                     IsPrivate = model.IsPrivate
                 };
 
-                this.ModelState.AddModelError("", "Something went wrong while saving!");
+                this.ModelState.AddModelError(string.Empty, "Something went wrong while saving!");
                 return this.View(model: editCategoryViewModel);
             }
 
@@ -191,17 +202,9 @@
         }
 
         [HttpPost]
-        public IActionResult DeleteCategory(CategoryBindingModel model)
+        public IActionResult DeleteCategory(int id)
         {
-            if (!this.ModelState.IsValid)
-            {
-                // TODO: this is not quite right (Topics Count? )
-                var categoryViewModel = new CategoryViewModel() { Id = model.Id, Name = model.Name, Description = model.Description };
-                return this.View(model: categoryViewModel);
-            }
-
-            // TODO: handle the return value
-            this.forumService.DeleteCategory(model);
+            this.forumService.DeleteCategory(id);
 
             return this.RedirectToAction("ManageCategories");
         }

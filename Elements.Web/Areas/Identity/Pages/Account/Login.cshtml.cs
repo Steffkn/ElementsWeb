@@ -68,7 +68,7 @@ namespace Elements.Web.Areas.Identity.Pages.Account
                     lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    this.logger.LogInformation("User logged in.");
+                    this.logger.LogInformation(string.Format("{0} logged in.", LoginUserModel.Username));
                     return this.LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -82,7 +82,7 @@ namespace Elements.Web.Areas.Identity.Pages.Account
                 }
                 if (result.IsLockedOut)
                 {
-                    this.logger.LogWarning("User account locked out.");
+                    this.logger.LogWarning(string.Format("{0} account locked out.", LoginUserModel.Username));
                     return this.RedirectToPage("./Lockout");
                 }
                 else

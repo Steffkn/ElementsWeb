@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Elements.Services.Models.Forum.ViewModels
 {
@@ -11,5 +12,7 @@ namespace Elements.Services.Models.Forum.ViewModels
         public string Username { get; set; }
 
         public string Avatar { get; set; }
+
+        public IEnumerable<string> Roles { get; set; }
     }
 }

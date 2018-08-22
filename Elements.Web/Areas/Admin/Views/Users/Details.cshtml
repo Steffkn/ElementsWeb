@@ -1,26 +1,97 @@
-﻿@model AdministrateUserViewModel
+﻿@model UserDetailsViewModel
 @{
     ViewData["Title"] = "User details";
 }
 
-<h2>@(Model.UserName)'s details</h2>
+<h2>@(Model.Username)'s details</h2>
 
 <div class="row">
-    @*<div class="col-2">
-        <img src="@(Model.Avatar)" alt="@Model.UserName's avatar" />
+    <div class="col-2">
+        <img src="@Model.Avatar" class="img-fluid" alt="@Model.Username's avatar" />
     </div>
     <div class="col-8">
         <div class="row align-middle">
             <label asp-for="Email" class="col-4 col-form-label"></label>
             <input asp-for="Email" class="col form-control" disabled />
         </div>
-        <div class="row">
-            <label asp-for="EmailConfirmed" class="col-4 col-form-label"></label>
-            <input asp-for="EmailConfirmed" class="form-check-inline" disabled />
-        </div>
         <div class="row align-middle">
-            <label class="col-4 col-form-label">TopicsMade</label>
+            <label class="col-4 col-form-label">Topics made</label>
             <label class="col">@Model.Topics.Count()</label>
         </div>
-    </div>*@
+        <div class="row align-middle">
+            <label class="col-4 col-form-label">Number of replies</label>
+            <label class="col">@Model.Replies.Count()</label>
+        </div>
+    </div>
 </div>
+<div class="row">
+    <div class="col">
+        <button id="restrictUserBtn" class="btn" data-restricted="@Model.IsRestricted"></button>
+    </div>
+    <form>
+        <a asp-area="" asp-controller="Users" asp-action="SuspendUser" asp-route-id="@Model.Id"></a>
+    </form>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+
+        (function () {
+            toggleRestriction();
+        })()
+
+        function toggleRestriction() {
+            var restrictUserBtn = $('#restrictUserBtn');
+            var shouldToggle = restrictUserBtn.data("restricted");
+
+            if (shouldToggle == 'True') {
+                restrictUserBtn.addClass("btn-info");
+                restrictUserBtn.removeClass("btn-danger");
+                restrictUserBtn.text("Un suspend");
+                restrictUserBtn.data("restricted", true)
+            }
+            else if (shouldToggle == 'False') {
+                restrictUserBtn.addClass("btn-danger");
+                restrictUserBtn.removeClass("btn-info");
+                restrictUserBtn.text("Suspend");
+                restrictUserBtn.data("restricted", false)
+            }
+            else {
+            }
+        }
+
+        $('#restrictUserBtn').on('click', function () {
+            var model = {
+                id: '@(Model.Id)'
+            };
+            var localUrl = "";
+
+            var restoreUser = $('#restrictUserBtn').data("restricted");
+            if (restoreUser === true) {
+                localUrl = "/admin/users/RestoreUser";
+            }
+            else if (restoreUser === false) {
+                localUrl = "/admin/users/RestrictUser";
+            }
+            else {
+                console.log(restoreUser);
+            }
+
+            $.ajax({
+                type: "POST",
+                url: localUrl,
+                data: model,
+                contentType: 'application/x-www-form-urlencoded'
+            }).done(function (data) {
+                console.log(data);
+                if (data.result) {
+                    console.log("postback");
+                    console.log($('#restrictUserBtn').data("restricted"));
+                    $('#restrictUserBtn').attr('data-restricted', data.active);
+                    console.log($('#restrictUserBtn').data("restricted"));
+                    toggleRestriction()
+                }
+            });
+        });
+    </script>
+}

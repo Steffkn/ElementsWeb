@@ -2,6 +2,7 @@
 {
     using Elements.Common;
     using Elements.Models;
+    using Elements.Services.Public.Interfaces;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
@@ -65,7 +66,7 @@
             { Constants.UserRoleName, new HashSet<User>() },
         };
 
-        public static async void SeedDatabase(this IApplicationBuilder app)
+        public static async void SeedDatabase(this IApplicationBuilder app, IDateTimeService dateTimeService)
         {
             var serviceScoreFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
             var scope = serviceScoreFactory.CreateScope();
@@ -79,7 +80,7 @@
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
 
                 // add default administrator if it doesnt exist
-                await SeedUsers(userManager);
+                await SeedUsers(userManager, dateTimeService);
             }
         }
 
@@ -94,7 +95,7 @@
             }
         }
 
-        private static async Task SeedUsers(UserManager<User> userManager)
+        private static async Task SeedUsers(UserManager<User> userManager, IDateTimeService dateTimeService)
         {
             foreach (var role in defaultUsers.Keys)
             {
@@ -112,7 +113,7 @@
                         {
                             UserName = username,
                             Email = email,
-                            RegisterDate = DateTime.Now
+                            RegisterDate = dateTimeService.Now
                         };
 
                         var result = await userManager.CreateAsync(user, password);

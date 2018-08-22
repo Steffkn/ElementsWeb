@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Elements.Models;
+using Elements.Services.Public.Interfaces;
+using Elements.Web.Common;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -17,15 +21,21 @@ namespace Elements.Web.Areas.Identity.Pages.Account.Manage
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IEmailSender _emailSender;
+        private readonly IUserService userService;
+
+        // ~500kb
+        private const int DefaultFileSize = 500000;
 
         public IndexModel(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IUserService userService)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _emailSender = emailSender;
+            this._userManager = userManager;
+            this._signInManager = signInManager;
+            this._emailSender = emailSender;
+            this.userService = userService;
         }
 
         public string Username { get; set; }
@@ -47,6 +57,10 @@ namespace Elements.Web.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            public string Avatar { get; set; }
+
+            public IFormFile ImageFile { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -60,16 +74,18 @@ namespace Elements.Web.Areas.Identity.Pages.Account.Manage
             var userName = await _userManager.GetUserNameAsync(user);
             var email = await _userManager.GetEmailAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var avatar = user.Avatar;
 
-            Username = userName;
+            this.Username = userName;
 
             Input = new InputModel
             {
                 Email = email,
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                Avatar = avatar
             };
 
-            IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+            this.IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
 
             return Page();
         }
@@ -109,8 +125,32 @@ namespace Elements.Web.Areas.Identity.Pages.Account.Manage
                 }
             }
 
+            if (this.Input.ImageFile != null)
+            {
+                if (CustomValidator.IsFormFileLenghtBiggerThan(this.Input.ImageFile, DefaultFileSize))
+                {
+                    throw new InvalidOperationException($"Please select smaller image(jpeg or png)");
+                }
+
+                if (!CustomValidator.IsFormFileInFormat(this.Input.ImageFile, "image/png", "image/jpeg", "image/jpg"))
+                {
+                    throw new InvalidOperationException($"Please select a valid image file (jpeg, jpg or png)");
+                }
+
+                var fileName = user.UserName + "." + this.Input.ImageFile.ContentType.Substring("image/".Length);
+                var avatarUrl = ImageManager.GetIconRelativePath("avatars", fileName);
+
+                this.userService.SetAvatar(user.Id, avatarUrl);
+
+                var fullFilePathName = ImageManager.GetFullFilePath("avatars", fileName);
+                using (var fileStream = new FileStream(fullFilePathName, FileMode.Create))
+                {
+                    await this.Input.ImageFile.CopyToAsync(fileStream);
+                }
+            }
+
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            this.StatusMessage = "Your profile has been updated";
             return RedirectToPage();
         }
 

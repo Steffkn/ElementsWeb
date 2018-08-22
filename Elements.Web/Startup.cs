@@ -85,22 +85,21 @@ namespace Elements.Web
             services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
             services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-                .AddRazorPagesOptions(options =>
-                {
-                    options.AllowAreas = true;
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+            .AddRazorPagesOptions(options =>
+            {
+                options.AllowAreas = true;
 
-                    options.Conventions.AuthorizeAreaFolder(Constants.AdminAreaName, "/Admin", Constants.PolicyRequireAdminRole);
-                    options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
-                    options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
-                    options.Conventions.AddPageRoute("/News", "");
-                });
+                options.Conventions.AuthorizeAreaFolder(Constants.AdminAreaName, "/Admin", Constants.PolicyRequireAdminRole);
+                options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
+                options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
+                options.Conventions.AddPageRoute("/News", "");
+            });
 
             services.ConfigureApplicationCookie(options =>
             {
                 // Cookie settings
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
 
                 options.LoginPath = $"/Identity/Account/Login";
                 options.LogoutPath = $"/Identity/Account/Logout";
@@ -112,7 +111,8 @@ namespace Elements.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(
             IApplicationBuilder app,
-            IHostingEnvironment env)
+            IHostingEnvironment env,
+            IDateTimeService dateTimeService)
         {
             if (env.IsDevelopment())
             {
@@ -130,7 +130,7 @@ namespace Elements.Web
             app.UseCookiePolicy();
             app.UseAuthentication();
 
-            app.SeedDatabase();
+            app.SeedDatabase(dateTimeService);
 
             app.UseMvc(routes =>
             {
@@ -156,6 +156,8 @@ namespace Elements.Web
             services.AddScoped<INewsService, NewsService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ITopicService, TopicService>();
+            services.AddScoped<IDateTimeService, DateTimeService>();
+            services.AddScoped<IUserService, UserService>();
         }
     }
 }

@@ -7,6 +7,7 @@ using Elements.Common;
 using Elements.Models.Forum;
 using Elements.Services.Admin.Interfaces;
 using Elements.Services.Models.Forum.ViewModels;
+using Elements.Services.Public.Interfaces;
 using Elements.Web.Common;
 using Elements.Web.Extensions;
 using Microsoft.AspNetCore.Authorization;
@@ -23,10 +24,14 @@ namespace Elements.Web.Areas.Admin.Pages
         private const int DefaultFileSize = 500000;
 
         private readonly IManageNewsService newsService;
+        private readonly IDateTimeService dateTimeService;
 
-        public AddNewsModel(IManageNewsService newsService)
+        public AddNewsModel(
+            IManageNewsService newsService,
+            IDateTimeService dateTimeService)
         {
             this.newsService = newsService;
+            this.dateTimeService = dateTimeService;
             this.TopicTypes = new HashSet<TopicTypeViewModel>();
         }
 
@@ -57,12 +62,12 @@ namespace Elements.Web.Areas.Admin.Pages
         {
             if (CustomValidator.IsFormFileLenghtBiggerThan(this.ImageFile, DefaultFileSize))
             {
-                this.ModelState.AddModelError("imageSize", "Please select smaller image (jpeg or png)");
+                this.ModelState.AddModelError(string.Empty, "Please select smaller image (jpeg or png)");
             }
 
             if (!CustomValidator.IsFormFileInFormat(this.ImageFile, "image/png", "image/jpeg", "image/jpg"))
             {
-                this.ModelState.AddModelError("imageFormat", "Please select a valid image file (jpeg or png)");
+                this.ModelState.AddModelError(string.Empty, "Please select a valid image file (jpeg or png)");
             }
 
             if (!this.ModelState.IsValid)
@@ -70,8 +75,8 @@ namespace Elements.Web.Areas.Admin.Pages
                 return this.Page();
             }
 
-            var fileName = Guid.NewGuid().ToString() + this.ImageFile.FileName + ".jpeg";
-            var imageUrl = "/images/news/" + fileName;
+            var fileName = ImageManager.GetNewFileName(this.ImageFile.FileName);
+            var imageUrl = ImageManager.GetIconRelativePath("news", fileName);
 
             // TODO: extract this and the path
             var topic = new Topic()
@@ -80,17 +85,19 @@ namespace Elements.Web.Areas.Admin.Pages
                 CategoryId = (int)ForumCategoryType.News,
                 Content = this.TopicContent,
                 Title = this.Title,
-                CreateDate = DateTime.Now,
+                CreateDate = dateTimeService.Now,
                 TopicType = (TopicType)TopicTypeId,
                 ImageUrl = imageUrl
             };
 
             this.newsService.AddNews(topic);
 
-            var fullFilePathName = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "news", fileName);
-            var fileStream = new FileStream(fullFilePathName, FileMode.Create);
+            var fullFilePathName = ImageManager.GetFullFilePath("news", fileName);
 
-            await this.ImageFile.CopyToAsync(fileStream);
+            using (var fileStream = new FileStream(fullFilePathName, FileMode.Create))
+            {
+                await this.ImageFile.CopyToAsync(fileStream);
+            }
 
             return this.RedirectToPage("MainPanel");
         }

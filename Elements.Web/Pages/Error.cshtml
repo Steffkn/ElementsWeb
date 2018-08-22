@@ -27,3 +27,25 @@
     enabled by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment
     variable to <strong>Development</strong>, and restarting the application.
 </p>
+
+@*<div class="row eror-friendly">
+    <div class="col">
+        <h2 class="text-white">4<span class="text-danger">0</span>4</h2>
+
+        <h1>Sorry! The page you were looking for could not be found </h1>
+        <p class="text-white">You have been tricked into click on a link that can not be found. Please check the url or go to <a asp-page="/News">news page</a> and see if you can locate what you are looking for.</p>
+        <div class="">
+            <form method="post">
+                <input name="Search" placeholder="Enter your search term..." id="search" required="" type="text">
+                <input value="Search" type="submit">
+            </form>
+        </div>
+    </div>
+</div>*@
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        outsideView();
+    </script>
+}

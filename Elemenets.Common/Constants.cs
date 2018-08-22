@@ -12,5 +12,9 @@
 
         public const string PolicyRequireAdminRole = "RequireAdministratorRole";
         public const string PolicyRequireAdminDevRole = "RequireAdminDevRole";
+        public const string DefaultAvatar = "/images/avatars/default.png";
+        public const string DefaultAvatarAdmin = "/images/avatars/default-admin.png";
+        public const string DefaultAvatarModerator = "/images/avatars/default-mod.png";
+        public const string DefaultAvatarDev = "/images/avatars/default-dev.png";
     }
 }

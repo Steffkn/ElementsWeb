@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Elements.Services.Models.Account;
 using Elements.Common;
+using Elements.Services.Public.Interfaces;
 
 namespace Elements.Web.Areas.Identity.Pages.Account
 {
@@ -21,19 +22,22 @@ namespace Elements.Web.Areas.Identity.Pages.Account
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly ILogger<RegisterModel> logger;
         private readonly IEmailSender emailSender;
+        private readonly IDateTimeService dateTimeService;
 
         public RegisterModel(
             UserManager<User> userManager,
             RoleManager<IdentityRole> roleManager,
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IDateTimeService dateTimeService)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.signInManager = signInManager;
             this.logger = logger;
             this.emailSender = emailSender;
+            this.dateTimeService = dateTimeService;
         }
 
         [BindProperty]
@@ -55,13 +59,14 @@ namespace Elements.Web.Areas.Identity.Pages.Account
                 {
                     UserName = RegisterNewUserModel.Username,
                     Email = RegisterNewUserModel.Email,
-                    RegisterDate = DateTime.Now // TODO: avoid using Datetime / change it with a date provider
+                    RegisterDate = dateTimeService.Now,
+                    Avatar = Constants.DefaultAvatar,
                 };
 
                 var result = await this.userManager.CreateAsync(user, RegisterNewUserModel.Password);
                 if (result.Succeeded)
                 {
-                    this.logger.LogInformation("User created a new account with password.");
+                    this.logger.LogInformation(string.Format("User created a new account with password. - {0}", user.UserName));
 
                     var code = await userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.Page(

@@ -28,9 +28,10 @@
 
             <div class="form-group row">
                 <div class="col">
-                    <label asp-for="ImageFile" class="col-form-label"></label>
-                    <button id="selectImage" class="btn btn-info"></button>
-                    <input asp-for="ImageFile" type="file" />
+                    <label asp-for="ImageFile" class="col-form-label">
+                        <button class="btn btn-info">Upload Image</button>
+                    </label>
+                    <input asp-for="ImageFile" type="file" hidden />
                     <span asp-validation-for="ImageFile" />
                 </div>
             </div>

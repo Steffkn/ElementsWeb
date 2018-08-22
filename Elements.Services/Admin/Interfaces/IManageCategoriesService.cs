@@ -18,6 +18,6 @@
 
         Task<bool> EditCategoryAsync(EditCategoryBindingModel model);
 
-        bool DeleteCategory(CategoryBindingModel model);
+        bool DeleteCategory(int id);
     }
 }

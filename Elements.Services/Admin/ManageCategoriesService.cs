@@ -26,12 +26,12 @@
             return true;
         }
 
-        public bool DeleteCategory(CategoryBindingModel model)
+        public bool DeleteCategory(int id)
         {
-            var category = this.Context.ForumCategories.FirstOrDefault(c => c.Id == model.Id);
+            var category = this.Context.ForumCategories.FirstOrDefault(c => c.Id == id);
             if (category != null)
             {
-                this.Context.ForumCategories.Remove(category);
+                category.IsActive = false;
                 this.Context.SaveChanges();
                 return true;
             }

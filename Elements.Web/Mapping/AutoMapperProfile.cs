@@ -6,7 +6,6 @@
     using Elements.Services.Models.Areas.Admin.BindingModels;
     using Elements.Services.Models.Areas.Admin.ViewModels;
     using Elements.Services.Models.Forum.ViewModels;
-    using Microsoft.AspNetCore.Http.Internal;
     using System.Collections.Generic;
 
     public class AutoMapperProfile : Profile
@@ -30,6 +29,9 @@
             this.CreateMap<AddCategoryBindingModel, ForumCategory>();
 
             this.CreateMap<User, AdministrateUserViewModel>();
+
+            this.CreateMap<User, UserDetailsViewModel>()
+                .ForMember(dest => dest.Roles, opt => opt.AllowNull());
 
 
             this.CreateMap<TopicType, TopicTypeViewModel>()

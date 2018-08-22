@@ -1,12 +1,14 @@
 ﻿@model ReplyViewModel
-<div class="row bg-light text-dark p-2 my-2">
+<div class="row reply">
     <div class="col-2">
         @Html.DisplayFor(m => m.AuthorViewModel)
     </div>
-    <div class="col-10 mt-4">
-        <div>
+    <div class="col-10">
+        <div class="topic-date">
             @Model.CreateDate.ToString("dd-MMM, yyyy hh:mm:ss")
         </div>
-        @Model.Content
+        <div>
+            @Model.Content
+        </div>
     </div>
 </div>

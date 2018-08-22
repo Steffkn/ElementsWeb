@@ -1,6 +1,8 @@
 ﻿@model AuthorViewModel
 
 <a asp-controller="Users" asp-action="Details" asp-route-userId="@Model.Id">
-    <span class="text-dark">@Model.Username</span>
-    <img src="@Model.Avatar" class="img-fluid" />
+    <span class="text-light m-2">@Model.Username</span>
+    <img src="@Model.Avatar" class="img-fluid" alt="@Model.Username's avatar" />
 </a>
+
+<badge items="@Model.Roles" class="my-2"></badge>

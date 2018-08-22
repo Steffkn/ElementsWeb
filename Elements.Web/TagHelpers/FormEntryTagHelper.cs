@@ -45,8 +45,8 @@ namespace Elements.Web.TagHelpers
             await label.ProcessAsync(context, output);
             await input.ProcessAsync(context, output);
             await validation.ProcessAsync(context, output);
-            
-            output.TagName = "";
+
+            output.TagName = "div";
             output.Content.AppendHtml(label.ToString());
             output.Content.AppendHtml(input.ToString());
             output.Content.AppendHtml(validation.ToString());

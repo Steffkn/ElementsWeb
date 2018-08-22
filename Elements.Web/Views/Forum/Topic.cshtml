@@ -4,17 +4,21 @@
 }
 
 <div class="row">
-    <h1 class="col my-4">@Model.TopicTitle</h1>
+    <h1 class="col topic-title">
+        @Model.TopicTitle
+    </h1>
 </div>
-<div class="row bg-white text-dark p-2 my-2">
+<div class="row topic">
     <div class="col-2">
         @Html.DisplayFor(m => m.TopicAuthorViewModel)
     </div>
-    <div class="col-10 mt-4">
-        <div>
+    <div class="col-10">
+        <div class="topic-date">
             @Model.CreateDate.ToString("dd-MMM, yyyy hh:mm:ss")
         </div>
-        @Model.TopicContent
+        <div class="topic-content">
+            @Model.TopicContent
+        </div>
     </div>
 </div>
 
@@ -22,16 +26,16 @@
 
 @if (this.User.Identity.IsAuthenticated)
 {
-    <div class="row text-dark p-2">
+    <div class="row">
         <div class="col-10 offset-2">
             <form method="post" asp-controller="Forum" asp-action="AddReply" asp-route-topicId="@Model.Id">
                 <div class="row">
-                    <div class="col-12">
-                        <textarea name="replyContent" rows="4" class="form-control mb-2"></textarea>
+                    <div class="col">
+                        <textarea name="replyContent" rows="4" class="form-control form-reply"></textarea>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col my-2">
                         <input type="submit" value="Add reply" class="btn btn-primary" />
                     </div>
                 </div>
@@ -41,10 +45,11 @@
 }
 else
 {
-    <div class="row m-4">
-        <div>
+    <div class="row login">
+        <div class="col-4 offset-4">
+            <p>Login to post reply!</p>
             <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-light">Register</a>
-            <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-outline-light">Login</a>
+            <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-dark">Login</a>
         </div>
     </div>
 }

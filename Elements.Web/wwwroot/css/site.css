@@ -204,6 +204,100 @@ a.forum-card:hover {
         background: rgba(0,80,80,.4);
     }
 
+
+.reply {
+    border-left: 1px solid #333;
+    border-right: 1px solid #333;
+    background: rgba(0,0,0,.9);
+}
+
+.topic {
+    background: rgba(0,80,80,0.95);
+}
+
+.topic, .reply {
+    margin: 10px 0;
+    padding: 10px;
+    border: 2px solid #888;
+    min-height: 250px;
+    overflow: hidden;
+}
+
+.topic-date {
+    font-size: 0.8em;
+    border-bottom: 1px solid white;
+    padding: 5px;
+    color: #D2AA00;
+}
+
+.topic-title {
+    color: #D2AA00;
+    margin: 10px 0;
+}
+
+.add-reply-form {
+    background: rgba(0,0,0,.8);
+    color: white;
+}
+
+.form-reply {
+    color: white;
+    background: rgba(0,80,80,.8);
+}
+
+    .form-reply:focus {
+        color: white;
+        background: rgba(0,80,80,0.9);
+    }
+
+
+.login {
+    margin: 10px 0;
+    padding: 10px;
+    background: rgba(0,80,80,0.9);
+}
+
+
+.color-administrator {
+    color: red !important;
+}
+
+.color-creator {
+    color: red !important;
+}
+
+.color-user {
+}
+
+.color-moderator {
+    color: mediumpurple !important;
+}
+
+
+.color-developer {
+    color: forestgreen !important;
+}
+
+.badge-administrator {
+    color: red !important;
+}
+
+.badge-creator {
+    color: red !important;
+}
+
+.badge-user {
+    color: floralwhite !important;
+}
+
+.badge-moderator {
+    color: mediumpurple !important;
+}
+
+.badge-developer {
+    color: forestgreen !important;
+}
+
 /* Large devices (desktops, less than 1200px) lg */
 @media screen and (min-width: 991.98px) {
     .forum-card {

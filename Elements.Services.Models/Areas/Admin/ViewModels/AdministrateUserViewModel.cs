@@ -1,6 +1,7 @@
 ﻿namespace Elements.Services.Models.Areas.Admin.ViewModels
 {
     using System;
+    using System.Collections.Generic;
 
     public class AdministrateUserViewModel
     {
@@ -13,5 +14,7 @@
         public bool EmailConfirmed { get; set; }
 
         public DateTime RegisterDate { get; set; }
+
+        public string Role { get; set; }
     }
 }

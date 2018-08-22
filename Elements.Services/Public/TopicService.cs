@@ -13,9 +13,12 @@
 
     public class TopicService : BaseEFService, ITopicService
     {
-        public TopicService(ElementsContext context, IMapper mapper)
+        private readonly IDateTimeService dateTimeService;
+
+        public TopicService(ElementsContext context, IMapper mapper, IDateTimeService dateTimeService)
             : base(context, mapper)
         {
+            this.dateTimeService = dateTimeService;
         }
 
         public async Task<Topic> AddReplyAsync(int topicId, Reply newReply)
@@ -24,7 +27,7 @@
 
             if (topic != null)
             {
-                newReply.CreateDate = DateTime.Now;
+                newReply.CreateDate = dateTimeService.Now;
                 newReply.IsActive = true;
 
                 topic.Replies.Add(newReply);
@@ -37,7 +40,7 @@
 
         public async Task<Topic> AddTopicAsync(Topic topic)
         {
-            topic.CreateDate = DateTime.Now;
+            topic.CreateDate = dateTimeService.Now;
 
             if (topic.TopicType == 0)
             {

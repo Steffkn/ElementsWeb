@@ -1,7 +1,9 @@
 ﻿@model AdministrateUserViewModel
 
-<tr class="clickable-row" data-href="@Url.Action("Details","Users", new { userId = Model.Id })">
-    <td>@(Model.UserName)</td>
+<tr class="clickable-row" data-href="@Url.Action("Details","Users", new { username = Model.UserName })">
+    <td>
+        <user-badge user="@Model.UserName" role="@(Model.Role)" />
+    </td>
     <td>@(Model.NormalizedEmail)</td>
     <td class="d-none d-md-table-cell">
         @if (Model.EmailConfirmed)

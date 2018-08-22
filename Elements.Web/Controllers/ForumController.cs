@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Elements.Models;
     using Elements.Models.Forum;
     using Elements.Services.Models.Forum.BindingModels;
     using Elements.Services.Models.Forum.ViewModels;
@@ -10,19 +11,23 @@
     using Elements.Web.Common;
     using Elements.Web.Extensions;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     public class ForumController : Controller
     {
         private readonly ICategoryService categoryService;
         private readonly ITopicService topicService;
+        private readonly UserManager<User> userManager;
 
         public ForumController(
             ICategoryService categoryService,
-            ITopicService topicService)
+            ITopicService topicService,
+            UserManager<User> userManager)
         {
             this.categoryService = categoryService;
             this.topicService = topicService;
+            this.userManager = userManager;
         }
 
         [HttpGet]
@@ -44,14 +49,14 @@
             var newReply = new Reply()
             {
                 AuthorId = this.User.GetUserId(),
-                Content = replyContent,
+                Content = System.Net.WebUtility.HtmlEncode(replyContent),
             };
 
             Topic topic = await this.topicService.AddReplyAsync(topicId, newReply);
 
             if (topic == null)
             {
-                this.ModelState.AddModelError("", "Something went wrong when posting reply!");
+                this.ModelState.AddModelError(string.Empty, "Something went wrong when posting reply!");
                 return this.RedirectToAction("Index", "Forum");
             }
 
@@ -95,8 +100,8 @@
             {
                 AuthorId = this.User.GetUserId(),
                 CategoryId = newTopic.CategoryId,
-                Content = newTopic.Content,
-                Title = newTopic.Title,
+                Content = System.Net.WebUtility.HtmlEncode(newTopic.Content),
+                Title = System.Net.WebUtility.HtmlEncode(newTopic.Title),
                 TopicType = newTopic.TopicType
             };
 
@@ -131,6 +136,8 @@
             var topicsWithRepliesViewModel = new TopicWithRepliesViewModel();
             if (topicWithReplies != null)
             {
+                var authorRoles = this.GetUserRolesById(topicWithReplies.Author.Id);
+
                 topicsWithRepliesViewModel = new TopicWithRepliesViewModel()
                 {
                     Id = topicWithReplies.Id,
@@ -141,7 +148,8 @@
                     {
                         Id = topicWithReplies.Author.Id,
                         Username = topicWithReplies.Author.UserName,
-                        Avatar = topicWithReplies.Author.Avatar
+                        Avatar = topicWithReplies.Author.Avatar,
+                        Roles = authorRoles
                     },
                     Replies = topicWithReplies.Replies
                                                 .Where(r => r.IsActive)
@@ -154,7 +162,8 @@
                                                     {
                                                         Id = r.AuthorId,
                                                         Username = r.Author.UserName,
-                                                        Avatar = r.Author.Avatar
+                                                        Avatar = r.Author.Avatar,
+                                                        Roles = this.GetUserRolesById(r.AuthorId)
                                                     },
                                                     CreateDate = r.CreateDate
                                                 }),
@@ -162,6 +171,15 @@
             }
 
             return this.View(topicsWithRepliesViewModel);
+        }
+
+
+        private IEnumerable<string> GetUserRolesById(string userId)
+        {
+            var user = userManager.FindByIdAsync(userId);
+            var roles = userManager.GetRolesAsync(user.Result);
+
+            return roles.Result;
         }
     }
 }
