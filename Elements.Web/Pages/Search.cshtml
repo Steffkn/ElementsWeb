@@ -1,0 +1,9 @@
+﻿@page "{searchTerm?}"
+@model Elements.Web.Pages.SearchModel
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h2>Search</h2>
+
+@Html.DisplayFor(m => m.Topics)

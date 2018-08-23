@@ -205,20 +205,21 @@ a.forum-card:hover {
     }
 
 
-.reply {
-    border-left: 1px solid #333;
-    border-right: 1px solid #333;
-    background: rgba(0,0,0,.9);
+.topic {
+    background: rgba(0, 60, 60, 0.95);
+    border: 2px solid #888;
 }
 
-.topic {
+.reply {
+    border: 2px solid #888;
+    border-left: 1px solid #333;
+    border-right: 1px solid #333;
     background: rgba(0,80,80,0.95);
 }
 
 .topic, .reply {
     margin: 10px 0;
     padding: 10px;
-    border: 2px solid #888;
     min-height: 250px;
     overflow: hidden;
 }

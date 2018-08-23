@@ -3,14 +3,18 @@ using Elements.Models.Forum;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Elements.Data
 {
     public class ElementsContext : IdentityDbContext<User>
     {
-        public ElementsContext(DbContextOptions<ElementsContext> options)
+        private readonly IConfiguration configuration;
+
+        public ElementsContext(DbContextOptions<ElementsContext> options, IConfiguration configuration)
             : base(options)
         {
+            this.configuration = configuration;
         }
 
         public DbSet<ForumCategory> ForumCategories { get; set; }
@@ -18,6 +22,11 @@ namespace Elements.Data
         public DbSet<Reply> Replies { get; set; }
 
         public DbSet<Topic> Topics { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

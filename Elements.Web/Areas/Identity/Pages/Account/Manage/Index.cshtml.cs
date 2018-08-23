@@ -78,7 +78,7 @@ namespace Elements.Web.Areas.Identity.Pages.Account.Manage
 
             this.Username = userName;
 
-            Input = new InputModel
+            this.Input = new InputModel
             {
                 Email = email,
                 PhoneNumber = phoneNumber,

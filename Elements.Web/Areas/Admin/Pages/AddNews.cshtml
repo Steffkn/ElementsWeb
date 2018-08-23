@@ -31,7 +31,7 @@
                     <label asp-for="ImageFile" class="col-form-label">
                         <button class="btn btn-info">Upload Image</button>
                     </label>
-                    <input asp-for="ImageFile" type="file" hidden />
+                    <input asp-for="ImageFile" type="file" accept="image/*" hidden />
                     <span asp-validation-for="ImageFile" />
                 </div>
             </div>

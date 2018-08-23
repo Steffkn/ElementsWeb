@@ -5,3 +5,17 @@
 }
 
 <div>Total users: @Model.TotalUsers </div>
+
+<div class="row">
+    <div class="col-md-10 offset-1">
+        <h4>Active topics</h4>
+        @Html.DisplayFor(m => m.ActiveTopics)
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10 offset-1">
+        <h4>Inactive topics</h4>
+        @Html.DisplayFor(m => m.InActiveTopics)
+    </div>
+</div>

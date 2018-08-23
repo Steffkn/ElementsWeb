@@ -42,9 +42,7 @@ namespace Elements.Web
             });
 
             // set db context
-            services.AddDbContext<ElementsContext>(options =>
-                        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
-                        );
+            services.AddDbContext<ElementsContext>();
 
             services.AddAuthorization(options =>
             {
@@ -94,6 +92,7 @@ namespace Elements.Web
                 options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
                 options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
                 options.Conventions.AddPageRoute("/News", "");
+                
             });
 
             services.ConfigureApplicationCookie(options =>

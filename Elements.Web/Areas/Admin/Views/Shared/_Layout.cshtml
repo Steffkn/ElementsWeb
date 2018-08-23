@@ -23,10 +23,12 @@
     <div class="row no-gutters h-100">
         <nav id="sidebar" class="active">
             <div class="sidebar-header">
-                <h3>Administration</h3>
-                <strong>
-                    <i class="fab fa-wolf-pack-battalion"></i>
-                </strong>
+                <a asp-area="Admin" asp-page="/MainPanel">
+                    <h3>Administration</h3>
+                    <strong>
+                        <i class="fab fa-wolf-pack-battalion"></i>
+                    </strong>
+                </a>
             </div>
             <ul class="nav flex-column">
                 <li class="nav-item">
@@ -65,17 +67,14 @@
                                 Forum
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Admin", "Admin", new { area = "" })"
-                                  method="post" id="logoutForm" class="form-inline">
-                                <ul class="navbar-nav">
-                                    <li class="nav-item">
-                                        <button type="submit" class="btn btn-link">Logout</button>
-                                    </li>
-                                </ul>
-                            </form>
-                        </li>
                     </ul>
+                </li>
+
+                <li class="nav-item">
+                    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Forum", new { area = "" })"
+                          method="post" id="logoutForm" class="form-inline">
+                        <button type="submit" class="btn btn-block btn-link text-danger"><i class="fas fa-power-off"></i></button>
+                    </form>
                 </li>
             </ul>
         </nav>

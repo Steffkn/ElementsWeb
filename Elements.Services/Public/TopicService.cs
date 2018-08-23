@@ -9,6 +9,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
 
     public class TopicService : BaseEFService, ITopicService
@@ -55,30 +56,44 @@
 
         public IEnumerable<TopicOfCategoryViewModel> GetAllTopicsOfCategory(int categoryId, bool? activeOnly)
         {
-            var topicsOfCategoryViewModel = this.Context.Topics
-              .Include(t => t.Author)
-              .Include(t => t.Replies)
-              .Where(t => t.CategoryId == categoryId)
-              .Select(c => new TopicOfCategoryViewModel()
-              {
-                  Title = c.Title,
-                  TopicId = c.Id,
-                  AuthorName = c.Author.UserName,
-                  AuthorId = c.Author.Id,
-                  CreateDate = c.CreateDate,
-                  NumberOfReply = c.Replies.Count,
-                  TopicType = c.TopicType,
-              })
-              .OrderByDescending(t => t.TopicType)
-              .ThenByDescending(t => t.CreateDate);
-
             if (activeOnly.HasValue)
             {
-                // TODO: add is active to topics
-                // topicsOfCategoryViewModel = topicsOfCategoryViewModel.Where(t => t.IsActive == activeOnly);
+                return this.Context.Topics
+                  .Include(t => t.Author)
+                  .Include(t => t.Replies)
+                  .Where(t => t.CategoryId == categoryId && t.IsActive == activeOnly)
+                  .Select(c => new TopicOfCategoryViewModel()
+                  {
+                      Title = c.Title,
+                      TopicId = c.Id,
+                      AuthorName = c.Author.UserName,
+                      AuthorId = c.Author.Id,
+                      CreateDate = c.CreateDate,
+                      NumberOfReply = c.Replies.Count,
+                      TopicType = c.TopicType,
+                  })
+                  .OrderByDescending(t => t.TopicType)
+                  .ThenByDescending(t => t.CreateDate);
             }
-
-            return topicsOfCategoryViewModel;
+            else
+            {
+                return this.Context.Topics
+                  .Include(t => t.Author)
+                  .Include(t => t.Replies)
+                  .Where(t => t.CategoryId == categoryId)
+                  .Select(c => new TopicOfCategoryViewModel()
+                  {
+                      Title = c.Title,
+                      TopicId = c.Id,
+                      AuthorName = c.Author.UserName,
+                      AuthorId = c.Author.Id,
+                      CreateDate = c.CreateDate,
+                      NumberOfReply = c.Replies.Count,
+                      TopicType = c.TopicType,
+                  })
+                  .OrderByDescending(t => t.TopicType)
+                  .ThenByDescending(t => t.CreateDate);
+            }
         }
 
         public Topic GetTopicWithReplies(int topicId)
@@ -91,6 +106,23 @@
                                                   .FirstOrDefault(t => t.Id == topicId);
 
             return topicWithReplies;
+        }
+
+        public IEnumerable<TopicOfCategoryViewModel> Where(Expression<Func<Topic, bool>> searchTerms)
+        {
+            return this.Context.Topics
+                .Where(searchTerms)
+                .Select(c => new TopicOfCategoryViewModel()
+                {
+                    Title = c.Title,
+                    TopicId = c.Id,
+                    AuthorName = c.Author.UserName,
+                    AuthorId = c.Author.Id,
+                    CreateDate = c.CreateDate,
+                    NumberOfReply = c.Replies.Count,
+                    TopicType = c.TopicType,
+                    ImageUrl = c.ImageUrl
+                });
         }
     }
 }
