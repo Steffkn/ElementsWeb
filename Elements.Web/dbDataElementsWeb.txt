@@ -1,0 +1,204 @@
+USE [ElementsWeb]
+GO
+INSERT [dbo].[AspNetRoles] ([Id], [Name], [NormalizedName], [ConcurrencyStamp]) VALUES (N'7afab4e4-df1e-4ab7-abf2-03a612eddb92', N'Developer', N'DEVELOPER', N'98639263-fcfe-4875-a656-8c74dfe20659')
+GO
+INSERT [dbo].[AspNetRoles] ([Id], [Name], [NormalizedName], [ConcurrencyStamp]) VALUES (N'7b3a3726-db8a-4bd6-b62d-7709fe59921d', N'Administrator', N'ADMINISTRATOR', N'ab63bc08-11d3-4c4f-b04b-71993ec76c9a')
+GO
+INSERT [dbo].[AspNetRoles] ([Id], [Name], [NormalizedName], [ConcurrencyStamp]) VALUES (N'81794854-b97e-445f-b582-ce6a2eaf4edd', N'Moderator', N'MODERATOR', N'd7a4c0b3-5935-4746-96d2-c02fcfb46a5a')
+GO
+INSERT [dbo].[AspNetRoles] ([Id], [Name], [NormalizedName], [ConcurrencyStamp]) VALUES (N'bdc5fdbd-97ca-44d4-9899-2db2d8ac289f', N'Creator', N'CREATOR', N'af0aac9b-6832-4b7b-baf0-436215d6bfec')
+GO
+INSERT [dbo].[AspNetRoles] ([Id], [Name], [NormalizedName], [ConcurrencyStamp]) VALUES (N'c9cdd040-bf9b-4391-8a44-b9b9363216fd', N'User', N'USER', N'28c87f84-b345-4c71-ad8e-a95759adb86d')
+GO
+INSERT [dbo].[AspNetUsers] ([AccessFailedCount], [EmailConfirmed], [LockoutEnabled], [LockoutEnd], [PhoneNumberConfirmed], [TwoFactorEnabled], [Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [Avatar], [RegisterDate], [IsRestricted], [RestrictionEndDate]) VALUES (0, 0, 1, NULL, 0, 0, N'5a10cee8-a39f-4a0c-bcfb-f184e22f28f5', N'joe', N'JOE', N'joe@doe.com', N'JOE@DOE.COM', N'AQAAAAEAACcQAAAAEJs52wq+/jkA1KP++kYGsyal2lgPYIbR0eTOz+by7jmBajhCIG00PyAQKphy6tMKQg==', N'NEKJWBROH7B7F4CH7IF7X5FZFCSPIDOK', N'10be08ac-a8b1-4d44-b911-d91ca47ba9eb', NULL, N'/images/avatars/default.png', CAST(N'2018-08-23T23:50:38.3006768' AS DateTime2), 1, CAST(N'2018-08-25T00:17:47.8296532' AS DateTime2))
+GO
+INSERT [dbo].[AspNetUsers] ([AccessFailedCount], [EmailConfirmed], [LockoutEnabled], [LockoutEnd], [PhoneNumberConfirmed], [TwoFactorEnabled], [Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [Avatar], [RegisterDate], [IsRestricted], [RestrictionEndDate]) VALUES (0, 0, 1, NULL, 0, 0, N'67b787af-140a-4968-8c86-6168e88723bb', N'dev', N'DEV', N'dev@dev.com', N'DEV@DEV.COM', N'AQAAAAEAACcQAAAAEOX5TTOgOxqKUSeAV5ubVYWkeA/7/nyPy81+OmQDNSZeMLjsIZTBV1pyTPA1s7jqdQ==', N'CCIJJDNGYZG6YNLFR6BSAO3YLV2V7TWI', N'90d5d0a7-3183-42d0-b816-d6ff1f598298', NULL, NULL, CAST(N'2018-08-23T23:43:59.0594540' AS DateTime2), 0, CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[AspNetUsers] ([AccessFailedCount], [EmailConfirmed], [LockoutEnabled], [LockoutEnd], [PhoneNumberConfirmed], [TwoFactorEnabled], [Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [Avatar], [RegisterDate], [IsRestricted], [RestrictionEndDate]) VALUES (0, 0, 1, NULL, 0, 0, N'79c5d801-7895-4c35-bace-9f8115386825', N'user', N'USER', N'user@example.jm', N'USER@EXAMPLE.JM', N'AQAAAAEAACcQAAAAEDMYnFPS39scN5DlsUPeChm1cao8t8IbjbEH1p5+UFHl56rpKTY8YrCycn9OoqBSNg==', N'7XTNAV67XC4SBWMB55DJWLWTHQVQAODD', N'5f441052-a3b4-4c25-be7a-07b07a67db34', NULL, N'/images/avatars/user.png', CAST(N'2018-08-23T23:43:59.0884613' AS DateTime2), 0, CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[AspNetUsers] ([AccessFailedCount], [EmailConfirmed], [LockoutEnabled], [LockoutEnd], [PhoneNumberConfirmed], [TwoFactorEnabled], [Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [Avatar], [RegisterDate], [IsRestricted], [RestrictionEndDate]) VALUES (0, 0, 1, NULL, 0, 0, N'86242202-572c-424d-af07-ddd41f608b96', N'admin', N'ADMIN', N'admin@admins.com', N'ADMIN@ADMINS.COM', N'AQAAAAEAACcQAAAAEOQhv75u/VbyTcLWPyM2DWx/IG2PhsGDIuuSUsODL31c5A2Dxn3Ya7JIe5dHCh5QIA==', N'WVT7DLYQ5JFBUF3B4TBUZN6HLID5LUML', N'e18a2f90-0500-48a6-9351-742bed1dc3df', NULL, N'/images/avatars/admin.png', CAST(N'2018-08-23T23:43:59.0424421' AS DateTime2), 0, CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[AspNetUsers] ([AccessFailedCount], [EmailConfirmed], [LockoutEnabled], [LockoutEnd], [PhoneNumberConfirmed], [TwoFactorEnabled], [Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [Avatar], [RegisterDate], [IsRestricted], [RestrictionEndDate]) VALUES (0, 0, 1, NULL, 0, 0, N'8f3151bb-62d1-47b7-924a-9901bab02f60', N'master', N'MASTER', N'master@admins.com', N'MASTER@ADMINS.COM', N'AQAAAAEAACcQAAAAEKJaLTMjLWQewexjl/EES3JKAX945HX/+LXlZYSMuuqQLA6+Wlrk//vgHHn2Z3IamA==', N'RBIUNE2MEPQYPEAYOM55BAQ6I7JQF25D', N'1de8e0a5-0c0a-42d9-b54f-158637f3a1bc', NULL, NULL, CAST(N'2018-08-23T23:43:58.9107657' AS DateTime2), 0, CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[AspNetUsers] ([AccessFailedCount], [EmailConfirmed], [LockoutEnabled], [LockoutEnd], [PhoneNumberConfirmed], [TwoFactorEnabled], [Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [Avatar], [RegisterDate], [IsRestricted], [RestrictionEndDate]) VALUES (0, 0, 1, NULL, 0, 0, N'a1174104-1445-4bb4-8faf-2a8495b6b114', N'random', N'RANDOM', N'random@aaaa.com', N'RANDOM@AAAA.COM', N'AQAAAAEAACcQAAAAECWDjMXMAMJd0DvRniYGztz8OXtizIf647nspl4ktzMEeBobSSmF5Z/GBw8uyCX9MQ==', N'AYZHOEDGNJWPQTAMWCE6FDP2E57QRHND', N'd242e4d6-a4d6-4406-91f2-e75e63cb2896', NULL, N'/images/avatars/default.png', CAST(N'2018-08-23T23:41:29.6077280' AS DateTime2), 0, CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[AspNetUsers] ([AccessFailedCount], [EmailConfirmed], [LockoutEnabled], [LockoutEnd], [PhoneNumberConfirmed], [TwoFactorEnabled], [Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [Avatar], [RegisterDate], [IsRestricted], [RestrictionEndDate]) VALUES (0, 0, 1, NULL, 0, 0, N'c01ddea6-e3c6-4fe8-8fca-feb554a12ebe', N'mod', N'MOD', N'mod@admins.com', N'MOD@ADMINS.COM', N'AQAAAAEAACcQAAAAEO4aHaE3a/znbHfR/Yp5pzEAOJq7Gnu2lRkSxl3JfzWFXQLI00pt2SaPT/jrx/4NSg==', N'76MB5MDUCCQCQR5O3T2VEVBSMK7JYEC3', N'2b50cdb0-087b-43cb-a39e-5e1943545ec9', NULL, N'/images/avatars/mod.png', CAST(N'2018-08-23T23:43:59.0737356' AS DateTime2), 0, CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[AspNetUsers] ([AccessFailedCount], [EmailConfirmed], [LockoutEnabled], [LockoutEnd], [PhoneNumberConfirmed], [TwoFactorEnabled], [Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [Avatar], [RegisterDate], [IsRestricted], [RestrictionEndDate]) VALUES (0, 0, 1, NULL, 0, 0, N'f571b196-8a7f-4138-9e39-182f54ee229f', N'steff', N'STEFF', N'steff@abvv.bg', N'STEFF@ABVV.BG', N'AQAAAAEAACcQAAAAEFkH9H+liCofO9qxMdyqfDHIu29oQazkjjsmx4w+v9MBSAvBIdTOb//ymd9M1UIKpQ==', N'LUEJZGPETVVDTKTKE3FGTFWUBQ7T2U3G', N'132e2ade-cb5d-408f-a19a-39727c49f347', NULL, N'/images/avatars/default.png', CAST(N'2018-08-24T00:51:48.4408683' AS DateTime2), 0, CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'67b787af-140a-4968-8c86-6168e88723bb', N'7afab4e4-df1e-4ab7-abf2-03a612eddb92')
+GO
+INSERT [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'86242202-572c-424d-af07-ddd41f608b96', N'7b3a3726-db8a-4bd6-b62d-7709fe59921d')
+GO
+INSERT [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'c01ddea6-e3c6-4fe8-8fca-feb554a12ebe', N'81794854-b97e-445f-b582-ce6a2eaf4edd')
+GO
+INSERT [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'8f3151bb-62d1-47b7-924a-9901bab02f60', N'bdc5fdbd-97ca-44d4-9899-2db2d8ac289f')
+GO
+INSERT [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'5a10cee8-a39f-4a0c-bcfb-f184e22f28f5', N'c9cdd040-bf9b-4391-8a44-b9b9363216fd')
+GO
+INSERT [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'79c5d801-7895-4c35-bace-9f8115386825', N'c9cdd040-bf9b-4391-8a44-b9b9363216fd')
+GO
+INSERT [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'f571b196-8a7f-4138-9e39-182f54ee229f', N'c9cdd040-bf9b-4391-8a44-b9b9363216fd')
+GO
+SET IDENTITY_INSERT [dbo].[ForumCategories] ON 
+GO
+INSERT [dbo].[ForumCategories] ([Id], [Name], [Description], [CategoryType], [IconUrl], [IsActive], [IsPrivate]) VALUES (1, N'Customer Support', N'Support Agent moderated forum to discuss and inquire about in-game and account related issues.', 1, N'/images/icons/988cf4e06ae54cf19893dc47ad5d06b0-support.png', 1, 0)
+GO
+INSERT [dbo].[ForumCategories] ([Id], [Name], [Description], [CategoryType], [IconUrl], [IsActive], [IsPrivate]) VALUES (2, N'Service Status', N'Collection of important messages regarding the status of services, such as issues relating to realms.', 1, N'/images/icons/3e41b2a5428b468fb55495abf2cff09e-tunder2.png', 1, 0)
+GO
+INSERT [dbo].[ForumCategories] ([Id], [Name], [Description], [CategoryType], [IconUrl], [IsActive], [IsPrivate]) VALUES (3, N'Technical Support', N'For problems installing or patching World of Warcraft, connecting to the realms or crashing during game play.', 1, N'/images/icons/347f451cd8e4437ea205847418dbddf0-tools.png', 1, 0)
+GO
+INSERT [dbo].[ForumCategories] ([Id], [Name], [Description], [CategoryType], [IconUrl], [IsActive], [IsPrivate]) VALUES (4, N'Mac Technical Support', N'For problems installing or patching, connecting to the realms or crashing while using a Macintosh computer.', 1, N'/images/icons/627a4436a1d4480b8a6b16dbf2286499-wrench.png', 1, 0)
+GO
+INSERT [dbo].[ForumCategories] ([Id], [Name], [Description], [CategoryType], [IconUrl], [IsActive], [IsPrivate]) VALUES (5, N'Bug Report', N'Found a bug in the game? Help us squash it by reporting it here! ', 1, N'/images/icons/242aa840c6094eb6be0b132d0d2a886b-bug-512.png', 1, 0)
+GO
+INSERT [dbo].[ForumCategories] ([Id], [Name], [Description], [CategoryType], [IconUrl], [IsActive], [IsPrivate]) VALUES (6, N'General Discussion', N'Discuss the game. ', 4, N'/images/icons/dccf1de83bb14f68ac72c02c9456db87-Head_icon.png', 1, 0)
+GO
+INSERT [dbo].[ForumCategories] ([Id], [Name], [Description], [CategoryType], [IconUrl], [IsActive], [IsPrivate]) VALUES (7, N'Story Forum', N'We invite you to discuss the Universe and story lines.', 4, N'/images/icons/3a1fd873e1954dfdb07d35c1fd19ab20-black-white-metro-book-icon.png', 1, 0)
+GO
+INSERT [dbo].[ForumCategories] ([Id], [Name], [Description], [CategoryType], [IconUrl], [IsActive], [IsPrivate]) VALUES (8, N'World’s End Tavern: Role-play and Fan Fiction', N'Pull up a chair, drink a mug of ale, meet new friends, share your original fan fiction, or role-play in this forum.', 4, N'/images/icons/684837b0bd994ed7baeb85b7ed0c68e7-makefg.png', 1, 0)
+GO
+INSERT [dbo].[ForumCategories] ([Id], [Name], [Description], [CategoryType], [IconUrl], [IsActive], [IsPrivate]) VALUES (9, N'Quests', N'Discussion forum for the many World of Warcraft Quests.', 6, N'/images/icons/03f42ac23e17494097aeb872fcb72064-question-512.png', 1, 0)
+GO
+INSERT [dbo].[ForumCategories] ([Id], [Name], [Description], [CategoryType], [IconUrl], [IsActive], [IsPrivate]) VALUES (10, N'Dungeons, Raids and Scenarios', N'Discuss the Dungeons, Raids and Scenarios of World of Warcraft.', 5, N'/images/icons/929f994886a94ab6a160b3497c5995b8-gate-512.png', 1, 0)
+GO
+INSERT [dbo].[ForumCategories] ([Id], [Name], [Description], [CategoryType], [IconUrl], [IsActive], [IsPrivate]) VALUES (11, N'Professions', N'Discussion forum for the many World of Warcraft Professions.', 6, N'/images/icons/aaa0e16cca584ab1ab400c8425001b79-logo-cup.png', 1, 0)
+GO
+INSERT [dbo].[ForumCategories] ([Id], [Name], [Description], [CategoryType], [IconUrl], [IsActive], [IsPrivate]) VALUES (12, N'Achievements', N'Discussion forum for World of Warcraft Achievements', 6, N'/images/icons/62b19d7884a748d2a69e1abbee79b778-Trophy-Gold-icon.png', 1, 0)
+GO
+SET IDENTITY_INSERT [dbo].[ForumCategories] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Topics] ON 
+GO
+INSERT [dbo].[Topics] ([Id], [Title], [Content], [IsActive], [CreateDate], [AuthorId], [TopicType], [CategoryId], [ImageUrl]) VALUES (1, N'Support Contact Channels', N'When browsing through the Support Site or when going through the Support Ticket submission entries, you may be presented with a Live Chat option. This option will allow you to interact with a Customer Support representative via a chat window who will assist you with your issue.', 1, CAST(N'2018-08-24T00:31:04.1664618' AS DateTime2), N'86242202-572c-424d-af07-ddd41f608b96', 2, 1, NULL)
+GO
+INSERT [dbo].[Topics] ([Id], [Title], [Content], [IsActive], [CreateDate], [AuthorId], [TopicType], [CategoryId], [ImageUrl]) VALUES (2, N'Multiple Security Locks? Try this!', N'We&#39;ve been receiving reports from players who have been experiencing repeated account locks due to &quot;suspicious activity&quot; and we wanted to provide what steps we could to help get you back in the game and/or access the WoW Remote app. 
+
+Generally, if our systems detect a change in your normal access pattern (i.e. how you connect to the game and services), it may temporarily lock the account and require you to reset your password. This password reset provides a simple verification that validates the play session and allows you to access the account and game. 
+
+Some players who are using the mobile app have recently been getting locked out even after the session validation/password reset. 
+
+If you are experiencing this issue, please follow these steps:
+
+1. Make note of the platform (game or mobile) where you received the lockout message.
+
+2. You have two options to unlock the account.
+a. The first is if you attempt to log into the account, you may be directed to a security check page. There you&#39;ll be able to enter a security code sent to the registered email address for your account or answer your security question.
+
+b. The second is if you click on &quot;Can&#39;t log in?&quot; and select the My Battle.net account is locked option. There you will be prompted to enter your account name and then to answer your security question or supply a game key from your Blizzard retail box.
+
+
+3. With both methods you&#39;ll be sent a code to the registered email address on the account. Entering that code verifies your access and unlocks the account. 
+
+4. When logging in after unlocking the account, log in using the same device that you encountered the lock on. This will ensure that your device is authenticated, and reduce or eliminate the chance of being locked from this device again. ', 1, CAST(N'2018-08-24T00:40:50.8457886' AS DateTime2), N'86242202-572c-424d-af07-ddd41f608b96', 2, 1, NULL)
+GO
+INSERT [dbo].[Topics] ([Id], [Title], [Content], [IsActive], [CreateDate], [AuthorId], [TopicType], [CategoryId], [ImageUrl]) VALUES (3, N'Welcome to the Customer Support Forum!', N'The Customer Support forum cultivates a beneficial relationship between our support departments and player community by providing a friendly environment where players can exchange information, access self-help resources, discuss in-game issues, and receive meaningful guidance through personal and fun interactions with representatives.', 1, CAST(N'2018-08-24T00:47:19.9013998' AS DateTime2), N'86242202-572c-424d-af07-ddd41f608b96', 3, 1, NULL)
+GO
+INSERT [dbo].[Topics] ([Id], [Title], [Content], [IsActive], [CreateDate], [AuthorId], [TopicType], [CategoryId], [ImageUrl]) VALUES (4, N'In Game Store Not Loading', N'Hi all! 
+
+So, I&#39;m having an issue loading the in game shop to buy a WoW Token. It&#39;s worked before, but I&#39;m on a new Mac machine. Previous computer was a Mac. I can press the Buy Now button, but then a second box opens up with the WoW screen goes blue, and all I see is a X in the top right button of this new window. It&#39;s similar to the window that would load the in game GM &quot;Open a ticket&quot; service which is also not working. ', 1, CAST(N'2018-08-24T00:48:33.5304555' AS DateTime2), N'79c5d801-7895-4c35-bace-9f8115386825', 1, 1, NULL)
+GO
+INSERT [dbo].[Topics] ([Id], [Title], [Content], [IsActive], [CreateDate], [AuthorId], [TopicType], [CategoryId], [ImageUrl]) VALUES (5, N'Retrieving a Hacked Pre-Battlenet Account', N'Before Cataclysm I had a pre-battlenet account for warcraft hacked, and I was never able to retrieve it, and lately i have interest in retrieving it again and all the legacy content it has. At the moment All i got to go by is the account login name, character names, and the servers they are, if the secret question was not meddled with i have the answer to it too. Right now I&#39;m still not quite sure where to start and what to do to retrieve said account.', 1, CAST(N'2018-08-24T00:49:21.6302538' AS DateTime2), N'79c5d801-7895-4c35-bace-9f8115386825', 1, 1, NULL)
+GO
+INSERT [dbo].[Topics] ([Id], [Title], [Content], [IsActive], [CreateDate], [AuthorId], [TopicType], [CategoryId], [ImageUrl]) VALUES (6, N'World Quests with Action Bars', N'I couldnt do a WQ yesterday because I never got an action bar. Today WQs that worked yesterday are not working. I am trying to do these on my druid.
+
+Add ons disabled/ relogged.', 1, CAST(N'2018-08-24T00:52:07.9920205' AS DateTime2), N'f571b196-8a7f-4138-9e39-182f54ee229f', 1, 1, NULL)
+GO
+INSERT [dbo].[Topics] ([Id], [Title], [Content], [IsActive], [CreateDate], [AuthorId], [TopicType], [CategoryId], [ImageUrl]) VALUES (7, N' Welcome: Please Read!', N'Welcome to the Service Status forum! This forum was created to bring you the latest information regarding the status of World of Warcraft realms, Battle.net, and other vital game and account-related services.
+
+Our goal is, as always, to maintain 24-hour working service, and your patience regarding any interruptions is greatly appreciated. Please refer to this forum frequently for available service updates and announcements.', 1, CAST(N'2018-08-24T00:52:50.4802343' AS DateTime2), N'f571b196-8a7f-4138-9e39-182f54ee229f', 1, 2, NULL)
+GO
+INSERT [dbo].[Topics] ([Id], [Title], [Content], [IsActive], [CreateDate], [AuthorId], [TopicType], [CategoryId], [ImageUrl]) VALUES (8, N'Forum Guidelines &amp; Information', N'Welcome to the Technical Support forum for World of Warcraft. This forum exists to provide World of Warcraft customers with a place to discuss technical issues with each other and Blizzard Tech Support staff members. While Blizzard Tech Support staff regularly monitors and replies to this forum (between 7am-8pm Pacific, 7 days a week), it is not meant as a place to resolve complex issues, because of the nature of forums. If you cannot resolve your issue through the forum, we recommend checking our Knowledge Center for resolutions and workarounds for common issues. ', 1, CAST(N'2018-08-24T01:03:01.7475804' AS DateTime2), N'86242202-572c-424d-af07-ddd41f608b96', 3, 3, NULL)
+GO
+INSERT [dbo].[Topics] ([Id], [Title], [Content], [IsActive], [CreateDate], [AuthorId], [TopicType], [CategoryId], [ImageUrl]) VALUES (9, N'Patching and Installation Troubleshooting', N'Patching and installation issues are some of the more common issues that we come across in the Tech Support Forums. This thread will highlight some troubleshooting steps that have been proven to resolve most of the patching and installation issues that you as a player may encounter. 
+
+Most of the support articles linked below will include steps for both, Windows and Mac systems. However, if you require further assistance with a Mac Installation or Patching issue that has not been mentioned in this sticky thread, you will want to post in our Mac Technical Support Forum. ', 1, CAST(N'2018-08-24T01:03:27.1370643' AS DateTime2), N'86242202-572c-424d-af07-ddd41f608b96', 3, 3, NULL)
+GO
+INSERT [dbo].[Topics] ([Id], [Title], [Content], [IsActive], [CreateDate], [AuthorId], [TopicType], [CategoryId], [ImageUrl]) VALUES (10, N'Welcome to the Bug Report Forums!', N'Welcome to the Bug Report forum! The purpose of this forum is primarily to collect issue reports on the Live version of the game. We greatly appreciate our customers helping us to find issues with the game. As such, this forum is one of your best methods for making us aware of these issues.
+
+Community forums work best when participants treat their fellow posters with respect and courtesy, so we ask that you take the time to read through the forum Code of Conduct before posting.
+', 1, CAST(N'2018-08-24T01:04:02.7174226' AS DateTime2), N'86242202-572c-424d-af07-ddd41f608b96', 3, 5, NULL)
+GO
+INSERT [dbo].[Topics] ([Id], [Title], [Content], [IsActive], [CreateDate], [AuthorId], [TopicType], [CategoryId], [ImageUrl]) VALUES (11, N'Bug Report FAQ', N'Hey Everybody!
+
+In an effort to reduce the number of sticky threads we have active, I&#39;m creating this thread to cover a lot of common questions and issues that related to the Bug Reports forum. 
+
+Notice:
+With each new patch changes are made to the blizzard UI that can break third party UI mods and cause any number of problems in the client.
+
+Before you report a bug, please disable (or delete) all of your mods and test the situation again. If the issue does not happen without mods installed then it is not a WoW bug and you should contact the mod creator for further assistance.', 1, CAST(N'2018-08-24T01:04:34.3869539' AS DateTime2), N'86242202-572c-424d-af07-ddd41f608b96', 2, 5, NULL)
+GO
+INSERT [dbo].[Topics] ([Id], [Title], [Content], [IsActive], [CreateDate], [AuthorId], [TopicType], [CategoryId], [ImageUrl]) VALUES (12, N'Is tribunal ever coming back?', N'We learned a lot from Tribunal when it was around, and it actually became one of the bases of our current models for abusive chats. A player-voted service like Tribunal comes with two huge drawbacks that are really tough to get around, though:
+
+It’s slow and inefficient. Manual reviews require pulling those chat logs out to the website, waiting for responses from enough players, and deciding on a penalty from there, while the current automated systems can send out penalties in less than 15 minutes.
+It’s sometimes wildly inaccurate (especially when there was an IP reward per “successful” penalty, leading to a super innate bias in the system).
+There’s a couple of things Tribunal brought that we know we haven’t tackled in a big way, like more focus on trolling and intentional feeding detection (though we are continuing to iterate on how we detect these) and more agency to make it feel like you’re really having an impact on unsportsmanlike behaviors.
+
+We’re making a lot of progress with dodgy chat content and the new name filtering service with our automated models, but we do still need you to hit the report button when you see bad shit to help us gather information on what you don’t want to see in League. It really does make a difference.', 1, CAST(N'2018-08-24T01:38:56.6711634' AS DateTime2), N'86242202-572c-424d-af07-ddd41f608b96', 4, 2, N'/images/news/7b27055f2edd4a8187f0480447bb7b92-Banner_Ask_Riot-min_yx9h19qr6w65hvnx85cs.jpg')
+GO
+INSERT [dbo].[Topics] ([Id], [Title], [Content], [IsActive], [CreateDate], [AuthorId], [TopicType], [CategoryId], [ImageUrl]) VALUES (13, N'Going to follow the newest trend and add battle royale to the game?', N'I think to make a game in 2018, you are supposed to have some kind of Battle Royale mode.
+
+Seriously, though, we had a really hard time even getting Hexakill to work. I’m not sure if we could get 100 or more champions in the game without a ton of engineering effort. We’d want to be pretty confident that level of investment would lead to something really fun.
+
+On the other hand, there are some really cool things that Battle Royale does that we’d love to be able to bring to League. For example, the expectation that you probably won’t win—you’ll probably lose—is a really nice element. In League, statistically if matchmaking is working really well, you’re going to lose about half of your games. We’d love if there was a game mode where you’re there to kind of do crazy things and see how far you can get, versus just crush the enemy team, but whatever form that takes probably can’t be a Battle Royale.', 1, CAST(N'2018-08-24T01:40:50.6705127' AS DateTime2), N'86242202-572c-424d-af07-ddd41f608b96', 4, 2, N'/images/news/c45bed95621741b3a0c6e1ce38f2b2a4-banner_ask_riot-2-1_hjlxapzhc723it6emch9.jpg')
+GO
+INSERT [dbo].[Topics] ([Id], [Title], [Content], [IsActive], [CreateDate], [AuthorId], [TopicType], [CategoryId], [ImageUrl]) VALUES (14, N'How do you decide what position to make a new champion for?', N'There is a wide range of reasons a champion ends up in a specific position. In the past, it has largely been driven by our attempt to give a wide-variety of roles and classes to players each year. We’d look at what champions we were currently doing big VGUs on, as well as what the last champions released were, and then make sure all players got new champs or VGUs in their role.
+
+Lately though, the number of champions has gotten so high that the demand of making unique and interesting mechanics has also risen. This has caused us to take a slightly different approach to selecting roles. We now start with an exciting or interesting design hook, such as “two champs specifically designed to have unique synergy,” and then after we validate it, we see what role it best fits in. Pyke is a champion that came from this new process, although for him the design hook was a “Support Assassin,” so the role was implicit in the gameplay hook.', 1, CAST(N'2018-08-24T01:42:49.2912851' AS DateTime2), N'86242202-572c-424d-af07-ddd41f608b96', 4, 2, N'/images/news/36b5ce1137be410285f45237a4a7037d-Banner_7inqmu8ezuwkhq3o8vue.jpg')
+GO
+INSERT [dbo].[Topics] ([Id], [Title], [Content], [IsActive], [CreateDate], [AuthorId], [TopicType], [CategoryId], [ImageUrl]) VALUES (15, N'Defend and Destroy', N'What started as a community movement has quickly developed into one of the most popular game modes in League of Legends today. The Howling Abyss (or Murder Bridge as it’s been lovingly dubbed) features two teams of five champions battling along a single lane with no neutral territory. Champions begin play at level 3 with substantial starting gold, launching the action immediately into a pitched battle of large, drawn out team fights, instant kills and narrow escapes.
+The only single-lane battlefield available in League of Legends, the Howling Abyss features two bases arranged at either end of a bridge. This bridge is defended by two turrets and an inhibitor, while the nexus is protected by a pair of turrets. With no neutral territory to distract from the task at hand, the Howling Abyss features some of the most frequent and intense team fights of any map.', 1, CAST(N'2018-08-24T01:44:09.5308241' AS DateTime2), N'86242202-572c-424d-af07-ddd41f608b96', 5, 2, N'/images/news/21afca9a235941cea03a9e2e15768ccd-modes-ha.jpg')
+GO
+INSERT [dbo].[Topics] ([Id], [Title], [Content], [IsActive], [CreateDate], [AuthorId], [TopicType], [CategoryId], [ImageUrl]) VALUES (16, N'New Bio: Vel’Koz', N'o truly understand the horror that is Vel’Koz, one must first know of the Watchers, and how they were blinded to the mortal realm.
+
+Beyond the material plane, outside and somehow below it, lies the unknowable abyss. It is the realm of the Void, where no mortal or immortal creature may ever walk. It is not necessary to know how such a place ever came to be, nor why—only that it did. The Void is eternal. The Void consumes all.
+
+In that place, in the cold, endless dark, all is equal and empty. For timeless eons, there was purity in that fact. There was peace, if such a term could have any meaning there.
+
+Then, something changed. Not in the Void realm, but elsewhere. It was existence, it was... something, where before there had been nothing, and its mere presence scraped against the vast, cold, formless entities that drifted in the blackness. Before this, they had not even been fully aware of their own sentience, and yet now they knew that they could not tolerate the presence of this other place; this other-realm of mercurial, overwhelming creation.', 1, CAST(N'2018-08-24T01:46:29.7100298' AS DateTime2), N'86242202-572c-424d-af07-ddd41f608b96', 5, 2, N'/images/news/939871a0113b4afbb6469be6766bf3d6-velkoz_bio_header.jpg')
+GO
+INSERT [dbo].[Topics] ([Id], [Title], [Content], [IsActive], [CreateDate], [AuthorId], [TopicType], [CategoryId], [ImageUrl]) VALUES (17, N'New Story: Vel’Koz', N'ith a kiss to my wife and resting my spear against my shoulder, I joined my fellows as we left the village. The morning was new, dawn stretching through the thick forests of Tokogol as the six of us made our way to the watch point by a worn dirt path. We were travelling light, as our vigil would only last until the next moon before another band of spearmen took our place. Tokogol shared borders with Noxus, and its increasing belligerence of late had stirred the house lords to ensure that all of their spears were honed.
+
+Our journey was short and uneventful, a soldier’s dream. The better part of a half day’s march brought us within sight of the outpost, and we pointed as the signal fire was lit, welcoming us with a column of thin, white smoke. The mood among my comrades was light, the easy talk of bonded brothers and neighbors. Though our duty was to watch the frontier in search of any sign of it, war in Tokogol was a distant thought.', 1, CAST(N'2018-08-24T01:49:19.6791501' AS DateTime2), N'86242202-572c-424d-af07-ddd41f608b96', 5, 2, N'/images/news/02246b8a209147729d40d5bdf84ccb3d-velkoz_t2.jpg')
+GO
+SET IDENTITY_INSERT [dbo].[Topics] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Replies] ON 
+GO
+INSERT [dbo].[Replies] ([Id], [Content], [IsActive], [CreateDate], [AuthorId], [TopicId]) VALUES (1, N'Bugs, Suggestions, Cheats/Hacks
+
+In-Game Bugs - You may submit bugs via our In-Game menu options. Alternatively, you may report bugs in our Bug Report forum.
+
+Note: If a bug has seriously affected your character in a way that requires Game Master intervention (lost items, reputation, raid progress, etc.), Open a ticket so we may investigate the situation.
+
+Suggestions - You may submit suggestions via our In-game menu options.
+
+Note: By submitting a suggestion, you confirm that the suggestion is your own idea, the idea is not confidential, and you permit Blizzard Entertainment to use the idea publicly with no obligation to compensate you.
+
+Cheats/Hacks - You may report a player for hacking or cheating using our Report Player In-Game menu option. Game hacks can be forwarded to hacks@blizzard.com.
+
+Note: Please do NOT post such reports on this forum. Threads containing information related to hacks, cheats, or exploits are subject to deletion.', 1, CAST(N'2018-08-24T00:32:25.0273358' AS DateTime2), N'86242202-572c-424d-af07-ddd41f608b96', 1)
+GO
+INSERT [dbo].[Replies] ([Id], [Content], [IsActive], [CreateDate], [AuthorId], [TopicId]) VALUES (2, N'Reporting a Post/Feedback
+Reporting a bad post - To report a post that violates our forum Code of Conduct, please click the &quot;thumbs down&quot; icon and then on the &quot;Report&quot; option (also read our Community blog article regarding forum post rating: http://us.battle.net/wow/en/blog/1116856
+To contest forum penalties, please submit a ticket through our support site: https://us.battle.net/support/en/help/product/battlenet/665/1032/solution
+Forum Feedback - To provide feedback on the performance of the community team, forum moderators, or MVPs, please email wowcmfeedback@blizzard.com. Please note that while emails sent to this address will likely not receive a response, each one will be read and handled accordingly.', 1, CAST(N'2018-08-24T00:32:56.9434658' AS DateTime2), N'86242202-572c-424d-af07-ddd41f608b96', 1)
+GO
+INSERT [dbo].[Replies] ([Id], [Content], [IsActive], [CreateDate], [AuthorId], [TopicId]) VALUES (3, N'n addition to the forum Code of Conduct, here are some common courtesy guidelines to follow. While these do technically fall within the bounds of the Code of Conduct, these cover more specific examples of common errors that will lead to thread deletions or posting privileges being revoked.', 1, CAST(N'2018-08-24T00:47:40.6727577' AS DateTime2), N'86242202-572c-424d-af07-ddd41f608b96', 3)
+GO
+INSERT [dbo].[Replies] ([Id], [Content], [IsActive], [CreateDate], [AuthorId], [TopicId]) VALUES (4, N'I would agree. If you click the &quot;Contact Us&quot; link in that Support Article it will allow you to open a ticket to help recover an old account. 
+
+As long as you have some account specific information, like character name/realm, etc... our staff may be able to help track your old account down.', 1, CAST(N'2018-08-24T00:49:47.5043449' AS DateTime2), N'c01ddea6-e3c6-4fe8-8fca-feb554a12ebe', 5)
+GO
+SET IDENTITY_INSERT [dbo].[Replies] OFF
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20180729101112_ForumUserInitialMigration', N'2.1.1-rtm-30846')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20180729142249_UserRemovedSaltMigration', N'2.1.1-rtm-30846')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20180818193534_TopicImageMigration', N'2.1.1-rtm-30846')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20180818213159_CategoryImageAndTypeMigration', N'2.1.1-rtm-30846')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20180821111444_RestrictionMigration', N'2.1.1-rtm-30846')
+GO
