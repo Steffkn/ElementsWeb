@@ -2,7 +2,7 @@
 @using Elements.Web.Common
 
 <div class="row forum-topic">
-    <a class="col p-2" asp-controller="Forum" asp-action="Topic" asp-route-id="@Model.TopicId">
+    <a class="col p-2" asp-area="" asp-controller="Forum" asp-action="Topic" asp-route-id="@Model.TopicId">
         <div class="row text-white my-1">
             <span class="col"><i class="@(TopicTypesManager.GetImage(Model.TopicType)) m-1"></i> @Model.Title</span>
             <span class="col-auto"><i class="far fa-comment"></i> @Model.NumberOfReply</span>

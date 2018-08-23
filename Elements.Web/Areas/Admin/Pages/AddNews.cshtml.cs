@@ -65,16 +65,18 @@ namespace Elements.Web.Areas.Admin.Pages
         {
             if (CustomValidator.IsFormFileLenghtBiggerThan(this.ImageFile, DefaultFileSize))
             {
-                this.ModelState.AddModelError(string.Empty, "Please select smaller image (jpeg or png)");
+                this.ModelState.AddModelError(string.Empty, "Please select smaller image (jpeg, jpg or png)");
             }
 
             if (!CustomValidator.IsFormFileInFormat(this.ImageFile, "image/png", "image/jpeg", "image/jpg"))
             {
-                this.ModelState.AddModelError(string.Empty, "Please select a valid image file (jpeg or png)");
+                this.ModelState.AddModelError(string.Empty, "Please select a valid image file (jpeg, jpg or png)");
             }
 
             if (!this.ModelState.IsValid)
             {
+                this.AddTopicType(TopicType.News);
+                this.AddTopicType(TopicType.Development);
                 return this.Page();
             }
 

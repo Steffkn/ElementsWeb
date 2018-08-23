@@ -17,7 +17,7 @@
             @Model.CreateDate.ToString("dd-MMM, yyyy hh:mm:ss")
         </div>
         <div class="topic-content">
-            @Model.TopicContent
+            @System.Net.WebUtility.HtmlDecode(Model.TopicContent)
         </div>
     </div>
 </div>

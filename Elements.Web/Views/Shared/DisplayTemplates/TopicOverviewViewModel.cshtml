@@ -12,7 +12,7 @@
                 <h4 class="news-card-title">@Model.Title</h4>
             </a>
             <p class="news-card-text">
-                @Model.Content
+                @System.Net.WebUtility.HtmlDecode(Model.Content)
             </p>
             <footer class="news-card-footer">
                 <span>by <em class="text-info">@Model.AuthorName</em></span>

@@ -8,7 +8,7 @@
             @Model.CreateDate.ToString("dd-MMM, yyyy hh:mm:ss")
         </div>
         <div>
-            @Model.Content
+            @System.Net.WebUtility.HtmlDecode(Model.Content)
         </div>
     </div>
 </div>

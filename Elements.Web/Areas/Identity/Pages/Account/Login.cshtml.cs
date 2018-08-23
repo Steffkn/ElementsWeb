@@ -17,6 +17,9 @@ namespace Elements.Web.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
+        private const string RestrictedUserFormat = "Restricted user '{0}' tried to log in.";
+        private const string LogdedInFormat = "{0} logged in.";
+        private const string LockedOutFormat = "{0} account locked out.";
         private readonly SignInManager<User> signInManager;
         private readonly ILogger<LoginModel> logger;
         private readonly UserManager<User> userManager;
@@ -77,13 +80,14 @@ namespace Elements.Web.Areas.Identity.Pages.Account
 
                     if (user.IsRestricted)
                     {
-                        this.logger.LogInformation(string.Format("Restricted user '{0}' tried to log in.", LoginUserModel.Username));
+                        this.logger.LogInformation(string.Format(RestrictedUserFormat, LoginUserModel.Username));
+                        await this.signInManager.SignOutAsync();
 
-                        this.ModelState.AddModelError(string.Empty, $"This account is restricted until {user.RestrictionEndDate.ToString("MMM dd, YYYY hh:mm")}");
+                        this.ModelState.AddModelError(string.Empty, $"This account is restricted until {user.RestrictionEndDate.ToString("MMM dd, yyyy hh:mm")}");
                         return this.Page();
                     }
 
-                    this.logger.LogInformation(string.Format("{0} logged in.", LoginUserModel.Username));
+                    this.logger.LogInformation(string.Format(LogdedInFormat, LoginUserModel.Username));
                     return this.LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -97,7 +101,7 @@ namespace Elements.Web.Areas.Identity.Pages.Account
                 }
                 if (result.IsLockedOut)
                 {
-                    this.logger.LogWarning(string.Format("{0} account locked out.", LoginUserModel.Username));
+                    this.logger.LogWarning(string.Format(LockedOutFormat, LoginUserModel.Username));
                     return this.RedirectToPage("./Lockout");
                 }
                 else

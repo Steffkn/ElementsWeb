@@ -113,7 +113,8 @@
                         {
                             UserName = username,
                             Email = email,
-                            RegisterDate = dateTimeService.Now
+                            RegisterDate = dateTimeService.Now,
+                            Avatar = Constants.UserRoleName
                         };
 
                         var result = await userManager.CreateAsync(user, password);

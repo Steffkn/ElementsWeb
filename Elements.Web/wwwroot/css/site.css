@@ -88,7 +88,7 @@ label {
 .field-validation-error,
 .validation-summary-errors {
     color: #dc3545;
-    font-size: 0.8em;
+    font-size: 1.2em;
     line-height: 0.8;
 }
 
