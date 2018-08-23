@@ -19,31 +19,50 @@
         {
         }
 
-        public bool Add(ForumCategory model)
+        public async Task<bool> AddAsync(ForumCategory model)
         {
-            this.Context.ForumCategories.Add(model);
-            this.Context.SaveChanges();
+            if (model == null)
+            {
+                return false;
+            }
+
+            await this.Context.ForumCategories.AddAsync(model);
+            await this.Context.SaveChangesAsync();
             return true;
         }
 
-        public bool DeleteCategory(int id)
+        public async Task<bool> DeleteCategoryAsync(int id)
         {
             var category = this.Context.ForumCategories.FirstOrDefault(c => c.Id == id);
-            if (category != null)
+            if (category == null)
             {
-                category.IsActive = false;
-                this.Context.SaveChanges();
-                return true;
+                return false;
             }
 
-            return false;
+            category.IsActive = false;
+            await this.Context.SaveChangesAsync();
+
+            return true;
         }
 
         public async Task<bool> EditCategoryAsync(EditCategoryBindingModel model)
         {
+            if (model == null)
+            {
+                return false;
+            }
+
+            var category = this.Context.ForumCategories.FirstOrDefault(c => c.Id == model.Id);
+
+            if (category == null)
+            {
+                return false;
+            }
+
             var dbModel = this.Mapper.Map<EditCategoryBindingModel, ForumCategory>(model);
             this.Context.ForumCategories.Update(dbModel);
             await this.Context.SaveChangesAsync();
+
             return true;
         }
 
@@ -54,14 +73,12 @@
             return categoriesViewModel;
         }
 
-        public CategoryViewModel GetCategoryById(int categoryId)
+        public IEnumerable<T> GetCategories<T>()
+            where T : class
         {
-            var categoryFromDb = this.Context.ForumCategories.Include(c => c.Topics)
-                .FirstOrDefault(c => c.Id == categoryId);
-
-            var category = this.Mapper.Map<CategoryViewModel>(categoryFromDb);
-
-            return category;
+            var categories = this.Context.ForumCategories.Include(c => c.Topics);
+            var categoriesViewModel = this.Mapper.Map<IEnumerable<T>>(categories);
+            return categoriesViewModel;
         }
 
         public T GetCategoryById<T>(int categoryId)

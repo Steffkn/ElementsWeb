@@ -90,7 +90,7 @@
                 IsPrivate = false,
             };
 
-            var category = forumService.Add(forumCategory);
+            var result = forumService.AddAsync(forumCategory);
 
             var fullFilePathName = ImageManager.GetFullFilePath("icons", fileName);
             await ImageManager.UploadFileAsync(fullFilePathName, model.ImageFile);
@@ -200,7 +200,7 @@
         [HttpPost]
         public IActionResult DeleteCategory(int id)
         {
-            this.forumService.DeleteCategory(id);
+            this.forumService.DeleteCategoryAsync(id);
 
             return this.RedirectToAction("ManageCategories");
         }

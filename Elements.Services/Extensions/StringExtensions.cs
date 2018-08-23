@@ -8,7 +8,7 @@
             string result = string.Empty;
             string subfix = "...";
 
-            if (value != null)
+            if (!string.IsNullOrEmpty(value))
             {
                 if (value.Length > maxLength)
                 {

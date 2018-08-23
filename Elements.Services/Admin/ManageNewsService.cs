@@ -2,6 +2,7 @@
 using Elements.Data;
 using Elements.Models.Forum;
 using Elements.Services.Admin.Interfaces;
+using System.Threading.Tasks;
 
 namespace Elements.Services.Admin
 {
@@ -12,10 +13,15 @@ namespace Elements.Services.Admin
         {
         }
 
-        public bool AddNews(Topic topic)
+        public async Task<bool> AddNewsAsync(Topic topic)
         {
-            this.Context.Topics.Add(topic);
-            this.Context.SaveChanges();
+            if (topic == null)
+            {
+                return false;
+            }
+
+            await this.Context.Topics.AddAsync(topic);
+            await this.Context.SaveChangesAsync();
 
             return true;
         }

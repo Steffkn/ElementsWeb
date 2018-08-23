@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Threading.Tasks;
 using Elements.Models.Forum;
 
 namespace Elements.Services.Admin.Interfaces
 {
     public interface IManageNewsService
     {
-        bool AddNews(Topic topic);
+        Task<bool> AddNewsAsync(Topic topic);
     }
 }

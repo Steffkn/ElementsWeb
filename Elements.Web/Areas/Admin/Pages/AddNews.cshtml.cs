@@ -93,7 +93,7 @@ namespace Elements.Web.Areas.Admin.Pages
                 ImageUrl = imageUrl
             };
 
-            this.newsService.AddNews(topic);
+            await this.newsService.AddNewsAsync(topic);
 
             var fullFilePathName = ImageManager.GetFullFilePath("news", fileName);
             await ImageManager.UploadFileAsync(fullFilePathName, this.ImageFile);

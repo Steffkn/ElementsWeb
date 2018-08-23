@@ -22,17 +22,16 @@
             this.dateTimeService = dateTimeService;
         }
 
-        public async Task<Topic> AddReplyAsync(int topicId, Reply newReply)
+        public async Task<Topic> AddReplyAsync(Reply newReply)
         {
-            var topic = this.Context.Topics.FirstOrDefault(t => t.Id == topicId);
-
+            var topic = this.Context.Topics.FirstOrDefault(t => t.Id == newReply.TopicId);
             if (topic != null)
             {
                 newReply.CreateDate = dateTimeService.Now;
                 newReply.IsActive = true;
+                newReply.TopicId = topic.Id;
 
-                topic.Replies.Add(newReply);
-
+                await this.Context.Replies.AddAsync(newReply);
                 await this.Context.SaveChangesAsync();
             }
 
@@ -48,7 +47,7 @@
                 topic.TopicType = TopicType.Common;
             }
 
-            this.Context.Topics.Add(topic);
+            await this.Context.Topics.AddAsync(topic);
             await this.Context.SaveChangesAsync();
 
             return topic;

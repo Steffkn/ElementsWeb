@@ -1,7 +1,9 @@
 ﻿namespace Elements.Services.Public.Interfaces
 {
+    using System.Threading.Tasks;
+
     public interface IUserService
     {
-        void SetAvatar(string id, string avatarUrl);
+        Task SetAvatarAsync(string id, string avatarUrl);
     }
 }

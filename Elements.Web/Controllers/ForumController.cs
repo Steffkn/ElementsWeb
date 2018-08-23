@@ -48,11 +48,12 @@
 
             var newReply = new Reply()
             {
+                TopicId = topicId,
                 AuthorId = this.User.GetUserId(),
                 Content = System.Net.WebUtility.HtmlEncode(replyContent),
             };
 
-            Topic topic = await this.topicService.AddReplyAsync(topicId, newReply);
+            Topic topic = await this.topicService.AddReplyAsync(newReply);
 
             if (topic == null)
             {

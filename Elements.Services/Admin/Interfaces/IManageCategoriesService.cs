@@ -10,14 +10,12 @@
     {
         IEnumerable<CategoryViewModel> GetCategories();
 
-        CategoryViewModel GetCategoryById(int categoryId);
-
         T GetCategoryById<T>(int categoryId) where T : class;
 
-        bool Add(ForumCategory model);
+        Task<bool> AddAsync(ForumCategory model);
 
         Task<bool> EditCategoryAsync(EditCategoryBindingModel model);
 
-        bool DeleteCategory(int id);
+        Task<bool> DeleteCategoryAsync(int id);
     }
 }

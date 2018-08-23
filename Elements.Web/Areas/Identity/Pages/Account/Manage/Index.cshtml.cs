@@ -137,7 +137,7 @@ namespace Elements.Web.Areas.Identity.Pages.Account.Manage
                 var fileName = user.UserName + "." + this.Input.ImageFile.ContentType.Substring("image/".Length);
                 var avatarUrl = ImageManager.GetIconRelativePath("avatars", fileName);
 
-                this.userService.SetAvatar(user.Id, avatarUrl);
+                await this.userService.SetAvatarAsync(user.Id, avatarUrl);
 
                 var fullFilePathName = ImageManager.GetFullFilePath("avatars", fileName);
 
