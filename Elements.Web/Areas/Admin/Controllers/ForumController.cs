@@ -93,11 +93,7 @@
             var category = forumService.Add(forumCategory);
 
             var fullFilePathName = ImageManager.GetFullFilePath("icons", fileName);
-
-            using (var fileStream = new FileStream(fullFilePathName, FileMode.Create))
-            {
-                await model.ImageFile.CopyToAsync(fileStream);
-            }
+            await ImageManager.UploadFileAsync(fullFilePathName, model.ImageFile);
 
             return this.RedirectToAction("ManageCategories");
         }

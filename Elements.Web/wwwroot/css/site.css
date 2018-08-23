@@ -98,7 +98,7 @@ label {
     margin: 0;
     padding: 0;
     height: 400px;
-    background-image: url('https://picsum.photos/1200/802') !important;
+    background-image: url('/images/backgrounds/maxresdefault.jpg') !important;
     background-size: cover;
     background-position: center center;
 }

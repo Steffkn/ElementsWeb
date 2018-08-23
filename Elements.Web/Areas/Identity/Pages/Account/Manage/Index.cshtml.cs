@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Elements.Models;
@@ -143,10 +140,8 @@ namespace Elements.Web.Areas.Identity.Pages.Account.Manage
                 this.userService.SetAvatar(user.Id, avatarUrl);
 
                 var fullFilePathName = ImageManager.GetFullFilePath("avatars", fileName);
-                using (var fileStream = new FileStream(fullFilePathName, FileMode.Create))
-                {
-                    await this.Input.ImageFile.CopyToAsync(fileStream);
-                }
+
+                await ImageManager.UploadFileAsync(fullFilePathName, this.Input.ImageFile);
             }
 
             await _signInManager.RefreshSignInAsync(user);

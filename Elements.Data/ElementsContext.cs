@@ -11,7 +11,8 @@ namespace Elements.Data
     {
         private readonly IConfiguration configuration;
 
-        public ElementsContext(DbContextOptions<ElementsContext> options, IConfiguration configuration)
+        public ElementsContext(DbContextOptions<ElementsContext> options,
+            IConfiguration configuration)
             : base(options)
         {
             this.configuration = configuration;
@@ -25,7 +26,10 @@ namespace Elements.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

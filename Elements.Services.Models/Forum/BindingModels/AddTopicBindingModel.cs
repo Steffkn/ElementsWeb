@@ -7,9 +7,13 @@
     public class AddTopicBindingModel
     {
         [Required]
+        [MinLength(50)]
+        [MaxLength(200)]
         public string Title { get; set; }
 
         [Required]
+        [MinLength(10)]
+        [MaxLength(2000)]
         public string Content { get; set; }
 
         [Required]

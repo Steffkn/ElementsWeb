@@ -41,15 +41,18 @@ namespace Elements.Web.Areas.Admin.Pages
 
         [BindProperty]
         [Required]
+        [Display(Name = "Content")]
         public string TopicContent { get; set; }
 
         [BindProperty]
         [Required]
+        [Display(Name = "Topic type")]
         public int TopicTypeId { get; set; }
 
         public HashSet<TopicTypeViewModel> TopicTypes { get; set; }
 
         [BindProperty]
+        [Display(Name = "Image")]
         public IFormFile ImageFile { get; set; }
 
         public void OnGet()
@@ -93,11 +96,7 @@ namespace Elements.Web.Areas.Admin.Pages
             this.newsService.AddNews(topic);
 
             var fullFilePathName = ImageManager.GetFullFilePath("news", fileName);
-
-            using (var fileStream = new FileStream(fullFilePathName, FileMode.Create))
-            {
-                await this.ImageFile.CopyToAsync(fileStream);
-            }
+            await ImageManager.UploadFileAsync(fullFilePathName, this.ImageFile);
 
             return this.RedirectToPage("MainPanel");
         }

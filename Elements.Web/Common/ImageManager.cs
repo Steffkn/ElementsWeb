@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Elements.Web.Common
 {
@@ -22,6 +24,14 @@ namespace Elements.Web.Common
         public static string GetFullFilePath(string customFolderName, string fileName)
         {
             return Path.Combine(Directory.GetCurrentDirectory(), rootDirectory, "images", customFolderName, fileName);
+        }
+
+        public static async Task UploadFileAsync(string fullFilePathName, IFormFile formFile)
+        {
+            using (var fileStream = new FileStream(fullFilePathName, FileMode.Create))
+            {
+                await formFile.CopyToAsync(fileStream);
+            }
         }
     }
 }

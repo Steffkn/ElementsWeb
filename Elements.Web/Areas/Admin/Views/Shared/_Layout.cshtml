@@ -23,7 +23,7 @@
     <div class="row no-gutters h-100">
         <nav id="sidebar" class="active">
             <div class="sidebar-header">
-                <a asp-area="Admin" asp-page="/MainPanel">
+                <a asp-area="Admin" asp-page="/MainPanel" title="Back to main panel">
                     <h3>Administration</h3>
                     <strong>
                         <i class="fab fa-wolf-pack-battalion"></i>
@@ -32,25 +32,25 @@
             </div>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a asp-action="ManageUsers" asp-controller="Users" class="nav-link">
+                    <a asp-action="ManageUsers" asp-controller="Users" class="nav-link" title="Manage users">
                         <i class="fas fa-user"></i>
                         Users
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-action="ManageCategories" asp-controller="Forum" class="nav-link">
+                    <a asp-action="ManageCategories" asp-controller="Forum" class="nav-link" title="Manage categories">
                         <i class="fas fa-wrench"></i>
                         Categories
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-area="Admin" asp-page="/AddNews" class="nav-link">
+                    <a asp-area="Admin" asp-page="/AddNews" class="nav-link" title="Add news">
                         <i class="fas fa-plus"></i>
                         Add News
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" title="Expand navigation">
                         <i class="fas fa-home"></i>
                         Home
                     </a>
@@ -73,7 +73,7 @@
                 <li class="nav-item">
                     <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Forum", new { area = "" })"
                           method="post" id="logoutForm" class="form-inline">
-                        <button type="submit" class="btn btn-block btn-link text-danger"><i class="fas fa-power-off"></i></button>
+                        <button type="submit" class="btn btn-block btn-link text-danger" title="Log out"><i class="fas fa-sign-out-alt fa-2x"></i></button>
                     </form>
                 </li>
             </ul>
@@ -138,7 +138,6 @@
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
 
-    @*<partial name="_CookieConsentPartial" />*@
     <partial name="_ValidationScriptsPartial" />
 
     <script src="~/js/dashboard.js" asp-append-version="true"></script>

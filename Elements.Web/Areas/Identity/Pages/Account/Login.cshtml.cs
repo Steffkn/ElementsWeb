@@ -19,11 +19,16 @@ namespace Elements.Web.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<User> signInManager;
         private readonly ILogger<LoginModel> logger;
+        private readonly UserManager<User> userManager;
 
-        public LoginModel(SignInManager<User> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(
+            SignInManager<User> signInManager,
+            ILogger<LoginModel> logger,
+            UserManager<User> userManager)
         {
             this.signInManager = signInManager;
             this.logger = logger;
+            this.userManager = userManager;
         }
 
         [BindProperty]
@@ -68,6 +73,16 @@ namespace Elements.Web.Areas.Identity.Pages.Account
                     lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
+                    var user = await userManager.FindByNameAsync(LoginUserModel.Username);
+
+                    if (user.IsRestricted)
+                    {
+                        this.logger.LogInformation(string.Format("Restricted user '{0}' tried to log in.", LoginUserModel.Username));
+
+                        this.ModelState.AddModelError(string.Empty, $"This account is restricted until {user.RestrictionEndDate.ToString("MMM dd, YYYY hh:mm")}");
+                        return this.Page();
+                    }
+
                     this.logger.LogInformation(string.Format("{0} logged in.", LoginUserModel.Username));
                     return this.LocalRedirect(returnUrl);
                 }

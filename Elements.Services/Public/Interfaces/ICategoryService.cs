@@ -10,7 +10,6 @@ namespace Elements.Services.Public.Interfaces
     {
         IEnumerable<ForumCategoryViewModel> GetAllCategories(bool? active);
         Dictionary<ForumCategoryType, List<ForumCategoryViewModel>> GetAllActiveCategoriesInGroups();
-        IEnumerable<SelectCategoryViewModel> GetAllCategoriesForSelect();
-
+        IEnumerable<SelectCategoryViewModel> GetAllCategoriesForSelect(bool? active = null);
     }
 }

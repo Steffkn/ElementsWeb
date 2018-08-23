@@ -17,7 +17,7 @@ namespace Elements.Services.Public
 
         public IEnumerable<ForumCategoryViewModel> GetAllCategories(bool? active = null)
         {
-            var categoriesToGet = active.HasValue ? this.Context.ForumCategories.Where(c => c.IsActive) : this.Context.ForumCategories;
+            var categoriesToGet = active.HasValue ? this.Context.ForumCategories.Where(c => c.IsActive == active) : this.Context.ForumCategories;
 
             IEnumerable<ForumCategoryViewModel> categories =
                 this.Mapper.Map<IEnumerable<ForumCategory>, IEnumerable<ForumCategoryViewModel>>(categoriesToGet);
@@ -25,9 +25,11 @@ namespace Elements.Services.Public
             return categories;
         }
 
-        public IEnumerable<SelectCategoryViewModel> GetAllCategoriesForSelect()
+        public IEnumerable<SelectCategoryViewModel> GetAllCategoriesForSelect(bool? active = null)
         {
-            var categories = this.Mapper.Map<IEnumerable<ForumCategory>, IEnumerable<SelectCategoryViewModel>>(this.Context.ForumCategories);
+            var categoriesToGet = active.HasValue ? this.Context.ForumCategories.Where(c => c.IsActive == active) : this.Context.ForumCategories;
+
+            var categories = this.Mapper.Map<IEnumerable<ForumCategory>, IEnumerable<SelectCategoryViewModel>>(categoriesToGet);
             return categories;
         }
 

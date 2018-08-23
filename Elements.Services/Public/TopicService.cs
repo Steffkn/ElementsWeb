@@ -122,7 +122,8 @@
                     NumberOfReply = c.Replies.Count,
                     TopicType = c.TopicType,
                     ImageUrl = c.ImageUrl
-                });
+                })
+                .OrderBy(t => t.CreateDate);
         }
     }
 }
