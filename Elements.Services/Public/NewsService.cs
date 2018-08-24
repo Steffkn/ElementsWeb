@@ -35,7 +35,8 @@
                    ImageUrl = t.ImageUrl
                })
                .OrderBy(m => m.CreateDate)
-               .Take(count);
+               .Take(count)
+               .OrderByDescending(t=>t.CreateDate);
 
             return topics;
         }
