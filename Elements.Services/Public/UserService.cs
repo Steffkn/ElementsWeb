@@ -32,5 +32,12 @@ namespace Elements.Services.Public
                 await this.Context.SaveChangesAsync();
             }
         }
+
+        public User GetUserById(string id)
+        {
+            var user = this.Context.Users.FirstOrDefault(u => u.Id == id);
+
+            return user;
+        }
     }
 }

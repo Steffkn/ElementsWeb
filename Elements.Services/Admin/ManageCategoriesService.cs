@@ -28,6 +28,7 @@
 
             await this.Context.ForumCategories.AddAsync(model);
             await this.Context.SaveChangesAsync();
+
             return true;
         }
 
@@ -52,9 +53,9 @@
                 return false;
             }
 
-            var category = this.Context.ForumCategories.FirstOrDefault(c => c.Id == model.Id);
+            bool categoriExists = this.Context.ForumCategories.Any(c => c.Id == model.Id);
 
-            if (category == null)
+            if (!categoriExists)
             {
                 return false;
             }

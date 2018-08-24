@@ -40,9 +40,23 @@
                     <li class="nav-item">
                         <a asp-area="" asp-controller="Forum" asp-action="Index" class="nav-link">Forum</a>
                     </li>
-                    @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Administrator"))
+                    @if (this.User.Identity.IsAuthenticated)
                     {
-                        <partial name="_AdminPanelDropdown" />
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Character" asp-action="All" class="nav-link">Characters</a>
+                        </li>
+
+                        @if (this.User.IsInRole(Elements.Common.Constants.DevRoleName))
+                        {
+                            <li class="nav-item">
+                                <a asp-area="Admin" asp-page="/AddNews" class="nav-link">Add news</a>
+                            </li>
+                        }
+
+                        @if (this.User.IsInRole(Elements.Common.Constants.AdminRoleName))
+                        {
+                            <partial name="_AdminPanelDropdown" />
+                        }
                     }
                 </ul>
 

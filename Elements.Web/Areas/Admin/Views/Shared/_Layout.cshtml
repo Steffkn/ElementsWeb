@@ -21,7 +21,9 @@
 </head>
 <body>
     <div class="row no-gutters h-100">
+
         <nav id="sidebar" class="active">
+
             <div class="sidebar-header">
                 <a asp-area="Admin" asp-page="/MainPanel" title="Back to main panel">
                     <h3>Administration</h3>
@@ -31,18 +33,22 @@
                 </a>
             </div>
             <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a asp-action="ManageUsers" asp-controller="Users" class="nav-link" title="Manage users">
-                        <i class="fas fa-user"></i>
-                        Users
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a asp-action="ManageCategories" asp-controller="Forum" class="nav-link" title="Manage categories">
-                        <i class="fas fa-wrench"></i>
-                        Categories
-                    </a>
-                </li>
+                @if (this.User.IsInRole(Elements.Common.Constants.AdminRoleName))
+                {
+                    <li class="nav-item">
+                        <a asp-action="ManageUsers" asp-controller="Users" class="nav-link" title="Manage users">
+                            <i class="fas fa-user"></i>
+                            Users
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="ManageCategories" asp-controller="Forum" class="nav-link" title="Manage categories">
+                            <i class="fas fa-wrench"></i>
+                            Categories
+                        </a>
+                    </li>
+                }
+
                 <li class="nav-item">
                     <a asp-area="Admin" asp-page="/AddNews" class="nav-link" title="Add news">
                         <i class="fas fa-plus"></i>
@@ -78,16 +84,16 @@
                 </li>
             </ul>
         </nav>
-
         <div class="col h-100">
             <!-- Navigation -->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <button type="button" id="sidebarCollapse" class="btn btn-lg btn-info">
                     <i class="fas fa-align-left"></i>
                 </button>
-                <form class="form-inline mx-lg-2">
+
+                <form action="/Search" class="form-inline mx-lg-2">
                     <div class="input-group">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control" type="search" name="searchTerm" placeholder="Search" aria-label="Search">
                         <div class="input-group-append">
                             <button class="btn btn-outline-light" type="submit">
                                 <i class="fas fa-search"></i>
@@ -95,6 +101,7 @@
                         </div>
                     </div>
                 </form>
+
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item">
                         <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link">

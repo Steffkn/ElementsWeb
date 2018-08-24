@@ -5,13 +5,18 @@
     <td>@(Model.Description)</td>
     <td>@(Model.NumberOfTopics)</td>
     <td>
-        <div>
-            <a asp-area="Admin" asp-action="EditCategory" asp-route-id="@(Model.Id)" class="btn btn-info">
+        <div class="row">
+            <a asp-area="Admin" asp-action="EditCategory" asp-controller="Forum" asp-route-id="@(Model.Id)" class="btn btn-info">
                 <i class="fas fa-edit"></i>
             </a>
-            <a asp-area="Admin" asp-action="DeleteCategory" asp-route-id="@(Model.Id)" class="btn btn-danger">
-                <i class="fas fa-trash-alt"></i>
-            </a>
+            @if (Model.IsActive)
+            {
+                <form method="post" asp-area="Admin" asp-action="DeleteCategory" asp-controller="Forum" asp-route-id="@(Model.Id)" class="form-inline">
+                    <button class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </form>
+            }
         </div>
     </td>
 </tr>

@@ -1,56 +1,11 @@
 ﻿@model AddTopicViewModel
-@using Elements.Models.Forum
-@using Elements.Common
 @{
     ViewData["Title"] = "Add new topic";
 }
 
 <div class="row mt-2">
     <div class="col-lg-8 offset-lg-2">
-        <div asp-validation-summary="All"></div>
-        <form method="post" asp-controller="Forum" asp-action="AddTopic" enctype="multipart/form-data">
-            <div class="form-group row">
-                <div class="col">
-                    <label asp-for="Title" class="col-form-label"></label>
-                    <input asp-for="Title" class="form-control" />
-                    <span asp-validation-for="Title" class=""></span>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col">
-                    <label asp-for="CategoryId" class="col-form-label"></label>
-                    <select asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories,"Id","Name"))" class="custom-select">
-                        <option selected="selected" value="">Select category</option>
-                    </select>
-                    <span asp-validation-for="CategoryId" class=""></span>
-                </div>
-            </div>
-
-            @if (this.User.IsInRole(Constants.AdminRoleName) || this.User.IsInRole(Constants.ModeratorRoleName))
-            {
-                <div class="form-group row">
-                    <div class="col">
-                        <label asp-for="TopicType" class="col-form-label"></label>
-                        <select asp-for="TopicType" asp-items="@(new SelectList(Model.TopicTypes,"Id","Value"))" class="custom-select">
-                            <option selected="selected" value="">Select topic type</option>
-                        </select>
-                        <span asp-validation-for="TopicType" />
-                    </div>
-                </div>
-            }
-
-            <div class="form-group row">
-                <div class="col">
-                    <label asp-for="Content" class="col-form-label"></label>
-                    <textarea asp-for="Content" class="form-control" rows="5"></textarea>
-                    <span asp-validation-for="Content" class=""></span>
-                </div>
-
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
+        @Html.EditorForModel()
     </div>
 </div>
 

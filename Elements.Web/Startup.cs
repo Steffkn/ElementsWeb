@@ -92,7 +92,7 @@ namespace Elements.Web
                 options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
                 options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
                 options.Conventions.AddPageRoute("/News", "");
-                
+
             });
 
             services.ConfigureApplicationCookie(options =>
@@ -157,6 +157,7 @@ namespace Elements.Web
             services.AddScoped<ITopicService, TopicService>();
             services.AddScoped<IDateTimeService, DateTimeService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICharacterService, CharacterService>();
         }
     }
 }

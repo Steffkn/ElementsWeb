@@ -6,4 +6,21 @@
 
 <h2>Search</h2>
 
-@Html.DisplayFor(m => m.Topics)
+<div class="row my-3">
+    <div class="col-auto">
+        <partial name="_SearchFormPartial" />
+    </div>
+</div>
+
+<div class="row my-3">
+    <div class="col-auto">
+        @if (Model.HasTopics)
+        {
+            @Html.DisplayFor(m => m.Topics)
+        }
+        else
+        {
+            <span>Nothing found for <em class="text-danger">'@(Model.SearchTerm)'</em></span>
+        }
+    </div>
+</div>

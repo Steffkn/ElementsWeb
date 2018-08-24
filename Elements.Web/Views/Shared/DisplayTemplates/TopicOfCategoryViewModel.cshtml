@@ -4,10 +4,11 @@
 <div class="row forum-topic">
     <a class="col p-2" asp-area="" asp-controller="Forum" asp-action="Topic" asp-route-id="@Model.TopicId">
         <div class="row text-white my-1">
-            <span class="col"><i class="@(TopicTypesManager.GetImage(Model.TopicType)) m-1"></i> @Model.Title</span>
-            <span class="col-auto"><i class="far fa-comment"></i> @Model.NumberOfReply</span>
-            <span class="col-2">@Model.AuthorName</span>
-            <span class="col-auto">@Model.CreateDate.ToString("MMM dd, yyyy")</span>
+            <div class="col-auto m-0 pr-0"><i class="@(TopicTypesManager.GetImage(Model.TopicType)) m-1"></i></div>
+            <div class="col" style="word-wrap: break-word; max-width: 65%"> @Model.Title</div>
+            <div class="col-auto"><i class="far fa-comment"></i> @Model.NumberOfReply</div>
+            <div class="col-2">@Model.AuthorName</div>
+            <div class="col-auto">@Model.CreateDate.ToString("MMM dd, yyyy")</div>
         </div>
     </a>
 </div>

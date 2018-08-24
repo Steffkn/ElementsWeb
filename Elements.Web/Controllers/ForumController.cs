@@ -34,23 +34,23 @@
         public IActionResult Index()
         {
             Dictionary<ForumCategoryType, List<ForumCategoryViewModel>> categories = this.categoryService.GetAllActiveCategoriesInGroups();
-            return View(model: categories);
+            return this.View(model: categories);
         }
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> AddReply(int topicId, string replyContent)
+        public async Task<IActionResult> AddReply(AddReplyBindingModel model)
         {
-            if (replyContent == null)
+            if (!ModelState.IsValid)
             {
-                return this.View();
+                return this.RedirectToAction("Topic", new { id = model.TopicId });
             }
 
             var newReply = new Reply()
             {
-                TopicId = topicId,
+                TopicId = model.TopicId,
                 AuthorId = this.User.GetUserId(),
-                Content = System.Net.WebUtility.HtmlEncode(replyContent),
+                Content = System.Net.WebUtility.HtmlEncode(model.Content),
             };
 
             Topic topic = await this.topicService.AddReplyAsync(newReply);
@@ -68,7 +68,7 @@
         [Authorize]
         public IActionResult AddTopic()
         {
-            var categories = this.categoryService.GetAllCategoriesForSelect();
+            var categories = this.categoryService.GetAllCategoriesForSelect(active: true);
             var availableTopicTypes = TopicTypesManager.GetAllExcept(TopicType.News, TopicType.Development, TopicType.Administration);
             var viewModel = new AddTopicViewModel()
             {
@@ -85,7 +85,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                var categories = this.categoryService.GetAllCategoriesForSelect();
+                var categories = this.categoryService.GetAllCategoriesForSelect(active: true);
                 var availableTopicTypes = TopicTypesManager.GetAllExcept(TopicType.News, TopicType.Development);
                 var viewModel = new AddTopicViewModel()
                 {

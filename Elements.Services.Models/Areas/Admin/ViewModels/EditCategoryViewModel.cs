@@ -31,9 +31,11 @@
         public int MainCategoryId { get; set; }
 
         [Required]
+        [Display(Name = "Private")]
         public bool IsPrivate { get; set; }
 
         [Required]
+        [Display(Name = "Active")]
         public bool IsActive { get; set; }
 
         public IEnumerable<SelectCategoryViewModel> MainCategories { get; set; }

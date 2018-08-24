@@ -1,4 +1,5 @@
 ﻿using Elements.Models;
+using Elements.Models.Characters;
 using Elements.Models.Forum;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -24,12 +25,11 @@ namespace Elements.Data
 
         public DbSet<Topic> Topics { get; set; }
 
+        public DbSet<Character> Characters { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-            }
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -45,6 +45,16 @@ namespace Elements.Data
                 .WithOne(r => r.Author)
                 .HasForeignKey(r => r.AuthorId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<User>()
+                .HasMany(u => u.Characters)
+                .WithOne(r => r.User)
+                .HasForeignKey(r => r.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Character>()
+                    .HasIndex(b => b.Name)
+                    .IsUnique();
 
             builder.Entity<Topic>()
                 .HasMany(t => t.Replies)

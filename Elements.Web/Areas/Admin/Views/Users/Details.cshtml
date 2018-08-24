@@ -83,13 +83,22 @@
                 data: model,
                 contentType: 'application/x-www-form-urlencoded'
             }).done(function (data) {
-                console.log(data);
-                if (data.result) {
-                    console.log("postback");
-                    console.log($('#restrictUserBtn').data("restricted"));
-                    $('#restrictUserBtn').attr('data-restricted', data.active);
-                    console.log($('#restrictUserBtn').data("restricted"));
-                    toggleRestriction()
+                if (data.result == true) {
+
+                    var restrictUserBtn = $('#restrictUserBtn');
+
+                    if (data.active == true) {
+                        restrictUserBtn.addClass("btn-danger");
+                        restrictUserBtn.removeClass("btn-info");
+                        restrictUserBtn.text("Suspend");
+                        restrictUserBtn.data("restricted", false)
+                    }
+                    else {
+                        restrictUserBtn.addClass("btn-info");
+                        restrictUserBtn.removeClass("btn-danger");
+                        restrictUserBtn.text("Un suspend");
+                        restrictUserBtn.data("restricted", true)
+                    }
                 }
             });
         });

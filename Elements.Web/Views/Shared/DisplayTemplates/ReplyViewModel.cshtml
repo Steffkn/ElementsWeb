@@ -7,8 +7,8 @@
         <div class="topic-date">
             @Model.CreateDate.ToString("dd-MMM, yyyy hh:mm:ss")
         </div>
-        <div>
+        <p class="reply-content">
             @System.Net.WebUtility.HtmlDecode(Model.Content)
-        </div>
+        </p>
     </div>
 </div>

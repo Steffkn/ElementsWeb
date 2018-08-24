@@ -1,0 +1,16 @@
+﻿@model AddCharacterViewModel
+@{
+    ViewData["Title"] = "Add character";
+}
+
+<div class="row pt-4">
+    <div class="col-6 offset-3">
+        <h2>@ViewData["Title"]</h2>
+        <div asp-validation-summary="All"></div>
+        @Html.EditorForModel()
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

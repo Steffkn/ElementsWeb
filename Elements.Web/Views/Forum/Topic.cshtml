@@ -8,7 +8,7 @@
         @Model.TopicTitle
     </h1>
 </div>
-<div class="row topic">
+<div class="row topic mb-4">
     <div class="col-2">
         @Html.DisplayFor(m => m.TopicAuthorViewModel)
     </div>
@@ -16,9 +16,9 @@
         <div class="topic-date">
             @Model.CreateDate.ToString("dd-MMM, yyyy hh:mm:ss")
         </div>
-        <div class="topic-content">
+        <p class="topic-content">
             @System.Net.WebUtility.HtmlDecode(Model.TopicContent)
-        </div>
+        </p>
     </div>
 </div>
 
@@ -28,10 +28,11 @@
 {
     <div class="row">
         <div class="col-10 offset-2">
+            <div asp-validation-summary="All"></div>
             <form method="post" asp-controller="Forum" asp-action="AddReply" asp-route-topicId="@Model.Id">
                 <div class="row">
                     <div class="col">
-                        <textarea name="replyContent" rows="4" class="form-control form-reply"></textarea>
+                        <textarea name="content" rows="4" class="form-control form-reply"></textarea>
                     </div>
                 </div>
                 <div class="row">

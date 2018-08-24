@@ -12,7 +12,7 @@
                     .UseInMemoryDatabase(Guid.NewGuid().ToString())
                     .Options;
 
-            return new ElementsContext(options, null);
+            return new FakeDBContext(options, null);
         }
     }
 }

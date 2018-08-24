@@ -15,19 +15,19 @@
 
     public class ForumController : AdminController
     {
-        private readonly IManageCategoriesService forumService;
+        private readonly IManageCategoriesService manageCategories;
         private readonly ICategoryService categoryService;
 
-        public ForumController(IManageCategoriesService forumService, ICategoryService categoryService)
+        public ForumController(IManageCategoriesService manageCategories, ICategoryService categoryService)
             : base()
         {
-            this.forumService = forumService;
+            this.manageCategories = manageCategories;
             this.categoryService = categoryService;
         }
 
         public IActionResult ManageCategories()
         {
-            var forumCategories = forumService.GetCategories();
+            var forumCategories = manageCategories.GetCategories();
             return this.View(model: forumCategories);
         }
 
@@ -90,7 +90,7 @@
                 IsPrivate = false,
             };
 
-            var result = forumService.AddAsync(forumCategory);
+            var result = manageCategories.AddAsync(forumCategory);
 
             var fullFilePathName = ImageManager.GetFullFilePath("icons", fileName);
             await ImageManager.UploadFileAsync(fullFilePathName, model.ImageFile);
@@ -101,7 +101,7 @@
         [HttpGet]
         public IActionResult EditCategory(int id)
         {
-            var category = forumService.GetCategoryById<EditCategoryViewModel>(id);
+            var category = manageCategories.GetCategoryById<EditCategoryViewModel>(id);
 
             var mainCategoriesSelectViewModel =
                 CategoryTypesManager.GetAllExcept(ForumCategoryType.News, ForumCategoryType.Development)
@@ -162,7 +162,7 @@
             model.Name = System.Net.WebUtility.HtmlEncode(model.Name);
             model.Description = System.Net.WebUtility.HtmlEncode(model.Description);
 
-            var result = await this.forumService.EditCategoryAsync(model);
+            var result = await this.manageCategories.EditCategoryAsync(model);
 
             if (model.ImageFile != null)
             {
@@ -200,7 +200,7 @@
         [HttpPost]
         public IActionResult DeleteCategory(int id)
         {
-            this.forumService.DeleteCategoryAsync(id);
+            var result = this.manageCategories.DeleteCategoryAsync(id);
 
             return this.RedirectToAction("ManageCategories");
         }

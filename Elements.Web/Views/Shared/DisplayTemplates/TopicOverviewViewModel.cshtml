@@ -2,12 +2,12 @@
 
 <article class="news-card">
     <div class="row">
-        <div class="col-4">
+        <div class="col-auto">
             <a class="" asp-controller="Forum" asp-action="Topic" asp-route-id="@Model.Id">
-                <img src="@Model.ImageUrl" class="news-card-img" />
+                <img src="@Model.ImageUrl" class="news-card-img img-fluid" />
             </a>
         </div>
-        <div class="col-8">
+        <div class="col">
             <a asp-controller="Forum" asp-action="Topic" asp-route-id="@Model.Id">
                 <h4 class="news-card-title">@Model.Title</h4>
             </a>
@@ -15,7 +15,7 @@
                 @System.Net.WebUtility.HtmlDecode(Model.Content)
             </p>
             <footer class="news-card-footer">
-                <span>by <em class="text-info">@Model.AuthorName</em></span>
+                <span>by <a class="text-info" asp-area="" asp-page="/User" asp-route-id="@Model.AuthorName">@Model.AuthorName</a></span>
                 <small class="text-white-50">Last updated @(Math.Floor((DateTime.Now - Model.CreateDate).TotalDays)) days @((DateTime.Now - Model.CreateDate).Hours) h @((DateTime.Now - Model.CreateDate).Minutes) min ago</small>
             </footer>
         </div>

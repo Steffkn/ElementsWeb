@@ -1,0 +1,19 @@
+﻿@model AddCharacterViewModel
+
+<form method="post" asp-area="" asp-controller="Character" asp-action="AddCharacter">
+    <form-entry asp-for="Name"></form-entry>
+
+    <div class="form-group row">
+        <div class="col">
+            <label asp-for="CharacterClass" class="col-form-label"></label>
+            <select asp-for="@Model.CharacterClass" asp-items="Html.GetEnumSelectList<CharacterClassType>()" class="custom-select">
+                <option selected="selected" value="">Select class</option>
+            </select>
+            <span asp-validation-for="CharacterClass" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
