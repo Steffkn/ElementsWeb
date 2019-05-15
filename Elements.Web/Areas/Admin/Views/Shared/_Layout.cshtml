@@ -8,6 +8,7 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/dashboard-main.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
@@ -15,9 +16,9 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/dashboard-main.min.css" asp-append-version="true" />
     </environment>
     <link rel="stylesheet" href="~/lib/fontawesome/css/all.css" />
-    <link href="~/css/dashboard.css" rel="stylesheet" />
 </head>
 <body>
     <div class="row no-gutters h-100">
@@ -84,7 +85,7 @@
                 </li>
             </ul>
         </nav>
-        <div class="col h-100">
+        <div class="col content">
             <!-- Navigation -->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <button type="button" id="sidebarCollapse" class="btn btn-lg btn-info">
@@ -111,7 +112,7 @@
                 </ul>
             </nav>
 
-            <div class="container-fluid sadasd">
+            <div class="container-fluid">
                 @RenderBody()
             </div>
         </div>

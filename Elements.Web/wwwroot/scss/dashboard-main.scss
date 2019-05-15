@@ -1,0 +1,227 @@
+@import 'dashboard-variables';
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.4s;
+}
+
+.navbar {
+    height: $navbar-height;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+.clickable-row {
+    cursor: pointer;
+}
+
+/* ---------------------------------------------------
+        SIDEBAR STYLE
+    ----------------------------------------------------- */
+
+a.article,
+a.article:hover {
+    background: #000080 !important;
+    color: #fff !important;
+}
+
+#sidebar {
+    min-width: $sidebar-width;
+    max-width: $sidebar-width;
+    height: 100%;
+    background: $sidebar-color;
+    color: #fff;
+
+    ul.components {
+        padding: 20px 0;
+        border-bottom: 1px solid #0F52BA;
+    }
+
+    ul ul a {
+        font-size: 0.9em !important;
+        padding-left: 30px !important;
+        background: #0F52BA;
+    }
+
+    ul li a {
+        padding: 10px;
+        font-size: 1.1em;
+        display: block;
+        text-align: left;
+
+        i {
+            margin-right: 10px;
+        }
+
+        &:hover {
+            color: #73C2FB;
+            background: #fff;
+        }
+    }
+
+    ul li.active>a,
+    a[aria-expanded="true"] {
+        color: #fff;
+        background: #0F52BA;
+    }
+
+    a[data-toggle="collapse"] {
+        position: relative;
+    }
+
+    .sidebar-header {
+        padding: 17px;
+        background: #0F52BA;
+        height: $navbar-height;
+    }
+
+    .sidebar-header strong {
+        display: none;
+    }
+
+    &.active {
+        min-width: $sidebar-width-active;
+        max-width: $sidebar-width-active;
+        text-align: center;
+
+        .sidebar-header h3 {
+            display: none;
+        }
+
+        .sidebar-header strong {
+            display: block;
+            font-size: 1.8em;
+        }
+
+        ul li a {
+            padding: 20px 10px;
+            text-align: center;
+            font-size: 0.85em;
+
+            i {
+                margin-right: 0;
+                display: block;
+                font-size: 1.8em;
+                margin-bottom: 5px;
+            }
+        }
+
+        ul ul a {
+            padding: 10px !important;
+        }
+
+        .dropdown-toggle::after {
+            top: auto;
+            bottom: 10px;
+            right: 50%;
+            -webkit-transform: translateX(50%);
+            -ms-transform: translateX(50%);
+            transform: translateX(50%);
+        }
+    }
+
+}
+
+
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.content{
+    padding: 0;
+    background: #fff;
+    width:  auto;
+    
+}
+/* ---------------------------------------------------
+        MEDIAQUERIES
+    ----------------------------------------------------- */
+
+@media (max-width: 768px) {
+    #sidebar {
+        min-width: 80px;
+        max-width: 80px;
+        text-align: center;
+        margin-left: -80px;
+
+        .sidebar-header h3 {
+            display: none;
+        }
+
+        .sidebar-header strong {
+            display: block;
+        }
+
+        ul ul a {
+            padding: 10px !important;
+        }
+
+        ul li a {
+            padding: 20px 10px;
+
+            i {
+                margin-right: 0;
+                display: block;
+                font-size: 1.3em;
+            }
+
+            span {
+                font-size: 0.85em;
+            }
+        }
+
+        &.active {
+            margin-left: 0 !important;
+        }
+    }
+
+    .dropdown-toggle::after {
+        top: auto;
+        bottom: 0;
+        right: 50%;
+        -webkit-transform: translateX(50%);
+        -ms-transform: translateX(50%);
+        transform: translateX(50%);
+    }
+
+    #sidebarCollapse span {
+        display: none;
+    }
+}

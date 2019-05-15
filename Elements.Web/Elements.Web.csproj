@@ -50,6 +50,7 @@
     <Folder Include="wwwroot\images\icons\" />
     <Folder Include="wwwroot\images\categories\" />
     <Folder Include="wwwroot\images\news\" />
+    <Folder Include="wwwroot\scss\" />
   </ItemGroup>
 
   <ItemGroup>

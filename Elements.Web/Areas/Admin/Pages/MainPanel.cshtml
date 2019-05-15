@@ -5,7 +5,7 @@
 }
 
 <div class="row">
-    <div class="col-md-10 offset-1">
+    <div class="col">
         <h4>Users activities</h4>
         <div>Total users: <strong>@Model.TotalUsers</strong></div>
     </div>
@@ -14,7 +14,7 @@
 @if (Model.HasActiveTopics)
 {
     <div class="row">
-        <div class="col-md-10 offset-1">
+        <div class="col">
             <h4>Active topics</h4>
             @Html.DisplayFor(m => m.ActiveTopics)
         </div>
@@ -24,7 +24,7 @@
 @if (Model.HasInActiveTopics)
 {
     <div class="row">
-        <div class="col-md-10 offset-1">
+        <div class="col">
             <h4>Inactive topics</h4>
             @Html.DisplayFor(m => m.InActiveTopics)
         </div>
