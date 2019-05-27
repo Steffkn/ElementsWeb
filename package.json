@@ -5,16 +5,7 @@
   "description": "Demo app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jincod/AspNet5DemoApp.git"
-  },
-  "dependencies": {
-    "react": "16.8.6",
-    "react-dom": "16.8.6",
-    "react-scripts": "3.0.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build"
+    "url": "https://github.com/Steffkn/ElementsWeb.git"
   },
   "proxy": "http://localhost:5000",
   "browserslist": [
