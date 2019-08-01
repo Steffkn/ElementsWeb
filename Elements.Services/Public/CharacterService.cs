@@ -3,9 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Elements.Data;
-using Elements.Models;
 using Elements.Models.Characters;
-using Elements.Models.Forum;
 using Elements.Services.Models.Character.BindingModel;
 using Elements.Services.Public.Interfaces;
 
@@ -46,5 +44,9 @@ namespace Elements.Services.Public
             return characters;
         }
 
+        public Character GetCharacterByID(int characterId)
+        {
+            return this.Context.Characters.FirstOrDefault(x => x.Id == characterId);
+        }
     }
 }

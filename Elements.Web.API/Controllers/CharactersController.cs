@@ -1,15 +1,15 @@
-﻿using AutoMapper;
-using Elements.Models.Characters;
-using Elements.Services.Models.Character.BindingModel;
-using Elements.Services.Models.Character.ViewModel;
-using Elements.Services.Public.Interfaces;
+﻿using Elements.Services.Public.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Elements.Web.Controllers
 {
-    [Route("api/[controller]")]
+    /*
+     TODO:
+     api/characters/{characterId}
+     api/users/{userId}
+     api/users/{userId}/characters
+         */
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CharactersController : Controller
     {
@@ -20,21 +20,29 @@ namespace Elements.Web.Controllers
             this.characterService = characterService;
         }
 
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/characters/d64f3da2-a44a-44d0-b71e-9fa6216462c1
+        // GET api/characters/{userId}
         [HttpGet("{userId}")]
-        public IEnumerable<Character> Get(string userId)
+        public ActionResult GetCharactersForUser(string userId)
         {
             if (!string.IsNullOrEmpty(userId))
             {
-                return this.characterService.GetCharactersForUser(userId);
+                return this.Json(this.characterService.GetCharactersForUser(userId));
             }
+
+            // TODO: 1 extract these for all requests
+            return null;
+        }
+
+        // GET api/character/{characterId}
+        [HttpGet("{characterId}")]
+        public ActionResult GetCharacter(int? characterId)
+        {
+            if (characterId.HasValue)
+            {
+                return this.Json(this.characterService.GetCharacterByID(characterId.Value));
+            }
+
+            // TODO: 2 extract these for all requests
             return null;
         }
     }
