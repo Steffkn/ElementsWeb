@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using Elements.Data;
+using Elements.Services.Public;
+using Elements.Services.Public.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace Elements.Web.API
 {
@@ -25,7 +22,11 @@ namespace Elements.Web.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // set db context
+            services.AddDbContext<ElementsContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddAutoMapper();
+            RegisterServiceLayer(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +43,14 @@ namespace Elements.Web.API
 
             app.UseHttpsRedirection();
             app.UseMvc();
+        }
+
+        private void RegisterServiceLayer(IServiceCollection services)
+        {
+            // public services
+            services.AddScoped<IDateTimeService, DateTimeService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICharacterService, CharacterService>();
         }
     }
 }
