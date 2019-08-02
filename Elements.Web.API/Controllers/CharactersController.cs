@@ -1,4 +1,7 @@
-﻿using Elements.Services.Public.Interfaces;
+﻿using AutoMapper;
+using Elements.Models.Characters;
+using Elements.Services.Public.Interfaces;
+using Elements.Web.API.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Elements.Web.Controllers
@@ -12,12 +15,13 @@ namespace Elements.Web.Controllers
     public class CharactersController : BaseController
     {
         private readonly ICharacterService characterService;
+        private readonly IMapper mapper;
 
-        public CharactersController(ICharacterService characterService)
+        public CharactersController(ICharacterService characterService, IMapper mapper)
         {
             this.characterService = characterService;
+            this.mapper = mapper;
         }
-
 
         // GET api/character/{characterId}
         [HttpGet("{characterId}")]
@@ -25,7 +29,10 @@ namespace Elements.Web.Controllers
         {
             if (characterId.HasValue)
             {
-                return this.Json(this.characterService.GetCharacterByID(characterId.Value));
+                Character character = this.characterService.GetCharacterByID(characterId.Value);
+
+                BaseCharacter baseCharacter = this.mapper.Map<Character, BaseCharacter>(character);
+                return this.Json(baseCharacter);
             }
 
             // TODO: 2 extract these for all requests
