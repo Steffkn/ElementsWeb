@@ -1,6 +1,8 @@
 ﻿using Elements.Models;
 using Elements.Models.Characters;
 using Elements.Models.Forum;
+using Elements.Models.Props.Inventories;
+using Elements.Models.Props.Items;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +28,10 @@ namespace Elements.Data
         public DbSet<Topic> Topics { get; set; }
 
         public DbSet<Character> Characters { get; set; }
+
+        public DbSet<InteractableItem> InteractableItems { get; set; }
+
+        public DbSet<CharacterInventory> CharacterInventories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -68,6 +74,21 @@ namespace Elements.Data
                 .HasForeignKey(t => t.CategoryId);
 
             builder.Entity<IdentityRole>().HasData();
+
+            builder.Entity<CharacterInventory>()
+                .HasKey((item) => new { item.CharacterId, item.Slot });
+
+            builder.Entity<CharacterInventory>()
+                .HasOne(chItem => chItem.Character)
+                .WithMany(ch => ch.Inventory)
+                .HasForeignKey(chItem => chItem.CharacterId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<CharacterInventory>()
+                .HasOne(chItem => chItem.Item)
+                .WithMany(item => item.Characters)
+                .HasForeignKey(chItem => chItem.ItemId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(builder);
             // Customize the ASP.NET Identity model and override the defaults if needed.

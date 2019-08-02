@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Elements.Models.Props.Inventories;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Elements.Models.Characters
 {
@@ -12,6 +14,12 @@ namespace Elements.Models.Characters
 
         [Required]
         public CharacterClassType CharacterClass { get; set; }
+
+        public InventorySize InventorySize { get; set; }
+
+        public BodyType BodyType { get; set; }
+
+        public ICollection<CharacterInventory> Inventory { get; set; }
 
         [Required]
         public string UserId { get; set; }

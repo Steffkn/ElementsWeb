@@ -4,14 +4,16 @@ using Elements.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Elements.Data.Migrations
 {
     [DbContext(typeof(ElementsContext))]
-    partial class ElementsContextModelSnapshot : ModelSnapshot
+    [Migration("20190802140928_AddIteractableItems")]
+    partial class AddIteractableItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -130,21 +132,6 @@ namespace Elements.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Topics");
-                });
-
-            modelBuilder.Entity("Elements.Models.Props.Inventories.CharacterInventory", b =>
-                {
-                    b.Property<int>("CharacterId");
-
-                    b.Property<int>("Slot");
-
-                    b.Property<int>("ItemId");
-
-                    b.HasKey("CharacterId", "Slot");
-
-                    b.HasIndex("ItemId");
-
-                    b.ToTable("CharacterInventories");
                 });
 
             modelBuilder.Entity("Elements.Models.Props.Items.InteractableItem", b =>
@@ -378,19 +365,6 @@ namespace Elements.Data.Migrations
                         .WithMany("Topics")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Elements.Models.Props.Inventories.CharacterInventory", b =>
-                {
-                    b.HasOne("Elements.Models.Characters.Character", "Character")
-                        .WithMany("Inventory")
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Elements.Models.Props.Items.InteractableItem", "Item")
-                        .WithMany("Characters")
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

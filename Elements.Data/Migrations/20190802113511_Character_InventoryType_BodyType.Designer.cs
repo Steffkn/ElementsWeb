@@ -4,14 +4,16 @@ using Elements.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Elements.Data.Migrations
 {
     [DbContext(typeof(ElementsContext))]
-    partial class ElementsContextModelSnapshot : ModelSnapshot
+    [Migration("20190802113511_Character_InventoryType_BodyType")]
+    partial class Character_InventoryType_BodyType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -130,51 +132,6 @@ namespace Elements.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Topics");
-                });
-
-            modelBuilder.Entity("Elements.Models.Props.Inventories.CharacterInventory", b =>
-                {
-                    b.Property<int>("CharacterId");
-
-                    b.Property<int>("Slot");
-
-                    b.Property<int>("ItemId");
-
-                    b.HasKey("CharacterId", "Slot");
-
-                    b.HasIndex("ItemId");
-
-                    b.ToTable("CharacterInventories");
-                });
-
-            modelBuilder.Entity("Elements.Models.Props.Items.InteractableItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description");
-
-                    b.Property<int>("EquipmentSlot");
-
-                    b.Property<bool>("IsStackable");
-
-                    b.Property<bool>("IsUsable");
-
-                    b.Property<int>("MaxStackSize");
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.Property<int>("Price");
-
-                    b.Property<int>("Quantity");
-
-                    b.Property<int>("Rarity");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("InteractableItems");
                 });
 
             modelBuilder.Entity("Elements.Models.User", b =>
@@ -378,19 +335,6 @@ namespace Elements.Data.Migrations
                         .WithMany("Topics")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Elements.Models.Props.Inventories.CharacterInventory", b =>
-                {
-                    b.HasOne("Elements.Models.Characters.Character", "Character")
-                        .WithMany("Inventory")
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Elements.Models.Props.Items.InteractableItem", "Item")
-                        .WithMany("Characters")
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
