@@ -9,9 +9,7 @@ namespace Elements.Web.Controllers
      api/users/{userId}
      api/users/{userId}/characters
          */
-    [Route("api/[controller]/[action]")]
-    [ApiController]
-    public class CharactersController : Controller
+    public class CharactersController : BaseController
     {
         private readonly ICharacterService characterService;
 
