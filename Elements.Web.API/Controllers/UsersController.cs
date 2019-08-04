@@ -13,11 +13,13 @@
     {
         private readonly IUserService userService;
         private readonly ICharacterService characterService;
+        private readonly AutoMapper.IMapper mapper;
 
-        public UsersController(IUserService userService, ICharacterService characterService)
+        public UsersController(IUserService userService, ICharacterService characterService, AutoMapper.IMapper mapper)
         {
             this.userService = userService;
             this.characterService = characterService;
+            this.mapper = mapper;
         }
 
         // GET api/users/{userId}
@@ -26,7 +28,10 @@
         {
             if (!string.IsNullOrEmpty(userId))
             {
-                return this.Json(this.userService.GetUserById(userId));
+                Models.User user = this.userService.GetUserById(userId);
+
+                API.Models.BaseUser apiBaseUser = this.mapper.Map<Models.User, API.Models.BaseUser>(user);
+                return this.Json(apiBaseUser);
             }
 
             // TODO: 3 extract these for all requests

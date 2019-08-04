@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using Elements.Models.Characters;
-using Elements.Web.API.Models;
 
 namespace Elements.Web.API.Mapping
 {
@@ -8,7 +6,8 @@ namespace Elements.Web.API.Mapping
     {
         public AutoMapperProfile()
         {
-            this.CreateMap<Character, BaseCharacter>();
+            this.CreateMap<Elements.Models.Characters.Character, API.Models.BaseCharacter>();
+            this.CreateMap<Elements.Models.User, API.Models.BaseUser>();
         }
     }
 }
