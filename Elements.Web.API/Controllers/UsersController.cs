@@ -1,8 +1,11 @@
 ﻿namespace Elements.Web.Areas.Admin.Controllers
 {
+    using Elements.Models.Characters;
     using Elements.Services.Public.Interfaces;
+    using Elements.Web.API.Models;
     using Elements.Web.Controllers;
     using Microsoft.AspNetCore.Mvc;
+    using System.Collections.Generic;
 
     /// <summary>
     /// 
@@ -44,7 +47,9 @@
         {
             if (!string.IsNullOrEmpty(userId))
             {
-                return this.Json(this.characterService.GetCharactersForUser(userId));
+                IEnumerable<Character> character = this.characterService.GetCharactersForUser(userId);
+                IEnumerable<BaseCharacter> baseCharacter = this.mapper.Map<IEnumerable<Character>, IEnumerable<BaseCharacter>>(character);
+                return this.Json(baseCharacter);
             }
 
             // TODO: 4 extract these for all requests
