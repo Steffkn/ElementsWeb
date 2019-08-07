@@ -12,5 +12,8 @@ namespace Elements.Services.Models.Character.BindingModel
 
         [Required]
         public CharacterClassType CharacterClass { get; set; }
+
+        [Required]
+        public BodyType BodyType { get; set; }
     }
 }

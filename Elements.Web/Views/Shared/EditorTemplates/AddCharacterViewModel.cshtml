@@ -13,6 +13,16 @@
         </div>
     </div>
 
+    <div class="form-group row">
+        <div class="col">
+            <label asp-for="BodyType" class="col-form-label"></label>
+            <select asp-for="@Model.BodyType" asp-items="Html.GetEnumSelectList<BodyType>()" class="custom-select">
+                <option selected="selected" value="">Select body type</option>
+            </select>
+            <span asp-validation-for="BodyType" />
+        </div>
+    </div>
+
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
