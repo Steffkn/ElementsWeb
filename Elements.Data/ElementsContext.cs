@@ -29,6 +29,8 @@ namespace Elements.Data
 
         public DbSet<Character> Characters { get; set; }
 
+        public DbSet<CharacterInfo> CharacterInfos { get; set; }
+
         public DbSet<InteractableItem> InteractableItems { get; set; }
 
         public DbSet<CharacterInventory> CharacterInventories { get; set; }
@@ -61,6 +63,16 @@ namespace Elements.Data
             builder.Entity<Character>()
                     .HasIndex(b => b.Name)
                     .IsUnique();
+
+            builder.Entity<CharacterInfo>()
+                .HasOne(chi => chi.Character)
+                .WithOne(ch => ch.CharacterInfo)
+                .HasForeignKey<Character>(ch => ch.CharacterInfoId);
+
+            builder.Entity<Character>()
+                .HasOne(chi => chi.CharacterInfo)
+                .WithOne(ch => ch.Character)
+                .HasForeignKey<CharacterInfo>(chi => chi.CharacterId);
 
             builder.Entity<Topic>()
                 .HasMany(t => t.Replies)
