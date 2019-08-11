@@ -2,7 +2,7 @@
 {
     public enum BodyType
     {
-        Male,
-        Female
+        Big = 1,
+        Small = 2
     }
 }

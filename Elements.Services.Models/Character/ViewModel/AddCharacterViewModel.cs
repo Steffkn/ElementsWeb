@@ -11,5 +11,9 @@ namespace Elements.Services.Models.Character.ViewModel
         [Required]
         [Display(Name = "Character type")]
         public CharacterClassType CharacterClass { get; set; }
+
+        [Required]
+        [Display(Name = "Body type")]
+        public BodyType BodyType { get; set; }
     }
 }

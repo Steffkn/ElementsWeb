@@ -21,6 +21,10 @@ namespace Elements.Models.Characters
 
         public ICollection<CharacterInventory> Inventory { get; set; }
 
+        //[Required]
+        public int CharacterInfoId { get; set; }
+        public CharacterInfo CharacterInfo { get; set; }
+
         [Required]
         public string UserId { get; set; }
 
