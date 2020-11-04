@@ -12,45 +12,45 @@
 
     public static class ApplicationBuilderRolesExtension
     {
-        private static Tuple<string, string, string> masterUser = new Tuple<string, string, string>("master", "master@admins.com", "secret");
-        private static Tuple<string, string, string> adminUser = new Tuple<string, string, string>("admin", "admin@admins.com", "admin123");
-        private static Tuple<string, string, string> devUser = new Tuple<string, string, string>("dev", "dev@dev.com", "dev123");
-        private static Tuple<string, string, string> modUser = new Tuple<string, string, string>("mod", "mod@admins.com", "mod123");
-        private static Tuple<string, string, string> user = new Tuple<string, string, string>("user", "user@example.jm", "123qwe");
+        private static Tuple<string, string, string, string> masterUser = new Tuple<string, string, string, string>("master", "master@admins.com", "secret", "8f3151bb-62d1-47b7-924a-9901bab02f60");
+        private static Tuple<string, string, string, string> adminUser = new Tuple<string, string, string, string>("admin", "admin@admins.com", "admin123", "86242202-572c-424d-af07-ddd41f608b96");
+        private static Tuple<string, string, string, string> devUser = new Tuple<string, string, string, string>("dev", "dev@dev.com", "dev123", "67b787af-140a-4968-8c86-6168e88723bb");
+        private static Tuple<string, string, string, string> modUser = new Tuple<string, string, string, string>("mod", "mod@admins.com", "mod123", "c01ddea6-e3c6-4fe8-8fca-feb554a12ebe");
+        private static Tuple<string, string, string, string> user = new Tuple<string, string, string, string>("user", "user@example.jm", "123qwe", "79c5d801-7895-4c35-bace-9f8115386825");
 
-        private static IReadOnlyDictionary<string, HashSet<Tuple<string, string, string>>> defaultUsers =
-            new Dictionary<string, HashSet<Tuple<string, string, string>>>()
+        private static IReadOnlyDictionary<string, HashSet<Tuple<string, string, string, string>>> defaultUsers =
+            new Dictionary<string, HashSet<Tuple<string, string, string, string>>>()
         {
             {
                 Constants.CreatorRoleName,
-                new HashSet<Tuple<string, string, string>>(){
+                new HashSet<Tuple<string, string, string, string>>(){
                     masterUser
                 }
             },
         {
                 Constants.AdminRoleName,
-                new HashSet<Tuple<string, string, string>>(){
+                new HashSet<Tuple<string, string, string, string>>(){
                     masterUser,
                     adminUser
                 }
             },
         {
                 Constants.DevRoleName,
-                new HashSet<Tuple<string, string, string>>(){
+                new HashSet<Tuple<string, string, string, string>>(){
                     masterUser,
                     devUser
                 }
             },
         {
                 Constants.ModeratorRoleName,
-                new HashSet<Tuple<string, string, string>>(){
+                new HashSet<Tuple<string, string, string, string>>(){
                     masterUser,
                     modUser
                 }
             },
         {
                 Constants.UserRoleName,
-                new HashSet<Tuple<string, string, string>>(){
+                new HashSet<Tuple<string, string, string, string>>(){
                     masterUser,
                     user
                 }
@@ -102,15 +102,18 @@
                 foreach (var currentUser in defaultUsers[role])
                 {
                     string username = currentUser.Item1;
-                    string email = currentUser.Item2;
-                    string password = currentUser.Item3;
 
                     var user = await userManager.FindByNameAsync(username);
 
                     if (user == null)
                     {
+                        string email = currentUser.Item2;
+                        string password = currentUser.Item3;
+                        string id = currentUser.Item4;
+
                         user = new User()
                         {
+                            Id = id,
                             UserName = username,
                             Email = email,
                             RegisterDate = dateTimeService.Now,
