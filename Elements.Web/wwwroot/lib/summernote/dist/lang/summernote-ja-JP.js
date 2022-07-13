@@ -1,4 +1,28 @@
-(function($) {
+/*!
+ * 
+ * Super simple WYSIWYG editor v0.8.20
+ * https://summernote.org
+ *
+ *
+ * Copyright 2013- Alan Hong and contributors
+ * Summernote may be freely distributed under the MIT license.
+ *
+ * Date: 2021-10-14T21:15Z
+ *
+ */
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(self, function() {
+return /******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+(function ($) {
   $.extend($.summernote.lang, {
     'ja-JP': {
       font: {
@@ -53,13 +77,13 @@
       },
       table: {
         table: 'テーブル',
-        addRowAbove: 'Add row above',
-        addRowBelow: 'Add row below',
-        addColLeft: 'Add column left',
-        addColRight: 'Add column right',
-        delRow: 'Delete row',
-        delCol: 'Delete column',
-        delTable: 'Delete table'
+        addRowAbove: '行を上に追加',
+        addRowBelow: '行を下に追加',
+        addColLeft: '列を左に追加',
+        addColRight: '列を右に追加',
+        delRow: '行を削除',
+        delCol: '列を削除',
+        delTable: 'テーブルを削除'
       },
       hr: {
         insert: '水平線の挿入'
@@ -153,3 +177,8 @@
     }
   });
 })(jQuery);
+/******/ 	return __webpack_exports__;
+/******/ })()
+;
+});
+//# sourceMappingURL=summernote-ja-JP.js.map

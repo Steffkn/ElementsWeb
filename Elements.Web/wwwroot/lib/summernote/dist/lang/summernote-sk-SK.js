@@ -1,4 +1,28 @@
-(function($) {
+/*!
+ * 
+ * Super simple WYSIWYG editor v0.8.20
+ * https://summernote.org
+ *
+ *
+ * Copyright 2013- Alan Hong and contributors
+ * Summernote may be freely distributed under the MIT license.
+ *
+ * Date: 2021-10-14T21:15Z
+ *
+ */
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(self, function() {
+return /******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+(function ($) {
   $.extend($.summernote.lang, {
     'sk-SK': {
       font: {
@@ -7,6 +31,7 @@
         underline: 'Podčiarknutie',
         clear: 'Odstrániť štýl písma',
         height: 'Výška riadku',
+        name: 'Názov',
         strikethrough: 'Prečiarknuté',
         subscript: 'Subscript',
         superscript: 'Superscript',
@@ -21,18 +46,18 @@
         floatLeft: 'Umiestniť doľava',
         floatRight: 'Umiestniť doprava',
         floatNone: 'Bez zarovnania',
-        shapeRounded: 'Shape: Rounded',
-        shapeCircle: 'Shape: Circle',
-        shapeThumbnail: 'Shape: Thumbnail',
-        shapeNone: 'Shape: None',
+        shapeRounded: 'Tvar: Zaoblené',
+        shapeCircle: 'Tvar: Kruh',
+        shapeThumbnail: 'Tvar: Náhľad',
+        shapeNone: 'Tvar: Žiadne',
         dragImageHere: 'Pretiahnuť sem obrázok',
-        dropImage: 'Drop image or Text',
+        dropImage: 'Pretiahnuť sem obrázok alebo text',
         selectFromFiles: 'Vybrať súbor',
-        maximumFileSize: 'Maximum file size',
-        maximumFileSizeError: 'Maximum file size exceeded.',
+        maximumFileSize: 'Maximálna veľkosť súboru',
+        maximumFileSizeError: 'Maximálna veľkosť súboru bola prekročená.',
         url: 'URL obrázku',
-        remove: 'Remove Image',
-        original: 'Original'
+        removeMedia: 'Odstrániť obrázok',
+        original: 'Originál'
       },
       video: {
         video: 'Video',
@@ -48,17 +73,18 @@
         edit: 'Upraviť',
         textToDisplay: 'Zobrazovaný text',
         url: 'Na akú URL adresu má tento odkaz viesť?',
-        openInNewWindow: 'Otvoriť v novom okne'
+        openInNewWindow: 'Otvoriť v novom okne',
+        useProtocol: 'Použiť predvolený protokol'
       },
       table: {
         table: 'Tabuľka',
-        addRowAbove: 'Add row above',
-        addRowBelow: 'Add row below',
-        addColLeft: 'Add column left',
-        addColRight: 'Add column right',
-        delRow: 'Delete row',
-        delCol: 'Delete column',
-        delTable: 'Delete table'
+        addRowAbove: 'Pridať riadok nad',
+        addRowBelow: 'Pridať riadok pod',
+        addColLeft: 'Pridať stĺpec vľavo',
+        addColRight: 'Pridať stĺpec vpravo',
+        delRow: 'Odstrániť riadok',
+        delCol: 'Odstrániť stĺpec',
+        delTable: 'Odstrániť tabuľku'
       },
       hr: {
         insert: 'Vložit vodorovnú čiaru'
@@ -109,27 +135,28 @@
         textFormatting: 'Formátovanie textu',
         action: 'Akcia',
         paragraphFormatting: 'Formátovanie odseku',
-        documentStyle: 'Štýl dokumentu'
+        documentStyle: 'Štýl dokumentu',
+        extraKeys: 'Ďalšie kombinácie'
       },
       help: {
-        'insertParagraph': 'Insert Paragraph',
-        'undo': 'Undoes the last command',
-        'redo': 'Redoes the last command',
-        'tab': 'Tab',
-        'untab': 'Untab',
-        'bold': 'Set a bold style',
-        'italic': 'Set a italic style',
-        'underline': 'Set a underline style',
-        'strikethrough': 'Set a strikethrough style',
-        'removeFormat': 'Clean a style',
-        'justifyLeft': 'Set left align',
-        'justifyCenter': 'Set center align',
-        'justifyRight': 'Set right align',
-        'justifyFull': 'Set full align',
-        'insertUnorderedList': 'Toggle unordered list',
-        'insertOrderedList': 'Toggle ordered list',
-        'outdent': 'Outdent on current paragraph',
-        'indent': 'Indent on current paragraph',
+        'insertParagraph': 'Vložiť odsek',
+        'undo': 'Vrátiť posledný krok',
+        'redo': 'Obnoviť posledný krok',
+        'tab': 'Odsadiť',
+        'untab': 'Zmenšiť odsadenie',
+        'bold': 'Tučné',
+        'italic': 'Kurzívu',
+        'underline': 'Podčiarknutie',
+        'strikethrough': 'Preškrknutý text',
+        'removeFormat': 'Odstrániť formátovanie',
+        'justifyLeft': 'Odsadenie zľava',
+        'justifyCenter': 'Vycentrovať',
+        'justifyRight': 'Odsadenie zprava',
+        'justifyFull': 'Zarovnať do bloku',
+        'insertUnorderedList': 'Odrážkový zoznam',
+        'insertOrderedList': 'Číselný zoznam',
+        'outdent': 'Zrušiť odsadenie aktuálneho odseku',
+        'indent': 'Odsadiť aktuálny odsek',
         'formatPara': 'Change current block\'s format as a paragraph(P tag)',
         'formatH1': 'Change current block\'s format as H1',
         'formatH2': 'Change current block\'s format as H2',
@@ -137,17 +164,22 @@
         'formatH4': 'Change current block\'s format as H4',
         'formatH5': 'Change current block\'s format as H5',
         'formatH6': 'Change current block\'s format as H6',
-        'insertHorizontalRule': 'Insert horizontal rule',
-        'linkDialog.show': 'Show Link Dialog'
+        'insertHorizontalRule': 'Vložiť horizontálne pravidlo',
+        'linkDialog.show': 'Dialóg na zadanie odkazu'
       },
       history: {
         undo: 'Krok vzad',
         redo: 'Krok dopredu'
       },
       specialChar: {
-        specialChar: 'SPECIAL CHARACTERS',
-        select: 'Select Special characters'
+        specialChar: 'ŠPECIÁLNE ZNAKY',
+        select: 'Vybrať špeciálne znaky'
       }
     }
   });
 })(jQuery);
+/******/ 	return __webpack_exports__;
+/******/ })()
+;
+});
+//# sourceMappingURL=summernote-sk-SK.js.map

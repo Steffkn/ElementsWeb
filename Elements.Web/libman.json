@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery@3.3.1",
+      "destination": "wwwroot/lib/jquery/dist/"
+    },
+    {
+      "library": "jquery-validate@1.17.0",
+      "destination": "wwwroot/lib/jquery-validation/dist/"
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.9",
+      "destination": "wwwroot/lib/jquery-validation-unobtrusive/dist/"
+    },
+    {
+      "library": "popper.js@1.14.3",
+      "destination": "wwwroot/lib/popper/dist/"
+    },
+    {
+      "library": "twitter-bootstrap@4.1.2",
+      "destination": "wwwroot/lib/bootstrap/dist/"
+    },
+    {
+      "library": "summernote@0.8.20",
+      "destination": "wwwroot/lib/summernote/dist/"
+    },
+    {
+      "library": "tinymce@4.8.2",
+      "destination": "wwwroot/lib/tinymce/"
+    }
+  ]
+}

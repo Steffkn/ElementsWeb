@@ -1,4 +1,28 @@
-(function($) {
+/*!
+ * 
+ * Super simple WYSIWYG editor v0.8.20
+ * https://summernote.org
+ *
+ *
+ * Copyright 2013- Alan Hong and contributors
+ * Summernote may be freely distributed under the MIT license.
+ *
+ * Date: 2021-10-14T21:15Z
+ *
+ */
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(self, function() {
+return /******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+(function ($) {
   $.extend($.summernote.lang, {
     'zh-TW': {
       font: {
@@ -53,13 +77,13 @@
       },
       table: {
         table: '表格',
-        addRowAbove: 'Add row above',
-        addRowBelow: 'Add row below',
-        addColLeft: 'Add column left',
-        addColRight: 'Add column right',
-        delRow: 'Delete row',
-        delCol: 'Delete column',
-        delTable: 'Delete table'
+        addRowAbove: '上方插入列',
+        addRowBelow: '下方插入列',
+        addColLeft: '左方插入欄',
+        addColRight: '右方插入欄',
+        delRow: '刪除列',
+        delCol: '刪除欄',
+        delTable: '刪除表格'
       },
       hr: {
         insert: '水平線'
@@ -98,11 +122,11 @@
         recent: '字型顏色',
         more: '更多',
         background: '背景',
-        foreground: '前景',
+        foreground: '字體',
         transparent: '透明',
         setTransparent: '透明',
         reset: '重設',
-        resetToDefault: '默認'
+        resetToDefault: '預設'
       },
       shortcut: {
         shortcuts: '快捷鍵',
@@ -153,3 +177,8 @@
     }
   });
 })(jQuery);
+/******/ 	return __webpack_exports__;
+/******/ })()
+;
+});
+//# sourceMappingURL=summernote-zh-TW.js.map

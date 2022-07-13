@@ -1,4 +1,28 @@
-(function($) {
+/*!
+ * 
+ * Super simple WYSIWYG editor v0.8.20
+ * https://summernote.org
+ *
+ *
+ * Copyright 2013- Alan Hong and contributors
+ * Summernote may be freely distributed under the MIT license.
+ *
+ * Date: 2021-10-14T21:15Z
+ *
+ */
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(self, function() {
+return /******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+(function ($) {
   $.extend($.summernote.lang, {
     'th-TH': {
       font: {
@@ -27,10 +51,10 @@
         shapeThumbnail: 'Shape: Thumbnail',
         shapeNone: 'Shape: None',
         dragImageHere: 'ลากรูปภาพที่ต้องการไว้ที่นี่',
-        dropImage: 'Drop image or Text',
+        dropImage: 'วางรูปภาพหรือข้อความ',
         selectFromFiles: 'เลือกไฟล์รูปภาพ',
-        maximumFileSize: 'Maximum file size',
-        maximumFileSizeError: 'Maximum file size exceeded.',
+        maximumFileSize: 'ขนาดไฟล์ใหญ่สุด',
+        maximumFileSizeError: 'ไฟล์เกินขนาดที่กำหนด',
         url: 'ที่อยู่ URL ของรูปภาพ',
         remove: 'ลบรูปภาพ',
         original: 'Original'
@@ -39,7 +63,7 @@
         video: 'วีดีโอ',
         videoLink: 'ลิงก์ของวีดีโอ',
         insert: 'แทรกวีดีโอ',
-        url: 'ที่อยู่ URL ของวีดีโอ?',
+        url: 'ที่อยู่ URL ของวีดีโอ',
         providers: '(YouTube, Vimeo, Vine, Instagram, DailyMotion หรือ Youku)'
       },
       link: {
@@ -53,13 +77,13 @@
       },
       table: {
         table: 'ตาราง',
-        addRowAbove: 'Add row above',
-        addRowBelow: 'Add row below',
-        addColLeft: 'Add column left',
-        addColRight: 'Add column right',
-        delRow: 'Delete row',
-        delCol: 'Delete column',
-        delTable: 'Delete table'
+        addRowAbove: 'เพิ่มแถวด้านบน',
+        addRowBelow: 'เพิ่มแถวด้านล่าง',
+        addColLeft: 'เพิ่มคอลัมน์ด้านซ้าย',
+        addColRight: 'เพิ่มคอลัมน์ด้านขวา',
+        delRow: 'ลบแถว',
+        delCol: 'ลบคอลัมน์',
+        delTable: 'ลบตาราง'
       },
       hr: {
         insert: 'แทรกเส้นคั่น'
@@ -119,8 +143,8 @@
         'redo': 'Redoes the last command',
         'tab': 'Tab',
         'untab': 'Untab',
-        'bold': 'Set a bold style',
-        'italic': 'Set a italic style',
+        'bold': 'ทำตัวหนา',
+        'italic': 'ทำตัวเอียง',
         'underline': 'Set a underline style',
         'strikethrough': 'Set a strikethrough style',
         'removeFormat': 'Clean a style',
@@ -133,14 +157,14 @@
         'outdent': 'Outdent on current paragraph',
         'indent': 'Indent on current paragraph',
         'formatPara': 'Change current block\'s format as a paragraph(P tag)',
-        'formatH1': 'Change current block\'s format as H1',
-        'formatH2': 'Change current block\'s format as H2',
-        'formatH3': 'Change current block\'s format as H3',
-        'formatH4': 'Change current block\'s format as H4',
-        'formatH5': 'Change current block\'s format as H5',
-        'formatH6': 'Change current block\'s format as H6',
+        'formatH1': 'เปลี่ยนรูปแบบบล็อคปัจจุบันเป็น H1',
+        'formatH2': 'เปลี่ยนรูปแบบบล็อคปัจจุบันเป็น H2',
+        'formatH3': 'เปลี่ยนรูปแบบบล็อคปัจจุบันเป็น H3',
+        'formatH4': 'เปลี่ยนรูปแบบบล็อคปัจจุบันเป็น H4',
+        'formatH5': 'เปลี่ยนรูปแบบบล็อคปัจจุบันเป็น H5',
+        'formatH6': 'เปลี่ยนรูปแบบบล็อคปัจจุบันเป็น H6',
         'insertHorizontalRule': 'Insert horizontal rule',
-        'linkDialog.show': 'Show Link Dialog'
+        'linkDialog.show': 'เปิดหน้าแก้ไข Link'
       },
       history: {
         undo: 'ยกเลิกการกระทำ',
@@ -153,3 +177,8 @@
     }
   });
 })(jQuery);
+/******/ 	return __webpack_exports__;
+/******/ })()
+;
+});
+//# sourceMappingURL=summernote-th-TH.js.map

@@ -1,4 +1,28 @@
-(function($) {
+/*!
+ * 
+ * Super simple WYSIWYG editor v0.8.20
+ * https://summernote.org
+ *
+ *
+ * Copyright 2013- Alan Hong and contributors
+ * Summernote may be freely distributed under the MIT license.
+ *
+ * Date: 2021-10-14T21:15Z
+ *
+ */
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(self, function() {
+return /******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+(function ($) {
   $.extend($.summernote.lang, {
     'vi-VN': {
       font: {
@@ -40,7 +64,7 @@
         videoLink: 'Link đến Video',
         insert: 'Chèn Video',
         url: 'URL',
-        providers: '(YouTube, Vimeo, Vine, Instagram, DailyMotion và Youku)'
+        providers: '(Hỗ trợ YouTube, Vimeo, Vine, Instagram, DailyMotion và Youku)'
       },
       link: {
         link: 'Link',
@@ -53,13 +77,13 @@
       },
       table: {
         table: 'Bảng',
-        addRowAbove: 'Add row above',
-        addRowBelow: 'Add row below',
-        addColLeft: 'Add column left',
-        addColRight: 'Add column right',
-        delRow: 'Delete row',
-        delCol: 'Delete column',
-        delTable: 'Delete table'
+        addRowAbove: 'Chèn dòng phía trên',
+        addRowBelow: 'Chèn dòng phía dưới',
+        addColLeft: 'Chèn cột bên trái',
+        addColRight: 'Chèn cột bên phải',
+        delRow: 'Xóa dòng',
+        delCol: 'Xóa cột',
+        delTable: 'Xóa bảng'
       },
       hr: {
         insert: 'Chèn'
@@ -114,7 +138,7 @@
         extraKeys: 'Extra keys'
       },
       help: {
-        'insertParagraph': 'Insert Paragraph',
+        'insertParagraph': 'Chèn đo văn',
         'undo': 'Undoes the last command',
         'redo': 'Redoes the last command',
         'tab': 'Tab',
@@ -147,9 +171,14 @@
         redo: 'Làm lại'
       },
       specialChar: {
-        specialChar: 'SPECIAL CHARACTERS',
-        select: 'Select Special characters'
+        specialChar: 'KÝ TỰ ĐẶC BIỆT',
+        select: 'Chọn ký tự đặc biệt'
       }
     }
   });
 })(jQuery);
+/******/ 	return __webpack_exports__;
+/******/ })()
+;
+});
+//# sourceMappingURL=summernote-vi-VN.js.map

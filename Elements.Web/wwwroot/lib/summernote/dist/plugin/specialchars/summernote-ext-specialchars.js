@@ -1,5 +1,4 @@
 (function(factory) {
-  /* global define */
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
     define(['jquery'], factory);
@@ -25,9 +24,9 @@
         DOWN: 40,
         LEFT: 37,
         RIGHT: 39,
-        ENTER: 13
+        ENTER: 13,
       };
-      var COLUMN_LENGTH = 15;
+      var COLUMN_LENGTH = 12;
       var COLUMN_WIDTH = 35;
 
       var currentColumn = 0;
@@ -61,16 +60,16 @@
         '&nsub;', '&sube;', '&supe;', '&oplus;', '&otimes;',
         '&perp;', '&sdot;', '&lceil;', '&rceil;', '&lfloor;',
         '&rfloor;', '&loz;', '&spades;', '&clubs;', '&hearts;',
-        '&diams;'
+        '&diams;',
       ];
 
       context.memo('button.specialchars', function() {
         return ui.button({
-          contents: '<i class="fa fa-font fa-flip-vertical">',
+          contents: '<i class="fa fa-font fa-flip-vertical"></i>',
           tooltip: lang.specialChar.specialChar,
           click: function() {
             self.show();
-          }
+          },
         }).render();
       });
 
@@ -82,10 +81,10 @@
        * @return {jQuery}
        */
       this.makeSpecialCharSetTable = function() {
-        var $table = $('<table/>');
+        var $table = $('<table></table>');
         $.each(specialCharDataSet, function(idx, text) {
-          var $td = $('<td/>').addClass('note-specialchar-node');
-          var $tr = (idx % COLUMN_LENGTH === 0) ? $('<tr/>') : $table.find('tr').last();
+          var $td = $('<td></td>').addClass('note-specialchar-node');
+          var $tr = (idx % COLUMN_LENGTH === 0) ? $('<tr></tr>') : $table.find('tr').last();
 
           var $button = ui.button({
             callback: function($node) {
@@ -95,9 +94,9 @@
               $node.css({
                 width: COLUMN_WIDTH,
                 'margin-right': '2px',
-                'margin-bottom': '2px'
+                'margin-bottom': '2px',
               });
-            }
+            },
           }).render();
 
           $td.append($button);
@@ -121,7 +120,7 @@
 
         this.$dialog = ui.dialog({
           title: lang.specialChar.select,
-          body: body
+          body: body,
         }).render().appendTo($container);
       };
 
@@ -295,7 +294,7 @@
           ui.onDialogHidden(self.$dialog, function() {
             $specialCharNode.off('click');
 
-            self.$dialog.find('button').tooltip('destroy');
+            self.$dialog.find('button').tooltip();
 
             $(document).off('keydown', keyDownEventHandler);
 
@@ -307,6 +306,6 @@
           ui.showDialog(self.$dialog);
         });
       };
-    }
+    },
   });
 }));
