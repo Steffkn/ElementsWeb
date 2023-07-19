@@ -37,7 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Elemenets.Common\Elements.Common.csproj" />
+    <ProjectReference Include="..\Elements.Common\Elements.Common.csproj" />
     <ProjectReference Include="..\Elements.Data\Elements.Data.csproj" />
     <ProjectReference Include="..\Elements.Models\Elements.Models.csproj" />
     <ProjectReference Include="..\Elements.Services\Elements.Services.csproj" />
