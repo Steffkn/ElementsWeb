@@ -4,7 +4,6 @@ using Elements.Services.Admin.Interfaces;
 using Elements.Services.Admin;
 using Elements.Services.Public.Interfaces;
 using Elements.Services.Public;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +16,7 @@ using Elements.Common;
 using Elements.Web.Areas.Identity.Services;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Elements.Web.Common;
+using Microsoft.AspNetCore.Http;
 
 namespace Elements.Web
 {
@@ -30,6 +30,13 @@ namespace Elements.Web
             {
                 options.AddPolicy(Constants.PolicyRequireAdminRole, policy => policy.RequireRole(Constants.AdminRoleName, Constants.CreatorRoleName));
                 options.AddPolicy(Constants.PolicyRequireAdminDevRole, policy => policy.RequireRole(Constants.AdminRoleName, Constants.CreatorRoleName, Constants.DevRoleName));
+            });
+
+            builder.Services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
             builder.Services.AddControllersWithViews();
