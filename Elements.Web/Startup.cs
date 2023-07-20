@@ -83,11 +83,9 @@ namespace Elements.Web
             services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
             services.AddMvc()
-            .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+            //.SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
             .AddRazorPagesOptions(options =>
             {
-                options.AllowAreas = true;
-
                 options.Conventions.AuthorizeAreaFolder(Constants.AdminAreaName, "/Admin", Constants.PolicyRequireAdminRole);
                 options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
                 options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
@@ -127,21 +125,19 @@ namespace Elements.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-            app.UseAuthentication();
 
             app.SeedDatabase(dateTimeService);
+            app.UseAuthentication();
+            app.UseAuthorization();
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                // Areas support
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "areaRoute",
-                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-                // Default routing
-                routes.MapRoute(
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
 

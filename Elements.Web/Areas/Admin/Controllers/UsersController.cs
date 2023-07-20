@@ -1,6 +1,7 @@
 ﻿namespace Elements.Web.Areas.Admin.Controllers
 {
     using System.Linq;
+    using System.Threading.Tasks;
     using Elements.Models;
     using Elements.Services.Admin.Interfaces;
     using Elements.Services.Models.Areas.Admin.ViewModels;
@@ -20,7 +21,7 @@
         }
 
         [HttpGet]
-        public IActionResult ManageUsers()
+        public async Task<IActionResult> ManageUsers()
         {
             var usersWithTopics = this.usersService.GetAllUsersWithTopics()
                 .ToList();
@@ -28,7 +29,7 @@
             for (int i = 0; i < usersWithTopics.Count; i++)
             {
                 var currentUser = usersWithTopics[i];
-                var user = userManager.FindByIdAsync(currentUser.Id).Result;
+                var user = await userManager.FindByIdAsync(currentUser.Id);
                 currentUser.Role = userManager.GetRolesAsync(user)
                     .Result.OrderBy(x => x)
                     .FirstOrDefault();

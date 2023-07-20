@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 
 namespace Elements.Data
 {
@@ -85,7 +86,7 @@ namespace Elements.Data
                 .WithMany(c => c.Topics)
                 .HasForeignKey(t => t.CategoryId);
 
-            builder.Entity<IdentityRole>().HasData();
+            builder.Entity<IdentityRole>();
 
             builder.Entity<CharacterInventory>()
                 .HasKey((item) => new { item.CharacterId, item.Slot });
